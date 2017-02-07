@@ -63,7 +63,7 @@ public class LoginRegisterActionListener implements ActionListener
 					{
 						lrview.addMessageToPanel(Message.getInstance().printSuccessMsg(SUCCES_LOGIN_MSG));
 						mf.remove(lrview);
-						mf.add(new Template());
+						mf.add(new Template(this.mf));
 						mf.repaint();
 					}
 
@@ -98,7 +98,7 @@ public class LoginRegisterActionListener implements ActionListener
 							lrview.removeMessageToPanel();
 							lrview.addMessageToPanel(Message.getInstance().printSuccessMsg(SUCCES_REGISTRATION_MSG));
 							mf.remove(lrview);
-							mf.add(new Template());
+							mf.add(new Template(this.mf));
 							mf.repaint();
 						}
 					} catch (RegistrationException | SQLException e1) {
