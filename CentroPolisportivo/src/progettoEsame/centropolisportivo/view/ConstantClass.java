@@ -42,6 +42,7 @@ public final class ConstantClass {
 	public static final String LOGIN_DATA_INCOMPLETED_EXCEPTION = "Login data must be completed";
 	public static final String REGISTER_DATA_INCOMPLETED_MSG = "All data must be completed";
 	public static final String REGISTER_PASSWORD_NOT_EQUALS_MSG = "Password are not equals";
+	public static final String NO_REGISTRATION_PROPOSAL = "There are any propose now...";
 	
 	//costanti per il template
 	public static final String PROFILE_ACTION_CMD = "profilePanel";
