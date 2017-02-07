@@ -62,7 +62,7 @@ public class LoginBusiness {
 		if(centerManager!=null)
 		{
 			if (centerManager.getPassword().equals(password)){
-				Session.getInstance().createSession(email,"centerManager");
+				Session.getInstance().createSession(email,"centerManger");
 			}
 			else throw new LoginException(ConstantClass.ERROR_DIFFERENT_PASSWORD);
 		}

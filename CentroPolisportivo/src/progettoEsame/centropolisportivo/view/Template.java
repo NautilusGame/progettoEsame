@@ -24,8 +24,6 @@ import static progettoEsame.centropolisportivo.view.ConstantClass.*;
 
 public class Template extends JPanel {
 
-	private MainFrame mf;
-	
 	private JPanel panelNord;//Panel eddicato al banner e al menu nella sezione nord del template
 	private JPanel panelOvest;//Panel dedicato a tutte le voci di menu aggiuntive per ogni entità
 	private JPanel panelSud;//panel eddicato alla zona per i messaggi di errori
@@ -62,11 +60,15 @@ public class Template extends JPanel {
 	private BufferedImage image;
 	private JLabel picLabel;
 	
+	//TODO DA CANCELLARE
+	Session sessione =new Session();
+	
 	//inizio del cotruttore della view
-	public Template (MainFrame mf){
+	public Template (){
 		this.setLayout(new BorderLayout());
 		
-		this.mf=mf;
+		//TODO DA CANCELLARE
+		sessione.createSession("luca","trainer");
 		
 		//inizializzazione di tutti i panel
 		this.panelNord=new JPanel();
@@ -107,11 +109,11 @@ public class Template extends JPanel {
 		this.logout.setActionCommand(ConstantClass.LOGOUT_ACTION_CMD);
 		this.info.setActionCommand(ConstantClass.INFO_ACTION_CMD);
 		
-		this.home.addMenuListener(new TemplateMenuListener(this,this.mf) );
-		this.flyer.addMenuListener(new TemplateMenuListener(this,this.mf) );
-		this.profile.addMenuListener(new TemplateMenuListener(this,this.mf) );
-		this.logout.addMenuListener(new TemplateMenuListener(this,this.mf) );
-		this.info.addMenuListener(new TemplateMenuListener(this,this.mf) );
+		this.home.addMenuListener(new TemplateMenuListener(this) );
+		this.flyer.addMenuListener(new TemplateMenuListener(this) );
+		this.profile.addMenuListener(new TemplateMenuListener(this) );
+		this.logout.addMenuListener(new TemplateMenuListener(this) );
+		this.info.addMenuListener(new TemplateMenuListener(this) );
 
 		this.menuBar.add(home);
 		this.menuBar.add(flyer);

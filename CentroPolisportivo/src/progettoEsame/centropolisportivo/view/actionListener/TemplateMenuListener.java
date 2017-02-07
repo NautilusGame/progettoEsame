@@ -6,18 +6,14 @@ import javax.swing.event.MenuListener;
 import static progettoEsame.centropolisportivo.view.ConstantClass.*;
 
 import progettoEsame.centropolisportivo.business.Session;
-import progettoEsame.centropolisportivo.view.LoginRegister;
-import progettoEsame.centropolisportivo.view.MainFrame;
 import progettoEsame.centropolisportivo.view.Template;
 
 public class TemplateMenuListener implements MenuListener {
 
 	private Template template;
-	private MainFrame mf;
-	
-	public TemplateMenuListener (Template template, MainFrame mf){
+
+	public TemplateMenuListener (Template template){
 		this.template=template;
-		this.mf=mf;
 	}
 	
 	@Override
@@ -36,12 +32,7 @@ public class TemplateMenuListener implements MenuListener {
 		else if(menu.getActionCommand().equals(LOGOUT_ACTION_CMD))
 		{
 			Session.getInstance().destroySession();
-			mf.remove(template);
-			mf.add(new LoginRegister(this.mf));
-			mf.setSize(501,500);//serve per far aggiornare correttamente il mainframe
-			mf.repaint();		
-			
-			//TODO veedere di sistemare il set size al referesh
+			//TODO inserire richiamo a panello dei login
 		}
 		else if(menu.getActionCommand().equals(HOME_ACTION_CMD))
 		{

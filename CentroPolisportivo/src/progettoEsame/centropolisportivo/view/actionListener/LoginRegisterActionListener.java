@@ -43,34 +43,35 @@ public class LoginRegisterActionListener implements ActionListener
 		}
 		else if(e.getActionCommand().equals(LOGIN_BUTTON_ACTION_CMD))
 		{
-			
+
 			ArrayList<String> loginData = lrview.getLoginData();
 			if(loginData.get(0).equals(DEFAULT_TEXT_USERNAME_FIELD) ||  loginData.get(1).equals(DEFAULT_TEXT_PASSWORD_FIELD))
 			{
-						lrview.addMessageToPanel(Message.getInstance().printErrorMsg("All field must be completed"));
+				lrview.addMessageToPanel(Message.getInstance().printErrorMsg("All field must be completed"));
 			}
 			else
 			{
 				try {
-					boolean resMemeber=LoginBusiness.getInstance().LoginMember(loginData.get(0), loginData.get(1));
-					boolean resTrainer=LoginBusiness.getInstance().LoginTrainer(loginData.get(0), loginData.get(1));
-					boolean resCenterManager=LoginBusiness.getInstance().LoginCenterManager(loginData.get(0), loginData.get(1));
-					
-					if((!resCenterManager)&&(!resMemeber)&&(!resTrainer)){
+					boolean resMember = LoginBusiness.getInstance().LoginMember(loginData.get(0), loginData.get(1));
+					boolean resTrainer = LoginBusiness.getInstance().LoginTrainer(loginData.get(0), loginData.get(1));
+					boolean resCenterManager = LoginBusiness.getInstance().LoginCenterManager(loginData.get(0), loginData.get(1));
+					if(!resCenterManager && !resTrainer && !resMember)
+					{
 						lrview.addMessageToPanel(Message.getInstance().printErrorMsg(ConstantClass.USERNAME_NOTFOUND));
-					}						
-					else {					
+					}
+					else
+					{
 						lrview.addMessageToPanel(Message.getInstance().printSuccessMsg(SUCCES_LOGIN_MSG));
 						mf.remove(lrview);
-						mf.add(new Template(this.mf));
+						mf.add(new Template());
 						mf.repaint();
 					}
-					
+
 				} catch (LoginException | SQLException e1) {
 					lrview.addMessageToPanel(Message.getInstance().printErrorMsg(e1.getMessage()));
 				}
 			}
-			
+
 		}
 
 		else if(e.getActionCommand().equals(REGISTER_BUTTON_ACTION_CMD))
@@ -97,7 +98,7 @@ public class LoginRegisterActionListener implements ActionListener
 							lrview.removeMessageToPanel();
 							lrview.addMessageToPanel(Message.getInstance().printSuccessMsg(SUCCES_REGISTRATION_MSG));
 							mf.remove(lrview);
-							mf.add(new Template(this.mf));
+							mf.add(new Template());
 							mf.repaint();
 						}
 					} catch (RegistrationException | SQLException e1) {
@@ -114,9 +115,6 @@ public class LoginRegisterActionListener implements ActionListener
 						{
 							lrview.removeMessageToPanel();
 							lrview.addMessageToPanel(Message.getInstance().printSuccessMsg(SUCCES_REGISTRATION_MSG));
-							mf.remove(lrview);
-							mf.add(new Template(this.mf));
-							mf.repaint();
 						}
 					} catch (RegistrationException | SQLException e1) {
 						lrview.addMessageToPanel(Message.getInstance().printErrorMsg(e1.getMessage()));
