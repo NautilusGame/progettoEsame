@@ -37,6 +37,7 @@ public class Template extends JPanel {
 	private JMenu profile;//per andare al profilo
 	private JMenu logout;//per effettuare il logout
 	private JMenu info;
+	private JMenu inf1o;
 	
 	/*
 	 * Pulsanti dedicati per ogni entita nel menu laterale
