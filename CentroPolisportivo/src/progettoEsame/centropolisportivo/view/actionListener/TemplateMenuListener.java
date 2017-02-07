@@ -39,8 +39,9 @@ public class TemplateMenuListener implements MenuListener {
 			mf.remove(template);
 			mf.add(new LoginRegister(this.mf));
 			mf.setSize(501,500);//serve per far aggiornare correttamente il mainframe
-			mf.repaint();			
-			//TODO inserire richiamo a panello dei login
+			mf.repaint();		
+			
+			//TODO veedere di sistemare il set size al referesh
 		}
 		else if(menu.getActionCommand().equals(HOME_ACTION_CMD))
 		{

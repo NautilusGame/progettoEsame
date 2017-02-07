@@ -61,7 +61,7 @@ public class LoginRegisterActionListener implements ActionListener
 					lrview.addMessageToPanel(Message.getInstance().printErrorMsg(e1.getMessage()));
 				}
 			}
-
+			
 		}
 
 		else if(e.getActionCommand().equals(REGISTER_BUTTON_ACTION_CMD))
