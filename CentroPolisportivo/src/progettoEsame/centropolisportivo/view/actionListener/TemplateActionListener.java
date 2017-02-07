@@ -4,6 +4,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 import progettoEsame.centropolisportivo.business.Session;
+import progettoEsame.centropolisportivo.view.CenterManagerRegistrationProposal;
 import progettoEsame.centropolisportivo.view.Template;
 import static progettoEsame.centropolisportivo.view.ConstantClass.*;
 
@@ -61,7 +62,8 @@ public class TemplateActionListener implements ActionListener{
 		}
 		else if(e.getActionCommand().equals(CENTERMANAGER_MENU_1))
 		{
-			
+			CenterManagerRegistrationProposal registrationProposal=new CenterManagerRegistrationProposal();
+			this.template.setPage(registrationProposal);
 		}
 		else if(e.getActionCommand().equals(CENTERMANAGER_MENU_2))
 		{

@@ -54,7 +54,7 @@ public class LoginRegisterActionListener implements ActionListener
 					LoginBusiness.getInstance().LoginMember(loginData.get(0), loginData.get(1));
 					lrview.addMessageToPanel(Message.getInstance().printSuccessMsg(SUCCES_LOGIN_MSG));
 					mf.remove(lrview);
-					mf.add(new Template());
+					mf.add(new Template(this.mf));
 					mf.repaint();
 					
 				} catch (LoginException | SQLException e1) {
@@ -88,7 +88,7 @@ public class LoginRegisterActionListener implements ActionListener
 							lrview.removeMessageToPanel();
 							lrview.addMessageToPanel(Message.getInstance().printSuccessMsg(SUCCES_REGISTRATION_MSG));
 							mf.remove(lrview);
-							mf.add(new Template());
+							mf.add(new Template(this.mf));
 							mf.repaint();
 						}
 					} catch (RegistrationException | SQLException e1) {
@@ -105,6 +105,9 @@ public class LoginRegisterActionListener implements ActionListener
 						{
 							lrview.removeMessageToPanel();
 							lrview.addMessageToPanel(Message.getInstance().printSuccessMsg(SUCCES_REGISTRATION_MSG));
+							mf.remove(lrview);
+							mf.add(new Template(this.mf));
+							mf.repaint();
 						}
 					} catch (RegistrationException | SQLException e1) {
 						lrview.addMessageToPanel(Message.getInstance().printErrorMsg(e1.getMessage()));
