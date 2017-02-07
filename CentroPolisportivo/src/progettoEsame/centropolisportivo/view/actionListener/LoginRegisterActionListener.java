@@ -9,6 +9,7 @@ import java.sql.Date;
 import java.sql.SQLException;
 import java.util.ArrayList;
 
+import progettoEsame.centropolisportivo.business.ConstantClass;
 import progettoEsame.centropolisportivo.business.LoginBusiness;
 import progettoEsame.centropolisportivo.business.RegistrationBusiness;
 import progettoEsame.centropolisportivo.business.Session;
@@ -51,11 +52,19 @@ public class LoginRegisterActionListener implements ActionListener
 			else
 			{
 				try {
-					LoginBusiness.getInstance().LoginMember(loginData.get(0), loginData.get(1));
-					lrview.addMessageToPanel(Message.getInstance().printSuccessMsg(SUCCES_LOGIN_MSG));
-					mf.remove(lrview);
-					mf.add(new Template(this.mf));
-					mf.repaint();
+					boolean resMemeber=LoginBusiness.getInstance().LoginMember(loginData.get(0), loginData.get(1));
+					boolean resTrainer=LoginBusiness.getInstance().LoginTrainer(loginData.get(0), loginData.get(1));
+					boolean resCenterManager=LoginBusiness.getInstance().LoginCenterManager(loginData.get(0), loginData.get(1));
+					
+					if((!resCenterManager)&&(!resMemeber)&&(!resTrainer)){
+						lrview.addMessageToPanel(Message.getInstance().printErrorMsg(ConstantClass.USERNAME_NOTFOUND));
+					}						
+					else {					
+						lrview.addMessageToPanel(Message.getInstance().printSuccessMsg(SUCCES_LOGIN_MSG));
+						mf.remove(lrview);
+						mf.add(new Template(this.mf));
+						mf.repaint();
+					}
 					
 				} catch (LoginException | SQLException e1) {
 					lrview.addMessageToPanel(Message.getInstance().printErrorMsg(e1.getMessage()));

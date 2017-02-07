@@ -30,7 +30,7 @@ public class LoginBusiness {
 			}
 			else throw new LoginException(ConstantClass.ERROR_DIFFERENT_PASSWORD);
 		}
-		else throw new LoginException(ConstantClass.USERNAME_NOTFOUND);
+		else return false;
 
 		return true;
 	}
@@ -48,7 +48,7 @@ public class LoginBusiness {
 			}
 			else throw new LoginException(ConstantClass.ERROR_DIFFERENT_PASSWORD);
 		}
-		else throw new LoginException(ConstantClass.USERNAME_NOTFOUND);
+		else return false;
 
 		return true;
 	}
@@ -57,16 +57,16 @@ public class LoginBusiness {
 	public Boolean LoginCenterManager(String email, String password) throws LoginException,SQLException {	
 
 		CenterManager centerManager = CenterManager.findByEmail(email);
-		String md5Password = MD5.getMD5(password);	
+		//String md5Password = MD5.getMD5(password);	
 		
 		if(centerManager!=null)
 		{
-			if (centerManager.getPassword().equals(md5Password)){
+			if (centerManager.getPassword().equals(password)){
 				Session.getInstance().createSession(email,"centerManager");
 			}
 			else throw new LoginException(ConstantClass.ERROR_DIFFERENT_PASSWORD);
 		}
-		else throw new LoginException(ConstantClass.USERNAME_NOTFOUND);
+		else return false;
 
 		return true;
 	}
