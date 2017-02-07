@@ -24,6 +24,8 @@ import static progettoEsame.centropolisportivo.view.ConstantClass.*;
 
 public class Template extends JPanel {
 
+	private MainFrame mf;
+	
 	private JPanel panelNord;//Panel eddicato al banner e al menu nella sezione nord del template
 	private JPanel panelOvest;//Panel dedicato a tutte le voci di menu aggiuntive per ogni entità
 	private JPanel panelSud;//panel eddicato alla zona per i messaggi di errori
@@ -60,15 +62,11 @@ public class Template extends JPanel {
 	private BufferedImage image;
 	private JLabel picLabel;
 	
-	//TODO DA CANCELLARE
-	Session sessione =new Session();
-	
 	//inizio del cotruttore della view
-	public Template (){
+	public Template (MainFrame mf){
 		this.setLayout(new BorderLayout());
 		
-		//TODO DA CANCELLARE
-		sessione.createSession("luca","trainer");
+		this.mf=mf;
 		
 		//inizializzazione di tutti i panel
 		this.panelNord=new JPanel();
@@ -109,11 +107,11 @@ public class Template extends JPanel {
 		this.logout.setActionCommand(ConstantClass.LOGOUT_ACTION_CMD);
 		this.info.setActionCommand(ConstantClass.INFO_ACTION_CMD);
 		
-		this.home.addMenuListener(new TemplateMenuListener(this) );
-		this.flyer.addMenuListener(new TemplateMenuListener(this) );
-		this.profile.addMenuListener(new TemplateMenuListener(this) );
-		this.logout.addMenuListener(new TemplateMenuListener(this) );
-		this.info.addMenuListener(new TemplateMenuListener(this) );
+		this.home.addMenuListener(new TemplateMenuListener(this,this.mf) );
+		this.flyer.addMenuListener(new TemplateMenuListener(this,this.mf) );
+		this.profile.addMenuListener(new TemplateMenuListener(this,this.mf) );
+		this.logout.addMenuListener(new TemplateMenuListener(this,this.mf) );
+		this.info.addMenuListener(new TemplateMenuListener(this,this.mf) );
 
 		this.menuBar.add(home);
 		this.menuBar.add(flyer);
@@ -164,6 +162,12 @@ public class Template extends JPanel {
 		this.member4.setActionCommand(MEMBER_MENU_4);
 		this.member5.setActionCommand(MEMBER_MENU_5);
 		
+		this.member1.addActionListener(new TemplateActionListener(this));
+		this.member2.addActionListener(new TemplateActionListener(this));
+		this.member3.addActionListener(new TemplateActionListener(this));
+		this.member4.addActionListener(new TemplateActionListener(this));
+		this.member5.addActionListener(new TemplateActionListener(this));
+		
 		this.panelOvest.add(member1);
 		this.panelOvest.add(member2);
 		this.panelOvest.add(member3);
@@ -188,6 +192,10 @@ public class Template extends JPanel {
 		this.trainer5.setActionCommand(TRAINER_MENU_5);
 		
 		this.trainer1.addActionListener(new TemplateActionListener(this));
+		this.trainer2.addActionListener(new TemplateActionListener(this));
+		this.trainer3.addActionListener(new TemplateActionListener(this));
+		this.trainer4.addActionListener(new TemplateActionListener(this));
+		this.trainer5.addActionListener(new TemplateActionListener(this));
 		
 		this.panelOvest.add(trainer1);
 		this.panelOvest.add(trainer2);
@@ -211,6 +219,12 @@ public class Template extends JPanel {
 		this.centerManager3.setActionCommand(CENTERMANAGER_MENU_3);
 		this.centerManager4.setActionCommand(CENTERMANAGER_MENU_4);
 		this.centerManager5.setActionCommand(CENTERMANAGER_MENU_5);
+		
+		this.centerManager1.addActionListener(new TemplateActionListener(this));
+		this.centerManager2.addActionListener(new TemplateActionListener(this));
+		this.centerManager3.addActionListener(new TemplateActionListener(this));
+		this.centerManager4.addActionListener(new TemplateActionListener(this));
+		this.centerManager5.addActionListener(new TemplateActionListener(this));
 		
 		this.panelOvest.add(centerManager1);
 		this.panelOvest.add(centerManager2);
