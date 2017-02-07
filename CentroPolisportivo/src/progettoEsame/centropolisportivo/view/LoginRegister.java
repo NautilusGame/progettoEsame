@@ -414,15 +414,15 @@ public class LoginRegister extends JPanel{
 	{
 
 		ArrayList<String> registerData = new ArrayList<>();
-		registerData.add(this.surnameRegister.getText());
-		registerData.add(this.nameRegister.getText());
-		registerData.add(String.valueOf(this.passwordRegister.getPassword()));
-		registerData.add(String.valueOf(this.confirmPasswordRegister.getPassword()));
-		registerData.add(this.phoneNumberRegister.getText());
-		registerData.add(this.emailRegister.getText());
+		registerData.add(this.surnameRegister.getText()); //0
+		registerData.add(this.nameRegister.getText()); //1
+		registerData.add(String.valueOf(this.passwordRegister.getPassword())); //2
+		registerData.add(String.valueOf(this.confirmPasswordRegister.getPassword())); //3
+		registerData.add(this.phoneNumberRegister.getText());//4
+		registerData.add(this.emailRegister.getText());//5
 		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
-		registerData.add(sdf.format(this.dataPicker.getDate().getTime()));
-		registerData.add(this.userType.getSelection().getActionCommand());
+		registerData.add(sdf.format(this.dataPicker.getDate().getTime()));//6
+		registerData.add(this.userType.getSelection().getActionCommand());//7
 		return registerData;
 	}
 	

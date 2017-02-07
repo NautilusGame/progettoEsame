@@ -82,16 +82,16 @@ public class LoginRegisterActionListener implements ActionListener
 				lrview.removeMessageToPanel();
 				lrview.addMessageToPanel(Message.getInstance().printErrorMsg(REGISTER_DATA_INCOMPLETED_MSG));
 			}
-			else if(!(registerData.get(3).equals(registerData.get(4))))
+			else if(!(registerData.get(3).equals(registerData.get(2))))
 			{
 				lrview.removeMessageToPanel();
 				lrview.addMessageToPanel(Message.getInstance().printErrorMsg(REGISTER_PASSWORD_NOT_EQUALS_MSG));
 			}
 			else
 			{
-				if(registerData.get(8).equals(TRAINER_RADIOBUTTON_ACTION_CMD))
+				if(registerData.get(7).equals(TRAINER_RADIOBUTTON_ACTION_CMD))
 				{
-					Trainer newTrainer = new Trainer(registerData.get(6), new CenterManager(), registerData.get(3),registerData.get(1), registerData.get(0),registerData.get(5), 0);
+					Trainer newTrainer = new Trainer(registerData.get(5), new CenterManager(), registerData.get(2),registerData.get(1), registerData.get(0),registerData.get(4), 0);
 					try {
 						if(RegistrationBusiness.getInstance().checkTrainerDataRegistration(newTrainer))
 						{
@@ -106,10 +106,10 @@ public class LoginRegisterActionListener implements ActionListener
 						lrview.addMessageToPanel(Message.getInstance().printErrorMsg(e1.getMessage()));
 					}
 				}
-				else if(registerData.get(8).equals(MEMBER_RADIOBUTTON_ACTION_CMD))
+				else if(registerData.get(7).equals(MEMBER_RADIOBUTTON_ACTION_CMD))
 				{
 					CenterManager cm = new CenterManager();
-					Member newMember = new Member(registerData.get(6), cm, registerData.get(1), registerData.get(0),Date.valueOf(registerData.get(7)), registerData.get(3), 0);
+					Member newMember = new Member(registerData.get(5), cm, registerData.get(1), registerData.get(0),Date.valueOf(registerData.get(6)), registerData.get(2), 0);
 					try {
 						if(RegistrationBusiness.getInstance().checkMemberDataRegistration(newMember))
 						{
