@@ -35,8 +35,7 @@ public class LoginRegister extends JPanel{
 	
 	
 	private JTextField usernameLogin; //username per il login
-	private JPasswordField passwordLogin; // password per il login
-	private JTextField usernameRegister; // username per il register
+	private JPasswordField passwordLogin; // password per il login // username per il register
 	private JPasswordField passwordRegister; //password per il register
 	private JTextField emailRegister; //email per il register
 	private JTextField nameRegister;//nome utente per il register
@@ -49,9 +48,7 @@ public class LoginRegister extends JPanel{
 	private JButton register; //bottone di registrazione
 	
 	
-	private JLabel usernameLabel; //label username nel pannello login
-	private JLabel passwordLabel; //label password nel pannello password
-	private JLabel usernameRegisterLabel; //label username nel pannello registrazione
+	private JLabel passwordLabel; //label password nel pannello password //label username nel pannello registrazione
 	private JLabel passwordRegisterLabel; //label password nel pannello registrazione 
 	private JLabel emailLabel; //label email nel pannello registrazione
 	private JLabel registerLabel; //label CLICCABILE che permette di switchare nel pannello di registrazione
@@ -96,7 +93,7 @@ public class LoginRegister extends JPanel{
 		this.login.setActionCommand(LOGIN_BUTTON_ACTION_CMD);
 		this.login.addActionListener(new LoginRegisterActionListener(this,this.mf));
 		
-		this.usernameLabel = new JLabel(USERNAME_LABEL_TEXT);
+		this.emailLabel = new JLabel(EMAIL_LABEL_TEXT);
 		this.passwordLabel = new JLabel(PASSWORD_LABEL_TEXT);
 		this.registerLabel = new JLabel(REGISTER_LABEL_TEXT);
 		
@@ -130,7 +127,7 @@ public class LoginRegister extends JPanel{
 		this.gbc.insets = new Insets(15, 13, 0, 0); //padding dell'elemento
 		this.gbc.fill = GridBagConstraints.HORIZONTAL; //riempie tutta la cella
 		this.gbc.anchor = GridBagConstraints.CENTER; //lo centra
-		this.loginPanel.add(usernameLabel,gbc);
+		this.loginPanel.add(emailLabel,gbc);
 		
 		//componente 2:text field dello username
 		this.gbc.gridx = 1;
@@ -176,14 +173,12 @@ public class LoginRegister extends JPanel{
 		this.confirmPasswordLabel = new JLabel(CONFIRM_PASSWORD_LABEL_TEXT);
 		this.phoneNumberLabel = new JLabel(P_N_LABEL_TEXT);
 		this.emailLabel = new JLabel(EMAIL_LABEL_TEXT);
-		this.passwordRegisterLabel = new JLabel(PASSWORD_LABEL_TEXT);
-		this.usernameRegisterLabel = new JLabel(USERNAME_LABEL_TEXT); //inizializzazione label
+		this.passwordRegisterLabel = new JLabel(PASSWORD_LABEL_TEXT); //inizializzazione label
 		
 		this.nameRegister = new JTextField(TEXT_FIELD_DIMENSION);
 		this.surnameRegister = new JTextField(TEXT_FIELD_DIMENSION);
 		this.confirmPasswordRegister = new JPasswordField(TEXT_FIELD_DIMENSION);
 		this.phoneNumberRegister = new JTextField(TEXT_FIELD_DIMENSION);
-		this.usernameRegister = new JTextField(TEXT_FIELD_DIMENSION);
 		this.passwordRegister = new JPasswordField(TEXT_FIELD_DIMENSION);
 		this.emailRegister = new JTextField(TEXT_FIELD_DIMENSION);//inizializzazione jTextField
 		
@@ -194,7 +189,6 @@ public class LoginRegister extends JPanel{
 		this.userType = new ButtonGroup();
 		
 		this.loginLabel.setForeground(Color.GRAY);
-		this.usernameRegister.setForeground(Color.GRAY);
 		this.passwordRegister.setForeground(Color.GRAY);
 		this.emailRegister.setForeground(Color.GRAY);
 		this.surnameRegister.setForeground(Color.GRAY);
@@ -203,7 +197,6 @@ public class LoginRegister extends JPanel{
 		this.phoneNumberRegister.setForeground(Color.GRAY);//setting del colore delle JTextField
 		
 		
-		this.usernameRegister.setText(DEFAULT_TEXT_USERNAME_FIELD);
 		//this.passwordRegister.setText(DEFAULT_TEXT_PASSWORD_FIELD);
 		this.emailRegister.setText(DEFAULT_TEXT_EMAIL_FIELD);
 		this.nameRegister.setText(DEFAULT_TEXT_NAME_FIELD);
@@ -213,7 +206,6 @@ public class LoginRegister extends JPanel{
 		
 		
 		this.loginLabel.setName(LOGIN_BUTTON_NAME);
-		this.usernameRegister.setName(USERNAME_REGISTER_TEXT_FIELD_NAME);
 		this.passwordRegister.setName(PASSWORD_REGISTER_TEXT_FIELD_NAME);
 		this.emailRegister.setName(EMAIL_REGISTER_TEXT_FIELD_NAME);
 		this.surnameRegister.setName(SURNAME_REGISTER_TEXT_FIELD_NAME);
@@ -231,7 +223,6 @@ public class LoginRegister extends JPanel{
 		this.register.addActionListener(new LoginRegisterActionListener(this,this.mf));
 		this.registeredUser.addActionListener(new LoginRegisterActionListener(this,this.mf));
 		this.trainerUser.addActionListener(new LoginRegisterActionListener(this,this.mf));
-		this.usernameRegister.addFocusListener(new LoginRegisterFocusListener(this));
 		this.passwordRegister.addFocusListener(new LoginRegisterFocusListener(this));
 		this.emailRegister.addFocusListener(new LoginRegisterFocusListener(this));
 		this.nameRegister.addFocusListener(new LoginRegisterFocusListener(this));
@@ -306,80 +297,67 @@ public class LoginRegister extends JPanel{
 		this.gbc.fill = GridBagConstraints.HORIZONTAL;
 		this.gbc.anchor = GridBagConstraints.CENTER;
 		this.registerPanel.add(surnameRegister,gbc);
-		
-		//componente 7: Label dello username
-		this.gbc.gridx = 0;
-		this.gbc.gridy = 3;
-		this.gbc.insets = new Insets(15, 13, 0, 0);
-		this.gbc.fill = GridBagConstraints.HORIZONTAL;
-		this.gbc.anchor = GridBagConstraints.CENTER;
-		this.registerPanel.add(usernameRegisterLabel,gbc);
-		
-		//componente 8: TextField dello username
-		this.gbc.gridx = 1;
-		this.gbc.gridy = 3;
-		this.registerPanel.add(usernameRegister,gbc);
 
 		//componente 9: Label della password
 		this.gbc.gridx = 0;
-		this.gbc.gridy = 4;
+		this.gbc.gridy = 3;
 		this.registerPanel.add(passwordRegisterLabel,gbc);
 		
 		//componente 10: TextField della password
 		this.gbc.gridx = 1;
-		this.gbc.gridy = 4;
+		this.gbc.gridy = 3;
 		this.registerPanel.add(passwordRegister,gbc);
 		
 		//componente 11: Label della conferma password
 		this.gbc.gridx = 0;
-		this.gbc.gridy = 5;
+		this.gbc.gridy = 4;
 		this.registerPanel.add(confirmPasswordLabel,gbc);
 		
 		//componente 12: TextField della conferma password
 		this.gbc.gridx = 1;
-		this.gbc.gridy = 5;
+		this.gbc.gridy = 4;
 		this.registerPanel.add(confirmPasswordRegister,gbc);
 		
 		//componente 13: Label della email
 		this.gbc.gridx = 0;
-		this.gbc.gridy = 6;
+		this.gbc.gridy = 5;
 		this.registerPanel.add(emailLabel,gbc);
 		
 		//componente 14: TextField della email
 		this.gbc.gridx = 1;
-		this.gbc.gridy = 6;
+		this.gbc.gridy = 5;
 		this.registerPanel.add(emailRegister,gbc);
 		
 		//componente 15: Label del numero di telefono
 		this.gbc.gridx = 0;
-		this.gbc.gridy = 7;
+		this.gbc.gridy = 6;
 		this.registerPanel.add(phoneNumberLabel,gbc);
 		
 		//componente 16: TextField del numero di telefono
 		this.gbc.gridx = 1;
-		this.gbc.gridy = 7;
+		this.gbc.gridy = 6;
 		this.registerPanel.add(phoneNumberRegister,gbc);
 
 		//componente 17: Label del giorno di nascita
 		this.gbc.gridx = 0;
-		this.gbc.gridy = 8;
+		this.gbc.gridy = 7;
 		this.registerPanel.add(birthdayLabel,gbc);
 		
 		//componente 18: Aggiunta dataPicker
 		this.gbc.gridx = 1;
-		this.gbc.gridy = 8;
+		this.gbc.gridy = 7;
 		this.registerPanel.add(dataPicker,gbc);
 		
 		//componente 19: Bottone di registrazione
 		this.gbc.gridx = 1;
-		this.gbc.gridy = 9;
+		this.gbc.gridy = 8;
 		this.gbc.insets = new Insets(35, 13, 0, 0);
 		this.gbc.gridwidth = GridBagConstraints.CENTER;
 		this.registerPanel.add(register,gbc);
 
 		//componente 20: Label del login che permette di switchare al pannello di login
 		this.gbc.gridx = 0;
-		this.gbc.gridy = 9;
+		this.gbc.gridy = 8;
 		this.gbc.insets = new Insets(35, 13, 0, 0);
 		this.gbc.gridwidth = GridBagConstraints.CENTER;
 		this.registerPanel.add(loginLabel,gbc);
@@ -438,7 +416,6 @@ public class LoginRegister extends JPanel{
 		ArrayList<String> registerData = new ArrayList<>();
 		registerData.add(this.surnameRegister.getText());
 		registerData.add(this.nameRegister.getText());
-		registerData.add(this.usernameRegister.getText());
 		registerData.add(String.valueOf(this.passwordRegister.getPassword()));
 		registerData.add(String.valueOf(this.confirmPasswordRegister.getPassword()));
 		registerData.add(this.phoneNumberRegister.getText());
