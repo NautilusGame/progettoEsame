@@ -17,6 +17,7 @@ public final class ConstantClass {
 	public static final String DECLINE_BUTTON_MEMBER_NAME = "DeclineMember";
 	public static final String ACCEPT_BUTTON_TRAINER_NAME = "AcceptTrainer";
 	public static final String DECLINE_BUTTON_TRAINER_NAME = "DeclineTrainer";
+	public static final String LEVEL_NAME_YET_EXIST = "The same level was already added";
 	
 
 }

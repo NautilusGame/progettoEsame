@@ -7,6 +7,7 @@ import java.util.ArrayList;
 import java.util.Date;
 import progettoEsame.centropolisportivo.dbConnection.DbConnection;
 import progettoEsame.centropolisportivo.model.Member;
+import progettoEsame.centropolisportivo.view.CenterManagerRegistrationProposal;
 
 public class MemberDAO {
 
@@ -14,6 +15,7 @@ public class MemberDAO {
 
 	public static synchronized MemberDAO getInstance ()
 	{
+		
 		if(instance==null)
 			instance = new MemberDAO();
 		return instance;

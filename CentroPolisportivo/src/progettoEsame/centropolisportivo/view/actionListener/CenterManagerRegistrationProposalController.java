@@ -21,6 +21,8 @@ import javax.swing.border.Border;
 import progettoEsame.centropolisportivo.business.CenterManagerRegistrationProposalBusiness;
 import progettoEsame.centropolisportivo.model.Member;
 import progettoEsame.centropolisportivo.model.Trainer;
+import progettoEsame.centropolisportivo.view.CenterManagerRegistrationProposal;
+
 import static progettoEsame.centropolisportivo.business.ConstantClass.*;
 public class CenterManagerRegistrationProposalController {
 
@@ -46,7 +48,7 @@ public class CenterManagerRegistrationProposalController {
 				JPanel tmpPanel = new JPanel();
 				JButton acceptButton = new JButton(ACCEPT_BUTTON_TEXT);
 				JButton declineButton = new JButton(DECLINE_BUTTON_TEXT);
-				tmpPanel.setPreferredSize(new Dimension(450, 90));
+				tmpPanel.setPreferredSize(new Dimension(150, 90));
 				tmpPanel.setBorder(BorderFactory.createLineBorder(Color.black));
 				GridBagConstraints gbc = new GridBagConstraints();
 				tmpPanel.setLayout(new GridBagLayout());

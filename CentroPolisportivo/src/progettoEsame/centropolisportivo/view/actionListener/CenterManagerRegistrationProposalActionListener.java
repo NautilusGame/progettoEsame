@@ -14,6 +14,9 @@ import progettoEsame.centropolisportivo.model.Trainer;
 import static progettoEsame.centropolisportivo.business.ConstantClass.*;
 public class CenterManagerRegistrationProposalActionListener implements ActionListener {
 
+	public CenterManagerRegistrationProposalActionListener() {
+		
+	}
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		if((((JButton)e.getSource()).getName()).equals(ACCEPT_BUTTON_MEMBER_NAME))
@@ -21,9 +24,11 @@ public class CenterManagerRegistrationProposalActionListener implements ActionLi
 			Member newMember;
 			try {
 				newMember = Member.findByEmail(e.getActionCommand());
+				newMember.setCenterManager(CenterManager.findByEmail(SessionCheck.getInstance().getEmail()));
 				newMember.setConfirmed(1);
 				Member.update(newMember);
-			} catch (SQLException e1) {
+				
+			} catch (SQLException | SessionException e1) {
 				e1.printStackTrace();
 			}
 		}
@@ -33,10 +38,9 @@ public class CenterManagerRegistrationProposalActionListener implements ActionLi
 			try {
 				newMember = Member.findByEmail(e.getActionCommand());
 				newMember.setConfirmed(2);
-				//TODO newMember.setCenterManager(CenterManager.findByEmail(SessionCheck.getInstance().getEmail()));
-				newMember.setCenterManager(CenterManager.findByEmail("ciao"));
+				newMember.setCenterManager(CenterManager.findByEmail(SessionCheck.getInstance().getEmail()));
 				Member.update(newMember);
-			} catch (SQLException e1) {
+			} catch (SQLException | SessionException e1) {
 				e1.printStackTrace();
 			}
 		}
@@ -46,10 +50,9 @@ public class CenterManagerRegistrationProposalActionListener implements ActionLi
 			try {
 				newTrainer = Trainer.findByEmail(e.getActionCommand());
 				newTrainer.setConfirmed(1);
-				//TODO newTrainer.setCenterManager(CenterManager.findByEmail(SessionCheck.getInstance().getEmail()));
-				newTrainer.setCenterManager(CenterManager.findByEmail("ciao"));
+				newTrainer.setCenterManager(CenterManager.findByEmail(SessionCheck.getInstance().getEmail()));
 				Trainer.update(newTrainer);
-			} catch (SQLException e1) {
+			} catch (SQLException | SessionException e1) {
 				e1.printStackTrace();
 			}
 		}
@@ -59,8 +62,9 @@ public class CenterManagerRegistrationProposalActionListener implements ActionLi
 			try {
 				newTrainer = Trainer.findByEmail(e.getActionCommand());
 				newTrainer.setConfirmed(2);
+				newTrainer.setCenterManager(CenterManager.findByEmail(SessionCheck.getInstance().getEmail()));
 				Trainer.update(newTrainer);
-			} catch (SQLException e1) {
+			} catch (SQLException | SessionException e1) {
 				e1.printStackTrace();
 			}
 		}

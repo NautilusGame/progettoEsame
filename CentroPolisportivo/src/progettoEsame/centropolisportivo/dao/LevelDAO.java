@@ -47,6 +47,21 @@ public class LevelDAO  {
 		return level;
 
 	}
+	
+	public Level findByName(String name) throws SQLException
+	{
+		Level level = new Level();
+		ArrayList <String[]> result  = DbConnection.getInstance().eseguiQuery("SELECT * FROM level WHERE  name= '"+name+"';");
+		if(result.size() == 0) return null;
+
+		String[] row = result.get(0);
+		level.setId(Integer.parseInt(row[0]));
+		level.setName(row[1]);
+		level.setDescription(row[2]);
+		level.setCenterManager(CenterManagerDAO.getInstance().findByEmail(row[3]));
+		return level;
+
+	}
 
 }
 
