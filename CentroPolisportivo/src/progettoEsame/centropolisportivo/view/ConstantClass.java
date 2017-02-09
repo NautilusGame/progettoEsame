@@ -69,6 +69,16 @@ public final class ConstantClass {
 	public static final String CENTERMANAGER_MENU_4 = "settingFourManager";
 	public static final String CENTERMANAGER_MENU_5 = "settingFiveManager";
 	
+	
+	//Costanti per le impostazioni
+	public static final String BUTTON_SAVE_SETTINGS = "Save";
+	public static final String TITLE_SETTINGS = "Change settings";
+	public static final String NEW_PASSWORD_LABEL_TEXT = "New Password";
+	public static final String CURRENT_PASSWORD_LABEL_TEXT = "Current Password";
+	public static final String BUTTON_CHANGE_PASSWORD = "Change Password";
+
+	
+	
 	/***************************finish string constant******************************/
 	
 	/***************************start int constant******************************/

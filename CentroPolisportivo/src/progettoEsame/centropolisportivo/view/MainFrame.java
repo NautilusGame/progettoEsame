@@ -11,12 +11,14 @@ public class MainFrame extends JFrame {
 	
 	public MainFrame(String title,Dimension d)
 	{
-		loginRegisterPanel = new LoginRegister(this);
+		//loginRegisterPanel = new LoginRegister(this);
+		Settings s=new Settings(this);
 		this.setTitle(title);
 		this.setSize(d);
 		this.setVisible(true);
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		this.getContentPane().add(loginRegisterPanel);
+		//this.getContentPane().add(loginRegisterPanel);
+		this.getContentPane().add(s);
 	}
 
 }

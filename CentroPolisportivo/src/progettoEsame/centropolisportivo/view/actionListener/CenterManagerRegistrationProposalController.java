@@ -76,7 +76,7 @@ public class CenterManagerRegistrationProposalController {
 				unconfirmedUsers.add(tmpPanel);
 			}
 		}
-		if(tmpUnconfirmedMember !=null)
+		if(tmpUnconfirmedTrainer !=null)
 		{
 			for(int i = 0;i<tmpUnconfirmedTrainer.size();i++)
 			{
