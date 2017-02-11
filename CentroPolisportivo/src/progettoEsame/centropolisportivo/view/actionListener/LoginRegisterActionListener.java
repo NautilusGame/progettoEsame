@@ -57,10 +57,12 @@ public class LoginRegisterActionListener implements ActionListener
 					boolean resCenterManager = LoginBusiness.getInstance().LoginCenterManager(loginData.get(0), loginData.get(1));
 					if(!resCenterManager && !resTrainer && !resMember)
 					{
-						lrview.addMessageToPanel(Message.getInstance().printErrorMsg(ConstantClass.USERNAME_NOTFOUND));
+						lrview.removeMessageToPanel();
+						lrview.addMessageToPanel(Message.getInstance().printErrorMsg(ConstantClass.EMAIL_REGISTRATION_ERROR_MSG));
 					}
 					else
 					{
+						lrview.removeMessageToPanel();
 						lrview.addMessageToPanel(Message.getInstance().printSuccessMsg(SUCCES_LOGIN_MSG));
 						mf.remove(lrview);
 						mf.add(new Template(this.mf));
@@ -68,6 +70,7 @@ public class LoginRegisterActionListener implements ActionListener
 					}
 
 				} catch (LoginException | SQLException e1) {
+					lrview.removeMessageToPanel();
 					lrview.addMessageToPanel(Message.getInstance().printErrorMsg(e1.getMessage()));
 				}
 			}

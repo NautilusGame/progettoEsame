@@ -75,7 +75,10 @@ public final class ConstantClass {
 		public static final String NEW_PASSWORD_LABEL_TEXT = "New Password";
 		public static final String CURRENT_PASSWORD_LABEL_TEXT = "Current Password";
 		public static final String BUTTON_CHANGE_PASSWORD = "Change Password";
-
+		public static final String SAVE_SETTINGS="saveSettings";
+		public static final String SHOW_PASSWORD_FIELD="showPasswordField";
+		public static final String UNDO_PASSWORD_BUTTON="Annul";
+		public static final String UNDO_ACTION_PASSWORD="undoActionPassword";
 	
 	//add level//
 
@@ -83,6 +86,16 @@ public final class ConstantClass {
 	public static final String ADD_LEVEL_LEVEL_NAME = "Level Name";
 	public static final String ADD_LEVEL_DESCRIPTION = "Description";
 	public static final String ADD_LEVEL_INSERT_BUTTON_TEXT = "Insert";
+	
+	// add activity //
+	
+
+	public static final String ADD_ACTIVITY_NAME_ACTIVITY = "Name";
+	public static final String ADD_ACTIVITY_DESCRIPTION_ACTIVITY = "Description";
+	public static final String ADD_ACTIVITY_PRICE_ACTIVITY = "Price";
+	public static final String ADD_ACTIVITY_TITLE_PAGE = "Add Activity";
+	public static final String ADD_ACTIVITY_ROOM_ACTIVITY = "Room";
+	public static final String ADD_ACTIVITY_INSERT_BUTTON = "Insert";
 	/***************************finish string constant******************************/
 	
 	/***************************start int constant******************************/

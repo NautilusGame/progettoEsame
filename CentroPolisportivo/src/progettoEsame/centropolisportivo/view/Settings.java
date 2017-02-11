@@ -7,7 +7,10 @@ import java.awt.Color;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.Insets;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 
 import javax.swing.JButton;
 import javax.swing.JLabel;
@@ -18,8 +21,10 @@ import com.toedter.calendar.JCalendar;
 
 import progettoEsame.centropolisportivo.business.Session;
 import progettoEsame.centropolisportivo.view.actionListener.SessionCheck;
+import progettoEsame.centropolisportivo.view.actionListener.SettingsActionListener;
 
-public class Settings extends JPanel {
+public class Settings extends JPanel 
+{
 
 	private MainFrame mf;
 
@@ -33,6 +38,7 @@ public class Settings extends JPanel {
 	
 	private JButton save; //bottone di registrazione
 	private JButton changePasswordButton;
+	private JButton undoChangePassword;
 	
 	private JLabel nameLabel; //label nome utente nel pannello di registrazione
 	private JLabel surnameLabel; //label cognome nel pannello di registrazione
@@ -49,7 +55,8 @@ public class Settings extends JPanel {
 	private JCalendar dataPicker;
 	
 	
-	public Settings (MainFrame mf){
+	public Settings (MainFrame mf)
+	{
 		
 		this.mf=mf;
 		
@@ -81,27 +88,26 @@ public class Settings extends JPanel {
 		this.dataPicker = new JCalendar();
 		this.save = new JButton(BUTTON_SAVE_SETTINGS);
 		this.changePasswordButton = new JButton(BUTTON_CHANGE_PASSWORD);
+		this.undoChangePassword = new JButton(UNDO_PASSWORD_BUTTON);
 		
 		//sett dei cambi comuni delle password che devono essere nascosti
-		this.newPasswordLabel.setVisible(false);
-		this.confirmPasswordLabel.setVisible(false);
-		this.currentPasswordLabel.setVisible(false);
-		this.currentPassword.setVisible(false); 
-		this.newPassword.setVisible(false); 
-		this.confirmNewPassword.setVisible(false); 
-		this.dataPicker.setVisible(false);
+		this.hiddenChangePassword();
 		
-		if (this.getTypeUser().equals("member")){
+		this.dataPicker.setVisible(false);		
+		if (this.getTypeUser().equals("member"))
+		{
 			this.dataPicker.setVisible(true);
 			this.birthdayLabel.setVisible(true);
 			this.phoneNumberLabel.setVisible(false);
 			this.phoneNumberRegister.setVisible(false);
 		}
-		else if (this.getTypeUser().equals("trainer")){
+		else if (this.getTypeUser().equals("trainer"))
+		{
 			this.dataPicker.setVisible(false);
 			this.birthdayLabel.setVisible(false);
 		}
-		else{
+		else
+		{
 			this.dataPicker.setVisible(false);
 			this.birthdayLabel.setVisible(false);
 		}
@@ -120,6 +126,12 @@ public class Settings extends JPanel {
 		this.phoneNumberRegister.setName(P_N_REGISTER_TEXT_FIELD_NAME);
 		this.currentPassword.setName(CONF_PASS_REGISTER_TEXT_FIELD_NAME);//settaggio del name delle JTextField utile per il controller
 		
+		this.save.setActionCommand(ConstantClass.SAVE_SETTINGS);
+		this.save.addActionListener(new SettingsActionListener(this,this.mf));
+		this.changePasswordButton.setActionCommand(ConstantClass.SHOW_PASSWORD_FIELD);
+		this.changePasswordButton.addActionListener(new SettingsActionListener(this,this.mf));
+		this.undoChangePassword.setActionCommand(ConstantClass.UNDO_ACTION_PASSWORD);
+		this.undoChangePassword.addActionListener(new SettingsActionListener(this,this.mf));
 		
 		//componente 3: label del nome
 		this.gbc.gridx = 0;
@@ -196,29 +208,34 @@ public class Settings extends JPanel {
 		this.gbc.gridy = 6;
 		this.add(confirmNewPassword,gbc);
 		
-		//componente 15: Label del numero di telefono
+		//component: bottone per cambiare le password
 		this.gbc.gridx = 0;
 		this.gbc.gridy = 7;
+		this.add(undoChangePassword,gbc);
+		
+		//componente 15: Label del numero di telefono
+		this.gbc.gridx = 0;
+		this.gbc.gridy = 8;
 		this.add(phoneNumberLabel,gbc);
 		
 		//componente 16: TextField del numero di telefono
 		this.gbc.gridx = 1;
-		this.gbc.gridy = 7;
+		this.gbc.gridy = 8;
 		this.add(phoneNumberRegister,gbc);
 
 		//componente 17: Label del giorno di nascita
 		this.gbc.gridx = 0;
-		this.gbc.gridy = 8;
+		this.gbc.gridy = 9;
 		this.add(birthdayLabel,gbc);
 		
 		//componente 18: Aggiunta dataPicker
 		this.gbc.gridx = 1;
-		this.gbc.gridy = 8;
+		this.gbc.gridy = 9;
 		this.add(dataPicker,gbc);
 		
 		//componente 19: Bottone di registrazione
 		this.gbc.gridx = 1;
-		this.gbc.gridy = 9;
+		this.gbc.gridy = 10;
 		this.gbc.insets = new Insets(35, 13, 0, 0);
 		this.gbc.gridwidth = GridBagConstraints.CENTER;
 		this.add(save,gbc);
@@ -234,24 +251,47 @@ public class Settings extends JPanel {
 		this.currentPasswordLabel.setVisible(true);
 		this.currentPassword.setVisible(true); 
 		this.newPassword.setVisible(true); 
-		this.confirmNewPassword.setVisible(true); 	
+		this.confirmNewPassword.setVisible(true); 
+		this.undoChangePassword.setVisible(true);
+	}
+	
+	public void hiddenChangePassword()
+	{
+		this.newPasswordLabel.setVisible(false);
+		this.confirmPasswordLabel.setVisible(false);
+		this.currentPasswordLabel.setVisible(false);
+		this.currentPassword.setVisible(false); 
+		this.newPassword.setVisible(false); 
+		this.confirmNewPassword.setVisible(false); 
+		this.undoChangePassword.setVisible(false);
+		this.changePasswordButton.setVisible(true);
 	}
 	
 	//TODO nel caso si puo aggiungere anche il metodo per nascondere le impostaioni della password con un tasto annulla
 	
-	public String getTypeUser(){
+	public String getTypeUser()
+	{
 		return SessionCheck.getInstance().getTypeUser();
 	}
 	
-	public void setField(ArrayList<String> valueField)
+	public void setField(ArrayList<String> value) 
 	{
 		this.nameRegister.setText("");
 		this.surnameRegister.setText("");
 		this.currentPassword.setText("");
+		
 		if(getTypeUser().equals("member"))
 		{
-			//FIXME sistemare data
-			//this.dataPicker.setDate();
+			SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+			try
+			{
+				Date date = sdf.parse("2010-1-1");
+				this.dataPicker.setDate(date);
+			}
+			catch(ParseException e)
+			{
+				addMessageToPanel(Message.getInstance().printErrorMsg("Error to Load date. Set it manually"));
+			}		
 		}
 		else 
 		{
@@ -259,5 +299,38 @@ public class Settings extends JPanel {
 		}
 	}
 	
+	
+	public ArrayList<String> getFormData()
+	{
+		ArrayList<String> registerData = new ArrayList<>();
+		registerData.add(this.surnameRegister.getText()); //0
+		registerData.add(this.nameRegister.getText()); //1
+		registerData.add(String.valueOf(this.currentPassword.getPassword())); //2
+		registerData.add(String.valueOf(this.newPassword.getPassword())); //3
+		registerData.add(String.valueOf(this.confirmNewPassword.getPassword())); //4
+		registerData.add(this.phoneNumberRegister.getText());//5
+		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+		registerData.add(sdf.format(this.dataPicker.getDate().getTime()));//6
+		return registerData;
+	}
+	
+	public void addMessageToPanel(JLabel msg)
+	{
+		gbc.gridx = 0;
+		gbc.gridy = 11;
+		this.add(msg,gbc);
+		this.revalidate();
+		this.repaint();
+	}
+	
+	public void removeMessageToPanel()
+	{
+		gbc.gridx = 0;
+		gbc.gridy = 11;
+		this.add(new JLabel(""),gbc);
+		this.revalidate();
+		this.repaint();
+	}
+
 	
 }

@@ -12,12 +12,12 @@ public class MainFrame extends JFrame {
 	public MainFrame(String title,Dimension d)
 	{
 		loginRegisterPanel = new LoginRegister(this);
-		//AddNewLevel anl = new AddNewLevel();
+		AddActivity act = new AddActivity();
 		this.setTitle(title);
 		this.setSize(d);
 		this.setVisible(true);
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		this.getContentPane().add(loginRegisterPanel);
+		this.getContentPane().add(act);
 	}
 
 }

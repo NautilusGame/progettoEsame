@@ -33,7 +33,6 @@ public class LoginRegister extends JPanel{
 	private JPanel loginPanel;
 	private JPanel registerPanel;  //pannelli che si sovrappongono al "this", rispettivamente uno per il login e l'altro per il register
 	
-	
 	private JTextField usernameLogin; //username per il login
 	private JPasswordField passwordLogin; // password per il login // username per il register
 	private JPasswordField passwordRegister; //password per il register
@@ -47,7 +46,7 @@ public class LoginRegister extends JPanel{
 	private JButton login; //bottone di login
 	private JButton register; //bottone di registrazione
 	
-	
+	private JLabel msg;
 	private JLabel passwordLabel; //label password nel pannello password //label username nel pannello registrazione
 	private JLabel passwordRegisterLabel; //label password nel pannello registrazione 
 	private JLabel emailLabel; //label email nel pannello registrazione
@@ -96,6 +95,7 @@ public class LoginRegister extends JPanel{
 		this.emailLabel = new JLabel(EMAIL_LABEL_TEXT);
 		this.passwordLabel = new JLabel(PASSWORD_LABEL_TEXT);
 		this.registerLabel = new JLabel(REGISTER_LABEL_TEXT);
+		this.msg = new JLabel();
 		
 		this.usernameLogin.setText(DEFAULT_TEXT_USERNAME_FIELD);//settaggio testo di default
 		
@@ -428,9 +428,10 @@ public class LoginRegister extends JPanel{
 	
 	public void addMessageToPanel(JLabel msg)
 	{
+		this.msg = msg;
 		gbc.gridx = 0;
 		gbc.gridy = 2;
-		this.add(msg,gbc);
+		this.add(this.msg,gbc);
 		this.revalidate();
 		this.repaint();
 	}
@@ -440,7 +441,7 @@ public class LoginRegister extends JPanel{
 
 		gbc.gridx = 0;
 		gbc.gridy = 2;
-		this.add(new JLabel(""),gbc);
+		this.remove(this.msg);
 		this.revalidate();
 		this.repaint();
 	}
