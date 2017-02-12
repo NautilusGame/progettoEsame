@@ -101,6 +101,7 @@ public final class ConstantClass {
 	/***************************start int constant******************************/
 	public static final int TEXT_FIELD_DIMENSION = 15;
 	/***************************finish int constant******************************/
+	private String cancellalachelhofattasolopermodificareilfile = "ffffffffff";
 	
 	
 
