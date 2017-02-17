@@ -1,4 +1,9 @@
 package progettoEsame.centropolisportivo.model;
+
+import java.sql.SQLException;
+
+import progettoEsame.centropolisportivo.dao.ActivityDAO;
+
 // Generated 26-gen-2017 22.33.09 by Hibernate Tools 5.2.0.CR1
 
 /**
@@ -9,12 +14,10 @@ public class Activity {
 	private int id;
 	private ActivityType activityType;
 	private CenterManager centerManager;
-	private Level level;
 	private Room room;
 	private String name;
 	private String description;
 	private float cost;
-	private int typeRoomId;
 	private String imagePath;
 
 	
@@ -26,17 +29,15 @@ public class Activity {
 
 
 
-	public Activity(int id, ActivityType activityType, CenterManager centerManager, Level level, Room room, String name,
-			String description, float cost, int typeRoomId, String imagePath) {
+	public Activity(int id, ActivityType activityType, CenterManager centerManager, Room room, String name,
+			String description, float cost, String imagePath) {
 		this.id = id;
 		this.activityType = activityType;
 		this.centerManager = centerManager;
-		this.level = level;
 		this.room = room;
 		this.name = name;
 		this.description = description;
 		this.cost = cost;
-		this.typeRoomId = typeRoomId;
 		this.imagePath = imagePath;
 	}
 
@@ -64,14 +65,6 @@ public class Activity {
 
 	public void setCenterManager(CenterManager centerManager) {
 		this.centerManager = centerManager;
-	}
-
-	public Level getLevel() {
-		return this.level;
-	}
-
-	public void setLevel(Level level) {
-		this.level = level;
 	}
 
 	public Room getRoom() {
@@ -106,20 +99,17 @@ public class Activity {
 		this.cost = cost;
 	}
 
-	public int getTypeRoomId() {
-		return this.typeRoomId;
-	}
-
-	public void setTypeRoomId(int typeRoomId) {
-		this.typeRoomId = typeRoomId;
-	}
-
 	public String getImagePath() {
 		return this.imagePath;
 	}
 
 	public void setImagePath(String imagePath) {
 		this.imagePath = imagePath;
+	}
+	
+	public static void insert(Activity newActivity)throws SQLException
+	{
+		ActivityDAO.getInstance().insert(newActivity);
 	}
 
 
