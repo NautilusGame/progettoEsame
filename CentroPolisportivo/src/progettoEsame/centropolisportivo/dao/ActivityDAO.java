@@ -21,9 +21,9 @@ public class ActivityDAO {
 
 	public void insert(Activity newActivity) throws SQLException
 	{
-			String query = "INSERT INTO activity( name, description, cost, room_id, level_id, center_manager_email, image_path, activity_type_id) VALUES"
+			String query = "INSERT INTO activity( name, description, cost, room_id, center_manager_email, image_path, activity_type_id) VALUES"
 					+ "('"+newActivity.getName()+"','"+newActivity.getDescription()+"',"+newActivity.getCost()+","
-							+ newActivity.getRoom().getId()+",'"+newActivity.getCenterManager().getEmail()+"',"+newActivity.getImagePath()+","+newActivity.getActivityType().getId()+");";
+							+ newActivity.getRoom().getId()+",'"+newActivity.getCenterManager().getEmail()+"','"+newActivity.getImagePath()+"',"+newActivity.getActivityType().getId()+");";
 			DbConnection.getInstance().eseguiAggiornamento(query);
 	}
 
@@ -37,8 +37,9 @@ public class ActivityDAO {
 	{
 			String query = "UPDATE activity SET name = '"+newActivity.getName()+"',"
 					+ " description = '"+newActivity.getDescription()+"',' cost = "+newActivity.getCost()+
-					", room_id = '"+newActivity.getRoom().getId()+"', level_id = "+newActivity.getLevel().getId()+
+					", room_id = '"+newActivity.getRoom().getId()+
 					",  center_manager_email= "+newActivity.getCenterManager().getEmail()+",  image_path = '"+newActivity.getImagePath()+"',  activity_type_id = "+newActivity.getActivityType().getId()+");";
+
 			DbConnection.getInstance().eseguiAggiornamento(query);
 	}
 	public Activity findById(Integer id) throws SQLException
@@ -53,10 +54,9 @@ public class ActivityDAO {
 		activity.setDescription(row[2]);
 		activity.setCost(Integer.parseInt(row[3]));
 		activity.setRoom(RoomDAO.getInstance().findById(Integer.parseInt(row[4])));
-		activity.setLevel(LevelDAO.getInstance().findById(Integer.parseInt(row[5])));
-		activity.setCenterManager(CenterManagerDAO.getInstance().findByEmail(row[6]));
-		activity.setImagePath(row[7]);
-		activity.setActivityType(ActivityTypeDAO.getInstance().findById(Integer.parseInt(row[8])));
+		activity.setCenterManager(CenterManagerDAO.getInstance().findByEmail(row[5]));
+		activity.setImagePath(row[6]);
+		activity.setActivityType(ActivityTypeDAO.getInstance().findById(Integer.parseInt(row[7])));
 
 		return activity;
 
