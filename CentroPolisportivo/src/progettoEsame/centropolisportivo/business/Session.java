@@ -10,6 +10,7 @@ public class Session {
 	private static String typeUser;
 	
 	public static Session getInstance() {
+		connected=false;
 		if(instance == null)
 			instance = new Session();
 		return instance;

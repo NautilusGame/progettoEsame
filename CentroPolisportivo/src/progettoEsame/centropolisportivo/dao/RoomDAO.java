@@ -48,5 +48,43 @@ public class RoomDAO  {
 		return room;
 
 	}
+	
+	public Room findByName(String name) throws SQLException
+	{
+		Room room = new Room();
+		ArrayList <String[]> result  = DbConnection.getInstance().eseguiQuery("SELECT * FROM room WHERE  name= '"+name+"';");
+		if(result.size() == 0) return null;
+
+		String[] row = result.get(0);
+		room.setId(Integer.parseInt(row[0]));
+		room.setName(row[1]);
+		room.setDescription(row[2]);
+		room.setCapability(Integer.parseInt(row[3]));
+		room.setCenterManager(CenterManagerDAO.getInstance().findByEmail(row[4]));
+		return room;
+
+	}
+	
+	public ArrayList<Room> getAllValuebleRoom() throws SQLException
+	{
+		ArrayList<String[]> result = new ArrayList<>();
+		ArrayList<Room> roomList = new ArrayList<>();
+		String query = "SELECT * FROM room";
+		result = DbConnection.getInstance().eseguiQuery(query);
+		if(result.size() == 0) return null;
+		
+		for(int i = 0;i<result.size();i++)
+		{
+			Room tmpRoom = new Room();
+			String[] row = result.get(i);
+			tmpRoom.setId(Integer.parseInt(row[0]));
+			tmpRoom.setName(row[1]);
+			tmpRoom.setDescription(row[2]);
+			tmpRoom.setCapability(Integer.parseInt(row[3]));
+			tmpRoom.setCenterManager(CenterManagerDAO.getInstance().findByEmail(row[4]));
+			roomList.add(tmpRoom);
+		}
+		return roomList;
+	}
 
 }

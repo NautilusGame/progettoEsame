@@ -18,7 +18,8 @@ import javax.swing.JPanel;
 import progettoEsame.centropolisportivo.business.Session;
 import progettoEsame.centropolisportivo.view.actionListener.SessionCheck;
 import progettoEsame.centropolisportivo.view.actionListener.TemplateActionListener;
-import progettoEsame.centropolisportivo.view.actionListener.TemplateMenuListener;
+import progettoEsame.centropolisportivo.view.actionListener.TemplateFixedMenuListener;
+
 
 import static progettoEsame.centropolisportivo.view.ConstantClass.*;
 
@@ -30,13 +31,14 @@ public class Template extends JPanel {
 	private JPanel panelOvest;//Panel dedicato a tutte le voci di menu aggiuntive per ogni entità
 	private JPanel panelSud;//panel eddicato alla zona per i messaggi di errori
 	private JPanel panelCenter;//pannello per richiamare tutte le pagine
+	private JPanel fixedMenu;//pannello per il menu comune
 	
-	private JMenuBar menuBar;//menu comune a tutte e tre le entità
-	private JMenu home;//per ritornare alla home
-	private JMenu flyer;//per sfogliare il catalogo
-	private JMenu profile;//per andare al profilo
-	private JMenu logout;//per effettuare il logout
-	private JMenu info;
+	/*menu comune a tute le enetità*/
+	private JButton home;//per ritornare alla home
+	private JButton flyer;//per sfogliare il catalogo
+	private JButton profile;//per andare al profilo
+	private JButton logout;//per effettuare il logout
+	private JButton info;
 	
 	/*
 	 * Pulsanti dedicati per ogni entita nel menu laterale
@@ -63,7 +65,9 @@ public class Template extends JPanel {
 	private JLabel picLabel;
 	
 	//inizio del cotruttore della view
-	public Template (MainFrame mf){
+	public Template (MainFrame mf)
+	{
+		
 		this.setLayout(new BorderLayout());
 		
 		this.mf=mf;
@@ -73,9 +77,10 @@ public class Template extends JPanel {
 		this.panelOvest=new JPanel();
 		this.panelSud=new JPanel();
 		this.panelCenter=new JPanel();
+		this.fixedMenu=new JPanel();
 		
 		this.panelNord.setLayout(new GridLayout(2, 1));
-		
+		this.fixedMenu.setLayout(new GridLayout(1, 5));
 		//caricamento del banner del sito trimite immagine
 		try {                
 			image = ImageIO.read(new File("ciao.jpg"));//TODO inserire il banner
@@ -91,15 +96,11 @@ public class Template extends JPanel {
 		
 		
 		//creazione del menu generico uguale per tutti
-		this.menuBar = new JMenuBar();
-		this.home = new JMenu("Home");
-		this.flyer = new JMenu("Catalogo");
-		this.profile = new JMenu("Profile");
-		this.logout = new JMenu("Logout");
-		this.info = new JMenu("Info");
-		
-		//this.home.setPreferredSize(new Dimension(80,20));
-		this.menuBar.setBorderPainted(true);
+		this.home = new JButton("Home");
+		this.flyer = new JButton("Catalogo");
+		this.profile = new JButton("Profile");
+		this.logout = new JButton("Logout");
+		this.info = new JButton("Info");
 		
 		this.home.setActionCommand(ConstantClass.HOME_ACTION_CMD);
 		this.flyer.setActionCommand(ConstantClass.FLYER_ACTION_CMD);
@@ -107,20 +108,18 @@ public class Template extends JPanel {
 		this.logout.setActionCommand(ConstantClass.LOGOUT_ACTION_CMD);
 		this.info.setActionCommand(ConstantClass.INFO_ACTION_CMD);
 		
-		this.home.addMenuListener(new TemplateMenuListener(this,this.mf) );
-		this.flyer.addMenuListener(new TemplateMenuListener(this,this.mf) );
-		this.profile.addMenuListener(new TemplateMenuListener(this,this.mf) );
-		this.logout.addMenuListener(new TemplateMenuListener(this,this.mf) );
-		this.info.addMenuListener(new TemplateMenuListener(this,this.mf) );
+		this.home.addActionListener(new TemplateFixedMenuListener(this,this.mf));
+		this.flyer.addActionListener(new TemplateFixedMenuListener(this,this.mf));
+		this.profile.addActionListener(new TemplateFixedMenuListener(this,this.mf));
+		this.logout.addActionListener(new TemplateFixedMenuListener(this,this.mf));
+		this.info.addActionListener(new TemplateFixedMenuListener(this,this.mf));
 
-		this.menuBar.add(home);
-		this.menuBar.add(flyer);
-		this.menuBar.add(profile);
-		this.menuBar.add(logout);
-		this.menuBar.add(info);
-
-		this.panelNord.add(menuBar);
-		
+		this.fixedMenu.add(home);
+		this.fixedMenu.add(flyer);
+		this.fixedMenu.add(profile);
+		this.fixedMenu.add(logout);
+		this.fixedMenu.add(info);
+		this.panelNord.add(this.fixedMenu);
 
 		//si verifica quale tipo di utente ha fatto l'accesso e si aggiunge il menu dedicato
 		if (this.getTypeUser().equals("member")){
@@ -208,11 +207,11 @@ public class Template extends JPanel {
 		
 		this.panelOvest.setLayout(new GridLayout(5, 1));	
 		
-		this.centerManager1=new JButton("Info3");
-		this.centerManager2=new JButton("Info3");
-		this.centerManager3=new JButton("Info3");
-		this.centerManager4=new JButton("Info3");
-		this.centerManager5=new JButton("Info3");
+		this.centerManager1=new JButton("Accept registration");
+		this.centerManager2=new JButton("Add activity");
+		this.centerManager3=new JButton("Add level");
+		this.centerManager4=new JButton("Add room");
+		this.centerManager5=new JButton("Add activity type");
 		
 		this.centerManager1.setActionCommand(CENTERMANAGER_MENU_1);
 		this.centerManager2.setActionCommand(CENTERMANAGER_MENU_2);
@@ -256,6 +255,17 @@ public class Template extends JPanel {
 		this.repaint();
 	}
 	
+	public void removePage()
+	{
+		try
+		{
+			this.panelCenter.removeAll();
+		}
+		catch(Exception e)
+		{
+			
+		}
+	}
 	
 	
 	//TODO per avere tutte le voci distribuite bisogna prendere la larghezza e divedrla per il numero di voi cosi da avere tutte la stessa grndezza

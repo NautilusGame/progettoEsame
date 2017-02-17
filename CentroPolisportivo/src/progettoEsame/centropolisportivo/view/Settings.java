@@ -7,6 +7,8 @@ import java.awt.Color;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.Insets;
+import java.sql.SQLException;
+import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -19,7 +21,8 @@ import javax.swing.JPasswordField;
 import javax.swing.JTextField;
 import com.toedter.calendar.JCalendar;
 
-import progettoEsame.centropolisportivo.business.Session;
+import progettoEsame.centropolisportivo.exception.SessionException;
+import progettoEsame.centropolisportivo.view.actionListener.ControllerSettings;
 import progettoEsame.centropolisportivo.view.actionListener.SessionCheck;
 import progettoEsame.centropolisportivo.view.actionListener.SettingsActionListener;
 
@@ -48,7 +51,7 @@ public class Settings extends JPanel
 	private JLabel newPasswordLabel;
 	private JLabel phoneNumberLabel; 
 	private JLabel title; 
-	
+	private JLabel msg;
 	
 	
 	private GridBagConstraints gbc; //vincolo per il gridBagLayout
@@ -57,15 +60,10 @@ public class Settings extends JPanel
 	
 	public Settings (MainFrame mf)
 	{
-		
 		this.mf=mf;
 		
 		this.setLayout(new GridBagLayout());//set del layout al pannello "this"
 		this.gbc = new GridBagConstraints();//inizializzazione del vincolo
-		
-		//FIXME cancellare sessioen
-		Session s=new Session();
-		s.getInstance().createSession("s","member");
 		
 		//inizializzazione degli elementi
 		this.title=new JLabel(TITLE_SETTINGS);
@@ -76,6 +74,7 @@ public class Settings extends JPanel
 		this.newPasswordLabel = new JLabel(NEW_PASSWORD_LABEL_TEXT);
 		this.confirmPasswordLabel = new JLabel(CONFIRM_PASSWORD_LABEL_TEXT);
 		this.currentPasswordLabel = new JLabel(CURRENT_PASSWORD_LABEL_TEXT); //inizializzazione label
+		this.msg = new JLabel();
 		
 		this.nameRegister = new JTextField(TEXT_FIELD_DIMENSION);
 		this.surnameRegister = new JTextField(TEXT_FIELD_DIMENSION);
@@ -100,16 +99,55 @@ public class Settings extends JPanel
 			this.birthdayLabel.setVisible(true);
 			this.phoneNumberLabel.setVisible(false);
 			this.phoneNumberRegister.setVisible(false);
+			
+			try
+			{
+				this.setField(ControllerSettings.getInstance().getValueFromMember());
+			}
+			catch (SQLException sql)
+			{
+				//TODO aggiungere messaggio di evenuale errore
+			}
+			catch (SessionException session)
+			{
+				//TODO aggiungere messaggio di evenuale errore
+			}
 		}
 		else if (this.getTypeUser().equals("trainer"))
 		{
 			this.dataPicker.setVisible(false);
 			this.birthdayLabel.setVisible(false);
+			
+			try
+			{
+				this.setField(ControllerSettings.getInstance().getValueFromTrainer());
+			}
+			catch (SQLException sql)
+			{
+				//TODO aggiungere messaggio di evenuale errore
+			}
+			catch (SessionException session)
+			{
+				//TODO aggiungere messaggio di evenuale errore
+			}
 		}
 		else
 		{
 			this.dataPicker.setVisible(false);
 			this.birthdayLabel.setVisible(false);
+			
+			try
+			{
+				this.setField(ControllerSettings.getInstance().getValueFromCenterManager());
+			}
+			catch (SQLException sql)
+			{
+				//TODO aggiungere messaggio di evenuale errore
+			}
+			catch (SessionException session)
+			{
+				//TODO aggiungere messaggio di evenuale errore
+			}
 		}
 		
 		//settaggio grafico 
@@ -276,16 +314,14 @@ public class Settings extends JPanel
 	
 	public void setField(ArrayList<String> value) 
 	{
-		this.nameRegister.setText("");
-		this.surnameRegister.setText("");
-		this.currentPassword.setText("");
-		
+		this.nameRegister.setText(value.get(0));
+		this.surnameRegister.setText(value.get(1));		
 		if(getTypeUser().equals("member"))
 		{
-			SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+			DateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
 			try
 			{
-				Date date = sdf.parse("2010-1-1");
+				Date date=sdf.parse(value.get(2));	
 				this.dataPicker.setDate(date);
 			}
 			catch(ParseException e)
@@ -295,7 +331,7 @@ public class Settings extends JPanel
 		}
 		else 
 		{
-			this.phoneNumberRegister.setText("");
+			this.phoneNumberRegister.setText(value.get(2));
 		}
 	}
 	
@@ -316,20 +352,27 @@ public class Settings extends JPanel
 	
 	public void addMessageToPanel(JLabel msg)
 	{
+		this.msg = msg;
 		gbc.gridx = 0;
 		gbc.gridy = 11;
-		this.add(msg,gbc);
+		this.add(this.msg,gbc);
 		this.revalidate();
 		this.repaint();
 	}
 	
 	public void removeMessageToPanel()
 	{
+
 		gbc.gridx = 0;
 		gbc.gridy = 11;
-		this.add(new JLabel(""),gbc);
+		this.remove(this.msg);
 		this.revalidate();
 		this.repaint();
+	}
+	
+	public boolean isVisiblePassword()
+	{
+		return this.currentPassword.isVisible();
 	}
 
 	

@@ -77,7 +77,7 @@ public final class ConstantClass {
 		public static final String BUTTON_CHANGE_PASSWORD = "Change Password";
 		public static final String SAVE_SETTINGS="saveSettings";
 		public static final String SHOW_PASSWORD_FIELD="showPasswordField";
-		public static final String UNDO_PASSWORD_BUTTON="Annul";
+		public static final String UNDO_PASSWORD_BUTTON="Cancel";
 		public static final String UNDO_ACTION_PASSWORD="undoActionPassword";
 	
 	//add level//
@@ -96,12 +96,51 @@ public final class ConstantClass {
 	public static final String ADD_ACTIVITY_TITLE_PAGE = "Add Activity";
 	public static final String ADD_ACTIVITY_ROOM_ACTIVITY = "Room";
 	public static final String ADD_ACTIVITY_INSERT_BUTTON = "Insert";
+	public static final String ADD_ACTIVITY_INSERT_BUTTON_ACTION_CMD= "InsertButton";
+	public static final String ADD_ACTIVITY_IMAGE_ACTION_CMD= "InsertButton";
+	public static final String ADD_ACTIVITY_CANCEL_CHOOSE= "Canceled";
+	public static final String ADD_ACTIVITY_IMAGE_ERROR_MSG= "This file is not supported";
+	public static final String ADD_ACTIVITY_ACTIVITY_TYPE= "Type";
+	public static final String ADD_ACTIVITY_DB_ERROR= "DB error";
+	public static final String ADD_ACTIVITY_INCOMPLETED_MSG = "All field must be completed";
+	public static final String ADD_ACTIVITY_SUCCESS_MSG = "Success";
+	
+	// Add room //
+	public static final String ADD_ROOM_TITLE_PAGE = "Add room";
+	public static final String ADD_ROOM_ROOM_LABEL = "Room";
+	public static final String ADD_ROOM_DESCRIPTION_LABEL = "Description";
+	public static final String ADD_ROOM_INSERT_BUTTON = "Insert";
+	public static final String ADD_ROOM_CAPABILITY_LABEL = "Capability";
+	public static final String ADD_ROOM_DB_ERROR = "DBError";
+	public static final String ADD_ROOM_INCOMPLETE_FIELD = "All field must be completed";
+	public static final String ADD_ROOM_SUCCESS_MSG = "Room is just addedd";
+	
+	// Add activity type//
+
+	public static final String ADD_ACTIVITY_TYPE_NAME_LABEL = "Activity type";
+	public static final String ADD_ACTIVITY_TYPE_INSERT_BUTTON = "Insert";
+	public static final String ADD_ACTIVITY_TYPE_TITLE_PAGE = "Add activity type";
+	public static final String ADD_ACTIVITY_TYPE_INCOMPLETE_FILED = "All field must be completed";
+	public static final String ADD_ACTIVITY_TYPE_DB_ERROR = "DB error";
+	public static final String ADD_ACTIVITY_TYPE_SUCCESS_MSG = "Success";
+	
+	//activity view//
+	public static final String NAME_ACTIVITY_LABEL = "Name :";
+	public static final String INFO_ACTIVITY_LABEL = "Desciption :";
+	public static final String PRICE_ACTIVITY_LABEL = "Price :";
+	public static final String REGISTER_BUTTON_ACTIVITY ="Register!";
+	public static final String ACTIVITY_REGISTER_BUTTON = "registerActivity";
+		
+	// add schedule //
+
+	public static final int ADD_SCHEDULE_START_TIME =8;
+	public static final int ADD_SCHEDULE_FINISH_TIME =21;
+	public static final int ADD_SCHEDULE_NUMBER_OF_DAY =6;
 	/***************************finish string constant******************************/
 	
 	/***************************start int constant******************************/
 	public static final int TEXT_FIELD_DIMENSION = 15;
 	/***************************finish int constant******************************/
-	private String cancellalachelhofattasolopermodificareilfile = "ffffffffff";
 	
 	
 

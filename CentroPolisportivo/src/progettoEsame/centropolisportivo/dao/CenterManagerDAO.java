@@ -31,7 +31,7 @@ public class CenterManagerDAO {
 
 	public void update(CenterManager newCenterManager)throws SQLException
 	{
-		String query = "UPDATE center_manager SET name = '"+newCenterManager.getName()+"', SET surname = '"+newCenterManager.getSurname()+"',SET password = '"+newCenterManager.getPassword()+"',SET phone_number = '"+newCenterManager.getPhoneNumber()+"';";
+		String query = "UPDATE center_manager SET name = '"+newCenterManager.getName()+"', surname = '"+newCenterManager.getSurname()+"', password = '"+newCenterManager.getPassword()+"', phone_number = '"+newCenterManager.getPhoneNumber()+"';";
 		DbConnection.getInstance().eseguiAggiornamento(query);
 	}
 	public CenterManager findByEmail(String email) throws SQLException

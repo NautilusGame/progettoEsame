@@ -2,7 +2,11 @@ package progettoEsame.centropolisportivo.dao;
 
 import java.sql.SQLException;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
+import progettoEsame.centropolisportivo.model.Member;
 
 import progettoEsame.centropolisportivo.dbConnection.DbConnection;
 import progettoEsame.centropolisportivo.model.Activity;
@@ -62,4 +66,25 @@ public class ActivityDAO {
 
 	}
 
+	public ArrayList<Activity> getAllActivity()throws SQLException
+	{
+		String query = "SELECT * FROM activity";
+		ArrayList<String[]> result = DbConnection.getInstance().eseguiQuery(query);
+		ArrayList<Activity> allActivity = new ArrayList<Activity>();
+		
+		if(result.size() == 0)
+			return null;
+		for(int i = 0;i<result.size();i++)
+		{
+			Activity tmpActivity = new Activity();
+			String[] row = result.get(i);
+			tmpActivity.setId(Integer.parseInt(row[0]));
+			tmpActivity.setName(row[1]);
+			tmpActivity.setDescription(row[2]);
+			tmpActivity.setCost(Float.parseFloat(row[3]));
+			tmpActivity.setImagePath(row[6]);
+			allActivity.add(tmpActivity);
+		}
+		return allActivity;
+	}
 }

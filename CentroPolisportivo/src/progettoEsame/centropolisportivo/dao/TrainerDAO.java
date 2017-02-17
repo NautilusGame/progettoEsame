@@ -31,7 +31,6 @@ public class TrainerDAO {
 	public void update(Trainer newTrainer)throws SQLException
 	{
 		String query = "UPDATE trainer SET name = '"+newTrainer.getName()+"', surname = '"+newTrainer.getSurname()+"', password = '"+newTrainer.getPassword()+"', phone_number = '"+newTrainer.getPhoneNumber()+"', center_manager_email = '"+newTrainer.getCenterManager().getEmail()+"', confirmed = "+newTrainer.isConfirmed()+" WHERE email = '"+newTrainer.getEmail()+"';";
-		System.out.println(query);
 		DbConnection.getInstance().eseguiAggiornamento(query);
 	}
 	public Trainer findByEmail(String email) throws SQLException

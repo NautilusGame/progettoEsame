@@ -4,6 +4,8 @@ import java.awt.Dimension;
 
 import javax.swing.JFrame;
 
+import progettoEsame.centropolisportivo.business.Session;
+
 public class MainFrame extends JFrame {
 	
 	private LoginRegister loginRegisterPanel;
@@ -12,12 +14,11 @@ public class MainFrame extends JFrame {
 	public MainFrame(String title,Dimension d)
 	{
 		loginRegisterPanel = new LoginRegister(this);
-		AddActivity act = new AddActivity();
 		this.setTitle(title);
 		this.setSize(d);
 		this.setVisible(true);
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		this.getContentPane().add(act);
+		this.getContentPane().add(loginRegisterPanel);
 	}
 
 }

@@ -4,6 +4,7 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import progettoEsame.centropolisportivo.dbConnection.DbConnection;
 import progettoEsame.centropolisportivo.model.ActivityType;
+import progettoEsame.centropolisportivo.model.Room;
 
 public class ActivityTypeDAO  {
 
@@ -47,6 +48,40 @@ public class ActivityTypeDAO  {
 		activityType.setCenterManager(CenterManagerDAO.getInstance().findByEmail(row[2]));
 		return activityType;
 
+	}
+	
+
+	public ActivityType findByType(String type) throws SQLException
+	{
+		ActivityType activityType = new ActivityType();
+		ArrayList <String[]> result  = DbConnection.getInstance().eseguiQuery("SELECT * FROM activity_type WHERE  type= '"+type+"';");
+		if(result.size() == 0) return null;
+
+		String[] row = result.get(0);
+		activityType.setId(Integer.parseInt(row[0]));
+		activityType.setType(row[1]);
+		activityType.setCenterManager(CenterManagerDAO.getInstance().findByEmail(row[2]));
+		return activityType;
+
+	}
+	public ArrayList<ActivityType> getAllActivityType() throws SQLException
+	{
+		ArrayList<String[]> result = new ArrayList<>();
+		ArrayList<ActivityType> activityTypeList = new ArrayList<>();
+		String query = "SELECT * FROM activity_type";
+		result = DbConnection.getInstance().eseguiQuery(query);
+		if(result.size() == 0) return null;
+		
+		for(int i = 0;i<result.size();i++)
+		{
+			ActivityType tmpActivityType = new ActivityType();
+			String[] row = result.get(i);
+			tmpActivityType.setId(Integer.parseInt(row[0]));
+			tmpActivityType.setType(row[1]);
+			tmpActivityType.setCenterManager(CenterManagerDAO.getInstance().findByEmail(row[2]));
+			activityTypeList.add(tmpActivityType);
+		}
+		return activityTypeList;
 	}
 
 }
