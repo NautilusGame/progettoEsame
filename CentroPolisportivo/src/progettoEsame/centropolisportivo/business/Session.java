@@ -1,5 +1,7 @@
 package progettoEsame.centropolisportivo.business;
 
+import java.util.HashMap;
+
 import progettoEsame.centropolisportivo.exception.SessionException;
 
 public class Session {
@@ -8,6 +10,7 @@ public class Session {
 	private static boolean connected;//varibile per lo stato dell'utente
 	private static String email;
 	private static String typeUser;
+	private HashMap<String, Object> map;
 	
 	public static Session getInstance() {
 		connected=false;
@@ -23,6 +26,7 @@ public class Session {
 		email=userId;
 		connected=true;
 		typeUser=user;
+		map = new HashMap<>();
 	}
 	
 	/*
@@ -32,6 +36,7 @@ public class Session {
 		email=null;
 		connected=false;		
 		typeUser=null;
+		map = null;
 	}
 	
 	/*
@@ -57,6 +62,21 @@ public class Session {
 	 */
 	public String getTypeUser(){
 		return typeUser;
+	}
+	
+	public void saveOnSession(String key, Object value)
+	{
+		this.map.put(key, value);
+	}
+	
+	public void deleteFromSession(String key)
+	{
+		this.map.remove(key);
+	}
+	
+	public Object getFromSession(String key)
+	{
+		return this.map.get(key);
 	}
 
 
