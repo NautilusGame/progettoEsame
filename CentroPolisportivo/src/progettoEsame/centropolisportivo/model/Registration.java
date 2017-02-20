@@ -1,7 +1,10 @@
 package progettoEsame.centropolisportivo.model;
 // Generated 26-gen-2017 22.33.09 by Hibernate Tools 5.2.0.CR1
 
+import java.sql.SQLException;
 import java.util.Date;
+
+import progettoEsame.centropolisportivo.dao.RegistrationDAO;
 
 
 /**
@@ -13,9 +16,10 @@ public class Registration  {
 	private Activity activity;
 	private Event event;
 	private Member member;
-	private Schedule schedule;
-	private Date deadline;
-	private Date date;
+	private Level level;
+	private java.sql.Date deadline;
+	private java.sql.Date date;
+	private double cost;
 
 	
 	
@@ -23,11 +27,11 @@ public class Registration  {
 		super();
 	}
 
-	public Registration(Activity activity, Event event, Member member, Schedule schedule, Date deadline, Date date) {
+	public Registration(Activity activity, Event event, Member member, Level level, java.sql.Date deadline, java.sql.Date date) {
 		this.activity = activity;
 		this.event = event;
 		this.member = member;
-		this.schedule = schedule;
+		this.level = level;
 		this.deadline = deadline;
 		this.date = date;
 	}
@@ -63,28 +67,42 @@ public class Registration  {
 	public void setMember(Member member) {
 		this.member = member;
 	}
+	
 
-	public Schedule getSchedule() {
-		return this.schedule;
+	public Level getLevel() {
+		return level;
 	}
 
-	public void setSchedule(Schedule schedule) {
-		this.schedule = schedule;
+	public void setLevel(Level level) {
+		this.level = level;
 	}
 
-	public Date getDeadline() {
+	public java.sql.Date getDeadline() {
 		return this.deadline;
 	}
 
-	public void setDeadline(Date deadline) {
+	public void setDeadline(java.sql.Date deadline) {
 		this.deadline = deadline;
 	}
 
-	public Date getDate() {
+	public java.sql.Date getDate() {
 		return this.date;
 	}
 
-	public void setDate(Date date) {
+	public void setDate(java.sql.Date date) {
 		this.date = date;
+	}
+	
+	public double getCost() {
+		return cost;
+	}
+
+	public void setCost(double cost) {
+		this.cost = cost;
+	}
+
+	public static Registration findById(int id) throws SQLException
+	{
+		return RegistrationDAO.getInstance().findById(id);
 	}
 }

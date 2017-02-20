@@ -22,10 +22,18 @@ public class RegistrationDAO {
 
 	public void insert(Registration newRegistration) throws SQLException
 	{
-			String query = "INSERT INTO registration(deadline, date, member_email, schedule_id, activity_id, event_id) VALUES"
-					+ "("+newRegistration.getId()+",'"+newRegistration.getDeadline()+"','"+newRegistration.getDate()+"','"+newRegistration.getMember().getEmail()+"',"
-							+ ""+newRegistration.getSchedule().getId()+","+newRegistration.getActivity().getId()+","+newRegistration.getEvent().getId()+")";
+		if(newRegistration.getEvent()!=null)
+		{
+			String query = "INSERT INTO registration(date, cost, member_email,event_id) VALUES"
+					+ "('"+newRegistration.getDate()+"','"+newRegistration.getMember().getEmail()+"',"+newRegistration.getEvent().getId()+")";
 			DbConnection.getInstance().eseguiAggiornamento(query);
+		}
+		else
+		{
+			String query = "INSERT INTO registration(deadline, date, cost, member_email, activity_id, event_id, level_id) VALUES"
+					+ "('"+newRegistration.getDeadline()+"','"+newRegistration.getDate()+"','"+newRegistration.getMember().getEmail()+"',"+newRegistration.getActivity().getId()+","+newRegistration.getEvent().getId()+","+newRegistration.getLevel().getId()+")";
+			DbConnection.getInstance().eseguiAggiornamento(query);
+		}
 	}
 
 	public void delete(Integer id) throws SQLException
@@ -36,10 +44,10 @@ public class RegistrationDAO {
 
 	public void update(Registration newRegistration) throws SQLException
 	{
-			String query = "UPDATE registration  deadline = '"+newRegistration.getDeadline()+"',"
-					+ " date = '"+newRegistration.getDate()+"',' member_mail = '"+newRegistration.getMember().getEmail()+
-					"', schedule_id = '"+newRegistration.getSchedule().getId()+"', event_id = "+newRegistration.getEvent().getId()+";";
-			DbConnection.getInstance().eseguiAggiornamento(query);
+		String query = "UPDATE registration  deadline = '"+newRegistration.getDeadline()+"',"
+				+ " date = '"+newRegistration.getDate()+"',' member_mail = '"+newRegistration.getMember().getEmail()+
+				"', level_id = '"+newRegistration.getLevel().getId()+"', event_id = "+newRegistration.getEvent().getId()+", cost = "+newRegistration.getCost()+";";
+		DbConnection.getInstance().eseguiAggiornamento(query);
 	}
 	public Registration findById(Integer id) throws SQLException
 	{
@@ -61,7 +69,7 @@ public class RegistrationDAO {
 		{
 			exception.printStackTrace();
 		}
-		
+
 		String date = row[2];
 		try
 		{
@@ -73,10 +81,11 @@ public class RegistrationDAO {
 		{
 			exception.printStackTrace();
 		}
-		registration.setMember(MemberDAO.getInstance().findByEmail(row[3]));
-		registration.setSchedule(ScheduleDAO.getInstance().findById(Integer.parseInt(row[4])));
+		registration.setCost(Double.parseDouble(row[3]));
+		registration.setMember(MemberDAO.getInstance().findByEmail(row[4]));
 		registration.setActivity(ActivityDAO.getInstance().findById(Integer.parseInt(row[5])));
-		registration.setEvent(EventDAO.getInstance().findById(Integer.parseInt(row[5])));
+		registration.setEvent(EventDAO.getInstance().findById(Integer.parseInt(row[6])));
+		registration.setLevel(LevelDAO.getInstance().findById(Integer.parseInt(row[7])));
 		return registration;
 
 	}
