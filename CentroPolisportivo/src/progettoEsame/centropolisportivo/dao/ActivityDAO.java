@@ -83,6 +83,7 @@ public class ActivityDAO {
 			tmpActivity.setDescription(row[2]);
 			tmpActivity.setCost(Float.parseFloat(row[3]));
 			tmpActivity.setImagePath(row[6]);
+			tmpActivity.setActivityType(ActivityTypeDAO.getInstance().findById(Integer.parseInt(row[7])));
 			allActivity.add(tmpActivity);
 		}
 		return allActivity;

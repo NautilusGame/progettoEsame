@@ -14,16 +14,17 @@ import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.ScrollPaneLayout;
 
-import progettoEsame.centropolisportivo.view.actionListener.ActivityController;
-import progettoEsame.centropolisportivo.view.actionListener.CenterManagerRegistrationProposalController;
+import progettoEsame.centropolisportivo.view.actionListener.ActivityCardController;
 
 public class Flyer extends JPanel
 {
 	private ArrayList<ActivityCard> allActivity;
 	private GridBagConstraints gbc;
+	private Template template;
 	
-	public Flyer() 
+	public Flyer(Template template) 
 	{
+		this.template=template;
 		gbc = new GridBagConstraints();
 		
 		JPanel mainPanel = new JPanel();
@@ -35,7 +36,8 @@ public class Flyer extends JPanel
 		scrollPane.setPreferredSize(new Dimension(500, 700));
 		mainPanel.setLayout(new BoxLayout(mainPanel, BoxLayout.Y_AXIS));
 		try {
-			this.allActivity = ActivityController.getInstance().getAllActivityCard();
+			ActivityCardController.getInstance().setTemplate(this.template);
+			this.allActivity = ActivityCardController.getInstance().getAllActivityCard();
 			if(allActivity.size() == 0)
 			{
 				JLabel none = new JLabel(NO_REGISTRATION_PROPOSAL);

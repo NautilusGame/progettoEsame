@@ -30,7 +30,7 @@ public class AddLevelActionListener implements ActionListener {
 		else
 		{
 			try {
-				boolean resCheck = LevelBusiness.getInstance().checkLevelData(newLevel);
+				LevelBusiness.getInstance().checkLevelData(newLevel);
 				addNewLevelPanel.addMessageToPanel(Message.getInstance().printSuccessMsg("Level is addedd correctly"));
 			} catch (LevelException | SQLException | SessionException e1) {
 				addNewLevelPanel.addMessageToPanel(Message.getInstance().printErrorMsg(e1.getMessage()));

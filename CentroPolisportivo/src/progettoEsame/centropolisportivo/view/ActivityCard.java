@@ -38,7 +38,7 @@ public class ActivityCard extends JPanel
 	
 	private GridBagConstraints gbc;
 	
-	public ActivityCard(ArrayList<String> valueField,int user)
+	public ActivityCard(ArrayList<String> valueField,int user,Template template)//TODO sistemare con variabile locale
 	{
 		//inzializzazione dei componenti
 		this.descriptionPanel= new JPanel();
@@ -64,8 +64,9 @@ public class ActivityCard extends JPanel
 		
 		
 		//upload image
-		try {                
-			image = ImageIO.read(new File("image/1.jpg"));///valueField.get(4)
+		try 
+		{
+			image = ImageIO.read(new File(valueField.get(4)));///valueField.get(4)
 			picActivity= new JLabel(new ImageIcon(getScaledImage(image, 200, 150)));			
 		} 
 		catch (IOException ex) {
@@ -75,12 +76,19 @@ public class ActivityCard extends JPanel
 		//swich tra catalgo pubblico o meno
 		if(user==0)
 			this.register.setVisible(false);
-		else if(user==1)
+		else if(user == 1)
 		{
 			this.register.setVisible(true);
 			this.register.setName(valueField.get(0));
 			this.register.setActionCommand(ConstantClass.ACTIVITY_REGISTER_BUTTON);
-			this.register.addActionListener(new ActivityCardActionListener());
+			this.register.addActionListener(new ActivityCardActionListener(template,this));
+		}
+		else if(user==2)
+		{
+			this.register.setVisible(true);
+			this.register.setName(valueField.get(0));
+			this.register.setActionCommand(ConstantClass.ACTIVITY_SCHEDULE_BUTTON);
+			this.register.addActionListener(new ActivityCardActionListener(template,this));
 		}
 		
 		
@@ -155,6 +163,11 @@ public class ActivityCard extends JPanel
 	    g2.dispose();
 
 	    return resizedImg;
+	}
+	
+	public int getIdActivity()
+	{
+		return Integer.parseInt(this.register.getName());
 	}
 
 }

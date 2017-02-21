@@ -4,7 +4,9 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.sql.SQLException;
 
+import progettoEsame.centropolisportivo.business.ActivityTypeBusiness;
 import progettoEsame.centropolisportivo.business.Session;
+import progettoEsame.centropolisportivo.exception.ActivityTypeException;
 import progettoEsame.centropolisportivo.exception.SessionException;
 import progettoEsame.centropolisportivo.model.ActivityType;
 import progettoEsame.centropolisportivo.model.CenterManager;
@@ -34,12 +36,12 @@ public class AddActivityTypeActionListener implements ActionListener {
 				ActivityType newActivityType = new ActivityType();
 				newActivityType.setCenterManager(CenterManager.findByEmail(Session.getInstance().getEmail()));
 				newActivityType.setType(activityTypeName);
+				ActivityTypeBusiness.getInstance().insert(newActivityType);
 				addActivityTypePanel.removeMessageToPanel();
 				addActivityTypePanel.addMessageToPanel(Message.getInstance().printSuccessMsg(ADD_ACTIVITY_TYPE_SUCCESS_MSG));
-			} catch (SQLException | SessionException e) {
+			} catch (SQLException | SessionException | ActivityTypeException e) {
 				addActivityTypePanel.removeMessageToPanel();
-				addActivityTypePanel.addMessageToPanel(Message.getInstance().printErrorMsg(ADD_ACTIVITY_TYPE_DB_ERROR));
-				e.printStackTrace();
+				addActivityTypePanel.addMessageToPanel(Message.getInstance().printErrorMsg(e.getMessage()));
 			}
 		}
 

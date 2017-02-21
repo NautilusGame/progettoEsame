@@ -39,7 +39,7 @@ public class ActivityTypeDAO  {
 	public ActivityType findById(Integer id) throws SQLException
 	{
 		ActivityType activityType = new ActivityType();
-		ArrayList <String[]> result  = DbConnection.getInstance().eseguiQuery("SELECT * FROM activityType WHERE  id= "+id+";");
+		ArrayList <String[]> result  = DbConnection.getInstance().eseguiQuery("SELECT * FROM activity_type WHERE  id= "+id+";");
 		if(result.size() == 0) return null;
 
 		String[] row = result.get(0);

@@ -1,7 +1,9 @@
 package progettoEsame.centropolisportivo.model;
 // Generated 26-gen-2017 22.33.09 by Hibernate Tools 5.2.0.CR1
 
+
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.Date;
 
 import progettoEsame.centropolisportivo.dao.RegistrationDAO;
@@ -104,5 +106,15 @@ public class Registration  {
 	public static Registration findById(int id) throws SQLException
 	{
 		return RegistrationDAO.getInstance().findById(id);
+	}
+	
+	public static Registration findByMemberAndActivity(String email, int idActivity) throws SQLException
+	{
+		return RegistrationDAO.getInstance().findByMemberAndActivity(email, idActivity);
+	}
+	
+	public static int insertNewRegistration(Registration newReg) throws SQLException
+	{
+		return RegistrationDAO.getInstance().insert(newReg);
 	}
 }

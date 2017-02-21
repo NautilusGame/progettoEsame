@@ -4,7 +4,6 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 
 import progettoEsame.centropolisportivo.dao.ActivityDAO;
-import progettoEsame.centropolisportivo.dao.MemberDAO;
 
 // Generated 26-gen-2017 22.33.09 by Hibernate Tools 5.2.0.CR1
 
@@ -29,7 +28,10 @@ public class Activity {
 		super();
 	}
 
-
+	public Activity(int id) {
+		this.id = id;
+		
+	}
 
 	public Activity(int id, ActivityType activityType, CenterManager centerManager, Room room, String name,
 			String description, float cost, String imagePath) {
@@ -116,6 +118,11 @@ public class Activity {
 	public static ArrayList<Activity> getAllActivity()throws SQLException
 	{
 		return ActivityDAO.getInstance().getAllActivity();
+	}
+	
+	public static Activity findByID(int id)throws SQLException
+	{
+		return ActivityDAO.getInstance().findById(id);
 	}
 
 }

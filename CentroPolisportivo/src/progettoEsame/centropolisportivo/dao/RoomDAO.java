@@ -18,7 +18,7 @@ public class RoomDAO  {
 
 	public void insert(Room newRoom) throws SQLException
 	{
-			String query = "INSERT INTO room(name, description, capability, center_manager_email) VALUES ('"+newRoom.getName()+"','"+newRoom.getDescription()+"','"+newRoom.getCapability()+"','"+newRoom.getCenterManager().getEmail()+");";
+			String query = "INSERT INTO room(name, description, capability, center_manager_email) VALUES ('"+newRoom.getName()+"','"+newRoom.getDescription()+"','"+newRoom.getCapability()+"','"+newRoom.getCenterManager().getEmail()+"');";
 			DbConnection.getInstance().eseguiAggiornamento(query);
 	}
 
@@ -42,9 +42,9 @@ public class RoomDAO  {
 		String[] row = result.get(0);
 		room.setId(Integer.parseInt(row[0]));
 		room.setName(row[1]);
-		room.setDescription(row[3]);
-		room.setCapability(Integer.parseInt(row[4]));
-		room.setCenterManager(CenterManagerDAO.getInstance().findByEmail(row[5]));
+		room.setDescription(row[2]);
+		room.setCapability(Integer.parseInt(row[3]));
+		room.setCenterManager(CenterManagerDAO.getInstance().findByEmail(row[4]));
 		return room;
 
 	}

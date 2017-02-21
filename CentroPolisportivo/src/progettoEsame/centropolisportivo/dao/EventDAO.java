@@ -23,7 +23,7 @@ public class EventDAO {
 	public void insert(Event newEvent) throws SQLException
 	{
 			String query = "INSERT INTO event(name, start_date, finish_date, cost, type, trainer_email, free) VALUES"
-					+ "("+newEvent.getName()+","+newEvent.getStartDate()+","+newEvent.getFinishDate()+","
+					+ "('"+newEvent.getName()+"','"+newEvent.getStartDate()+"','"+newEvent.getFinishDate()+"',"
 							+ newEvent.getCost()+",'"+newEvent.getType()+"','"+newEvent.getTrainer().getEmail()+"',"+newEvent.isFree()+");";
 			DbConnection.getInstance().eseguiAggiornamento(query);
 	}
@@ -73,8 +73,7 @@ public class EventDAO {
 		event.setCost(Integer.parseInt(row[4]));
 		event.setType(row[5]);
 		event.setTrainer(TrainerDAO.getInstance().findByEmail(row[6]));
-		event.setFree(Boolean.parseBoolean(row[7]));
-		
+		event.setFree(!"0".equals(row[7]));
 
 		return event;
 

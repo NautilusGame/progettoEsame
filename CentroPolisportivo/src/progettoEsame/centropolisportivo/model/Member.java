@@ -21,7 +21,10 @@ public class Member {
 	{
 		
 	}
-
+	public Member(String email) {
+		this.email = email;
+		
+	}
 	public Member(String email, CenterManager centerManager, String name, String surname, java.sql.Date birthday,
 			String password, int confirmed) {
 		this.email = email;
@@ -80,15 +83,15 @@ public class Member {
 	public void setPassword(String password) {
 		this.password = password;
 	}
-
-	public int isConfirmed() {
-		return this.confirmed;
+	
+	public int getConfirmed() {
+		return confirmed;
 	}
 
 	public void setConfirmed(int confirmed) {
 		this.confirmed = confirmed;
 	}
-	
+
 	public static void insert(Member newMember) throws SQLException
 	{
 		MemberDAO.getInstance().insert(newMember);

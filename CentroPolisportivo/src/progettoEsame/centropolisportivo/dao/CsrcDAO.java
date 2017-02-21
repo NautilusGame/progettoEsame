@@ -7,6 +7,7 @@ import java.util.ArrayList;
 import java.util.Date;
 import progettoEsame.centropolisportivo.dbConnection.DbConnection;
 import progettoEsame.centropolisportivo.model.Csrc;
+import progettoEsame.centropolisportivo.model.Event;
 
 public class CsrcDAO  {
 
@@ -21,7 +22,7 @@ public class CsrcDAO  {
 
 	public void insert(Csrc newCsrc) throws SQLException
 	{
-			String query = "INSERT INTO csrc(path, deadline, member_email) VALUES ('"+newCsrc.getPath()+"','"+newCsrc.getDeadline()+"','"+newCsrc.getMember().getEmail()+");";
+			String query = "INSERT INTO csrc(path, member_email,event_id) VALUES ('"+newCsrc.getPath()+"','"+newCsrc.getMember().getEmail()+"',"+newCsrc.getEvent().getId()+");";
 			DbConnection.getInstance().eseguiAggiornamento(query);
 	}
 
@@ -33,7 +34,7 @@ public class CsrcDAO  {
 
 	public void update(Csrc newCsrc) throws SQLException
 	{
-			String query = "UPDATE csrc SET path='"+newCsrc.getPath()+"',  deadline='"+newCsrc.getDeadline()+"',  member_email='"+newCsrc.getMember().getEmail()+"';";
+			String query = "UPDATE csrc SET path='"+newCsrc.getPath()+"', member_email='"+newCsrc.getMember().getEmail()+"',event_id = "+newCsrc.getEvent().getId()+";";
 			DbConnection.getInstance().eseguiAggiornamento(query);
 	}
 	public Csrc findByEmail(Integer id) throws SQLException
@@ -45,18 +46,8 @@ public class CsrcDAO  {
 		String[] row = result.get(0);
 		csrc.setId(Integer.parseInt(row[0]));
 		csrc.setPath(row[1]);
-		String date = row[2];
-		try
-		{
-			SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
-			Date myDate = dateFormat.parse(date);
-			csrc.setDeadline(new java.sql.Date(myDate.getTime()));
-		}
-		catch(ParseException exception)
-		{
-			exception.printStackTrace();
-		}
-		csrc.setMember(MemberDAO.getInstance().findByEmail(row[3]));
+		csrc.setMember(MemberDAO.getInstance().findByEmail(row[2]));
+		csrc.setEvent(EventDAO.getInstance().findById(Integer.parseInt(row[3])));
 		return csrc;
 
 	}

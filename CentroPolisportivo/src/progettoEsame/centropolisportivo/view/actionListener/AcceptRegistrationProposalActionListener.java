@@ -10,12 +10,16 @@ import progettoEsame.centropolisportivo.exception.SessionException;
 import progettoEsame.centropolisportivo.model.CenterManager;
 import progettoEsame.centropolisportivo.model.Member;
 import progettoEsame.centropolisportivo.model.Trainer;
+import progettoEsame.centropolisportivo.view.AcceptRegistrationProposal;
 
 import static progettoEsame.centropolisportivo.business.ConstantClass.*;
-public class CenterManagerRegistrationProposalActionListener implements ActionListener {
+public class AcceptRegistrationProposalActionListener implements ActionListener {
 
-	public CenterManagerRegistrationProposalActionListener() {
+	private AcceptRegistrationProposal cmrpPanel;
+	
+	public AcceptRegistrationProposalActionListener(AcceptRegistrationProposal cmrpPanel) {
 		
+		this.cmrpPanel = cmrpPanel;
 	}
 	@Override
 	public void actionPerformed(ActionEvent e) {
@@ -27,6 +31,9 @@ public class CenterManagerRegistrationProposalActionListener implements ActionLi
 				newMember.setCenterManager(CenterManager.findByEmail(SessionCheck.getInstance().getEmail()));
 				newMember.setConfirmed(1);
 				Member.update(newMember);
+				cmrpPanel.updateUnconfirmedUser();
+				cmrpPanel.paintPanel();
+				
 				
 			} catch (SQLException | SessionException e1) {
 				e1.printStackTrace();
@@ -40,6 +47,7 @@ public class CenterManagerRegistrationProposalActionListener implements ActionLi
 				newMember.setConfirmed(2);
 				newMember.setCenterManager(CenterManager.findByEmail(SessionCheck.getInstance().getEmail()));
 				Member.update(newMember);
+				cmrpPanel.paintPanel();
 			} catch (SQLException | SessionException e1) {
 				e1.printStackTrace();
 			}
@@ -52,6 +60,7 @@ public class CenterManagerRegistrationProposalActionListener implements ActionLi
 				newTrainer.setConfirmed(1);
 				newTrainer.setCenterManager(CenterManager.findByEmail(SessionCheck.getInstance().getEmail()));
 				Trainer.update(newTrainer);
+				cmrpPanel.paintPanel();
 			} catch (SQLException | SessionException e1) {
 				e1.printStackTrace();
 			}
@@ -64,6 +73,7 @@ public class CenterManagerRegistrationProposalActionListener implements ActionLi
 				newTrainer.setConfirmed(2);
 				newTrainer.setCenterManager(CenterManager.findByEmail(SessionCheck.getInstance().getEmail()));
 				Trainer.update(newTrainer);
+				cmrpPanel.paintPanel();
 			} catch (SQLException | SessionException e1) {
 				e1.printStackTrace();
 			}

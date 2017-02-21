@@ -75,5 +75,10 @@ public class Room {
 	{
 		return RoomDAO.getInstance().findByName(name);
 	}
+	
+	public static void insert(Room newRoom) throws SQLException
+	{
+		RoomDAO.getInstance().insert(newRoom);
+	}
 
 }

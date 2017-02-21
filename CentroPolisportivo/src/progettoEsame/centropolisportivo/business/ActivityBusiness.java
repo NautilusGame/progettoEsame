@@ -9,6 +9,7 @@ public class ActivityBusiness
 {
 	private static ActivityBusiness instance;
 	private ArrayList<Activity> allActivity;
+	private Activity activity;
 
 	
 	public static synchronized ActivityBusiness getInstance()
@@ -25,6 +26,23 @@ public class ActivityBusiness
 		this.allActivity = Activity.getAllActivity();
 		return this.allActivity;
 		
+	}
+	
+	public Activity findByID(int activityID) throws SQLException
+	{
+		return Activity.findByID(activityID);
+	}
+	public ArrayList<String> getActivityById (int idActivity) throws SQLException
+	{
+		Activity tmpActivity=Activity.findByID(idActivity);
+		ArrayList<String> valueActivity = new ArrayList<>();
+		valueActivity.add(String.valueOf(tmpActivity.getId()));//0
+		valueActivity.add(tmpActivity.getName());//1
+		valueActivity.add(tmpActivity.getDescription());//2
+		valueActivity.add(String.valueOf(tmpActivity.getCost()));//3
+		valueActivity.add(tmpActivity.getImagePath());//4
+		
+		return valueActivity;
 	}
 
 }

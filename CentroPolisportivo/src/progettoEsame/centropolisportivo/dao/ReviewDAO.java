@@ -52,5 +52,26 @@ public class ReviewDAO  {
 		return review;
 
 	}
+	
+	public ArrayList<Review> getAllReviews()throws SQLException
+	{
+		String query = "SELECT * FROM review";
+		ArrayList<String[]> result = DbConnection.getInstance().eseguiQuery(query);
+		ArrayList<Review> allReviews = new ArrayList<Review>();
+		
+		if(result.size() == 0)
+			return null;
+		for(int i = 0;i<result.size();i++)
+		{
+			Review tmpReview = new Review();
+			String[] row = result.get(i);
+			tmpReview.setActivity(ActivityDAO.getInstance().findById(Integer.parseInt(row[0])));
+			tmpReview.setMember(MemberDAO.getInstance().findByEmail(row[1]));
+			tmpReview.setText(row[2]);
+			tmpReview.setRate(Integer.parseInt(row[3]));
+			allReviews.add(tmpReview);
+		}
+		return allReviews;
+	}
 
 }

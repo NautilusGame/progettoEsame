@@ -3,6 +3,7 @@ package progettoEsame.centropolisportivo.dao;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import progettoEsame.centropolisportivo.dbConnection.DbConnection;
+import progettoEsame.centropolisportivo.model.Activity;
 import progettoEsame.centropolisportivo.model.Level;
 
 public class LevelDAO  {
@@ -61,6 +62,27 @@ public class LevelDAO  {
 		level.setCenterManager(CenterManagerDAO.getInstance().findByEmail(row[3]));
 		return level;
 
+	}
+	
+	public ArrayList<Level> getAllLevels()throws SQLException
+	{
+		String query = "SELECT * FROM level;";
+		ArrayList<String[]> result = DbConnection.getInstance().eseguiQuery(query);
+		ArrayList<Level> allLevels = new ArrayList<Level>();
+		
+		if(result.size() == 0)
+			return null;
+		for(int i = 0;i<result.size();i++)
+		{
+			Level tmpLevel = new Level();
+			String[] row = result.get(i);
+			tmpLevel.setId(Integer.parseInt(row[0]));
+			tmpLevel.setName(row[1]);
+			tmpLevel.setDescription(row[2]);
+			tmpLevel.setCenterManager(CenterManagerDAO.getInstance().findByEmail(row[3]));
+			allLevels.add(tmpLevel);
+		}
+		return allLevels;
 	}
 
 }

@@ -25,11 +25,13 @@ public class LoginRegisterMouseListener implements MouseListener{
 			JLabel label = (JLabel)e.getSource();
 			if(label.getName().equals(REGISTER_BUTTON_NAME))
 			{
+				lrview.removeMessageToPanel();
 				lrview.makeLoginPanelInvisible();
 				lrview.makeRegisterPanelVisible();
 			}
 			else if(label.getName().equals(LOGIN_BUTTON_NAME))
 			{
+				lrview.removeMessageToPanel();
 				lrview.makeRegisterPanelInvisible();
 				lrview.makeLoginPanelVisible();
 			}

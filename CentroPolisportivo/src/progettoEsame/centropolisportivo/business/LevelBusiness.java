@@ -3,6 +3,7 @@ package progettoEsame.centropolisportivo.business;
 import static progettoEsame.centropolisportivo.business.ConstantClass.EMAIL_REGISTRATION_ERROR_MSG;
 
 import java.sql.SQLException;
+import java.util.ArrayList;
 
 import progettoEsame.centropolisportivo.dao.CenterManagerDAO;
 import progettoEsame.centropolisportivo.exception.LevelException;
@@ -14,7 +15,8 @@ import static progettoEsame.centropolisportivo.business.ConstantClass.*;
 public class LevelBusiness {
 	
 	private static LevelBusiness instance;
-
+	private static ArrayList<Level> alLevels;
+	
 	public static synchronized LevelBusiness getInstance()
 	{
 		if(instance == null)
@@ -22,7 +24,7 @@ public class LevelBusiness {
 		return instance;
 	}
 	
-	public Boolean checkLevelData(Level level)throws LevelException,SQLException,SessionException
+	public void checkLevelData(Level level)throws LevelException,SQLException,SessionException
 	{
 		Level tmpLevel = Level.findByName(level.getName());
 		if(tmpLevel  !=null)
@@ -31,7 +33,24 @@ public class LevelBusiness {
 		}
 		level.setCenterManager(CenterManagerDAO.getInstance().findByEmail(Session.getInstance().getEmail()));
 		Level.insert(level);
-		return true;
 	}
+	
+	public void insert(Level newLevel) throws SQLException
+	{
+		Level.insert(newLevel);
+	}
+	
+	public ArrayList<String> getAllLevels() throws SQLException
+	{
+		ArrayList<Level> levels= Level.getAllLevels();
+		ArrayList<String> levelsName= new ArrayList<>();
+		
+		for (int i=0; i<levels.size(); i++)
+		{
+			levelsName.add(levels.get(i).getName());//1
+		}
+	
+		return levelsName;
+	}		
 
 }

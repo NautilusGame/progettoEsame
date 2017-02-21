@@ -88,13 +88,29 @@ public class SettingsActionListener implements ActionListener
 					{
 						if(this.settings.isVisiblePassword())//si verifica se sono state modificate le impostazioni dlla password
 						{	
-							if(SettingsBusiness.getInstance().updateTrainerSettings(value,value.get(2)));
-							else;//TODO AGGIUNGERE MESSAGGIO DI ERROER O AVVENUTO UPDATE
+							if(SettingsBusiness.getInstance().updateTrainerSettings(value,value.get(2)))
+							{
+								this.settings.removeMessageToPanel();
+								this.settings.addMessageToPanel(Message.getInstance().printSuccessMsg(ConstantClass.SUCCESS_UPDATE));
+							}
+							else
+							{
+								this.settings.removeMessageToPanel();
+								this.settings.addMessageToPanel(Message.getInstance().printErrorMsg(ConstantClass.ERROR_UPDATE));
+							}
 						}
 						else 
 						{
-							if(SettingsBusiness.getInstance().updateTrainerSettings(value,""));
-							else;//TODO AGGIUNGERE MESSAGGIO DI ERROER O AVVENUTO UPDATE
+							if(SettingsBusiness.getInstance().updateTrainerSettings(value,""))
+							{
+								this.settings.removeMessageToPanel();
+								this.settings.addMessageToPanel(Message.getInstance().printSuccessMsg(ConstantClass.SUCCESS_UPDATE));
+							}
+							else
+							{
+								this.settings.removeMessageToPanel();
+								this.settings.addMessageToPanel(Message.getInstance().printErrorMsg(ConstantClass.ERROR_UPDATE));
+							}
 						}	
 					}
 					catch(Exception ex)
@@ -109,13 +125,29 @@ public class SettingsActionListener implements ActionListener
 				{
 					if(this.settings.isVisiblePassword())//si verifica se sono state modificate le impostazioni dlla password
 					{	
-						if(SettingsBusiness.getInstance().updateMemberSettings(value,value.get(2)));
-						else;//TODO AGGIUNGERE MESSAGGIO DI ERROER O AVVENUTO UPDATE
+						if(SettingsBusiness.getInstance().updateMemberSettings(value,value.get(2)))
+						{
+							this.settings.removeMessageToPanel();
+							this.settings.addMessageToPanel(Message.getInstance().printSuccessMsg(ConstantClass.SUCCESS_UPDATE));
+						}
+						else
+						{
+							this.settings.removeMessageToPanel();
+							this.settings.addMessageToPanel(Message.getInstance().printErrorMsg(ConstantClass.ERROR_UPDATE));
+						}
 					}
 					else 
 					{
-						if(SettingsBusiness.getInstance().updateMemberSettings(value,""));
-						else;//TODO AGGIUNGERE MESSAGGIO DI ERROER O AVVENUTO UPDATE
+						if(SettingsBusiness.getInstance().updateMemberSettings(value,""))
+						{
+							this.settings.removeMessageToPanel();
+							this.settings.addMessageToPanel(Message.getInstance().printSuccessMsg(ConstantClass.SUCCESS_UPDATE));
+						}
+						else
+						{
+							this.settings.removeMessageToPanel();
+							this.settings.addMessageToPanel(Message.getInstance().printErrorMsg(ConstantClass.ERROR_UPDATE));
+						}
 					}	
 				}
 				catch(Exception ex)
@@ -135,13 +167,31 @@ public class SettingsActionListener implements ActionListener
 					{
 						if(this.settings.isVisiblePassword())//si verifica se sono state modificate le impostazioni dlla password
 						{	
-							if(SettingsBusiness.getInstance().updateCenterManagerSettings(value,value.get(2)));
-							else;//TODO AGGIUNGERE MESSAGGIO DI ERROER O AVVENUTO UPDATE
+							if(SettingsBusiness.getInstance().updateCenterManagerSettings(value,value.get(2)))
+							{
+								this.settings.removeMessageToPanel();
+								this.settings.addMessageToPanel(Message.getInstance().printSuccessMsg(ConstantClass.SUCCESS_UPDATE));
+							}
+							else
+							{
+								this.settings.removeMessageToPanel();
+								this.settings.addMessageToPanel(Message.getInstance().printErrorMsg(ConstantClass.ERROR_UPDATE));
+							}
+							
 						}
 						else 
 						{
-							if(SettingsBusiness.getInstance().updateCenterManagerSettings(value,""));
-							else;//TODO AGGIUNGERE MESSAGGIO DI ERROER O AVVENUTO UPDATE
+							if(SettingsBusiness.getInstance().updateCenterManagerSettings(value,""))
+							{
+								this.settings.removeMessageToPanel();
+								this.settings.addMessageToPanel(Message.getInstance().printSuccessMsg(ConstantClass.SUCCESS_UPDATE));
+								//TODO mettere colore verde
+							}
+							else
+							{
+								this.settings.removeMessageToPanel();
+								this.settings.addMessageToPanel(Message.getInstance().printErrorMsg(ConstantClass.ERROR_UPDATE));
+							}							
 						}	
 					}
 					catch(Exception ex)

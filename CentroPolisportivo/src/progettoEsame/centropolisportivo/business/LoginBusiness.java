@@ -25,10 +25,15 @@ public class LoginBusiness {
 		
 		if(member!=null)
 		{
-			if (member.getPassword().equals(md5Password)){
-				Session.getInstance().createSession(email,"member");
+			if ((member.getPassword().equals(md5Password)))
+			{
+				if(member.getConfirmed()==1)
+					Session.getInstance().createSession(email,"member");
+				else 
+					throw new LoginException(ConstantClass.WAIT_TO_BE_ACCEPTED);
 			}
-			else throw new LoginException(ConstantClass.ERROR_DIFFERENT_PASSWORD);
+			else 
+				throw new LoginException(ConstantClass.ERROR_DIFFERENT_PASSWORD);
 		}
 		else return false;
 
@@ -43,8 +48,12 @@ public class LoginBusiness {
 		
 		if(trainer!=null)
 		{
-			if (trainer.getPassword().equals(md5Password)){
-				Session.getInstance().createSession(email,"trainer");
+			if (trainer.getPassword().equals(md5Password))
+			{
+				if(trainer.isConfirmed()==1)
+					Session.getInstance().createSession(email,"trainer");
+				else 
+					throw new LoginException(ConstantClass.WAIT_TO_BE_ACCEPTED);
 			}
 			else throw new LoginException(ConstantClass.ERROR_DIFFERENT_PASSWORD);
 		}
@@ -61,7 +70,8 @@ public class LoginBusiness {
 		
 		if(centerManager!=null)
 		{
-			if (centerManager.getPassword().equals(password)){
+			if (centerManager.getPassword().equals(password))
+			{
 				Session.getInstance().createSession(email,"centerManager");
 			}
 			else throw new LoginException(ConstantClass.ERROR_DIFFERENT_PASSWORD);

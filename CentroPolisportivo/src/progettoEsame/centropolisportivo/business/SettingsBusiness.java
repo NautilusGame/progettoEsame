@@ -143,7 +143,7 @@ public class SettingsBusiness
 		return userData;
 	}
 	
-	public  ArrayList<String> getTrainerSettings() throws SQLException, SessionException
+	public ArrayList<String> getTrainerSettings() throws SQLException, SessionException
 	{
 		Trainer trainer=Trainer.findByEmail(Session.getInstance().getEmail());
 		ArrayList<String> userData = new ArrayList<>();
@@ -155,7 +155,7 @@ public class SettingsBusiness
 		return userData;
 	}
 	
-	public  ArrayList<String> getCenterManagerSettings() throws SQLException, SessionException
+	public ArrayList<String> getCenterManagerSettings() throws SQLException, SessionException
 	{
 		CenterManager centerManager=CenterManager.findByEmail(Session.getInstance().getEmail());
 		ArrayList<String> userData = new ArrayList<>();

@@ -67,7 +67,7 @@ public class DbConnection {
 	// Esegue una query di aggiornamento sul Database
 	// query: una stringa che rappresenta un'istuzione SQL di tipo UPDATE da eseguire
 	// ritorna TRUE se l'esecuzione e' adata a buon fine, FALSE se c'e' stata un'eccezione
-	public boolean eseguiAggiornamento(String query) throws SQLException{
+	/*public boolean eseguiAggiornamento(String query) throws SQLException{
 		int numero = 0;
 		boolean risultato = false;
 		try {
@@ -88,7 +88,24 @@ public class DbConnection {
 			db.close();
 			connesso = false;
 		} catch (Exception e) { e.printStackTrace(); }
-	}
+	}*/
 
 	public boolean isConnesso() { return connesso; }   // Ritorna TRUE se la connessione con il Database e' attiva
+	
+	
+	
+	public int eseguiAggiornamento(String query) throws SQLException{
+	int key;
+	try {
+		PreparedStatement  stmt = db.prepareStatement(query, Statement.RETURN_GENERATED_KEYS);
+		ResultSet keys = stmt.getGeneratedKeys();    
+		keys.next();  
+		key = keys.getInt(1);
+		stmt.close();
+	} catch (SQLException e) {
+		throw new SQLException();
+	}
+	return key;
+}
+
 }

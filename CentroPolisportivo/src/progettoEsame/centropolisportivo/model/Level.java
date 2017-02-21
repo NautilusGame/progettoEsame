@@ -2,6 +2,7 @@ package progettoEsame.centropolisportivo.model;
 // Generated 26-gen-2017 22.33.09 by Hibernate Tools 5.2.0.CR1
 
 import java.sql.SQLException;
+import java.util.ArrayList;
 
 import progettoEsame.centropolisportivo.dao.LevelDAO;
 import progettoEsame.centropolisportivo.dao.MemberDAO;
@@ -69,6 +70,11 @@ public class Level {
 	public static Level findByName(String name)throws SQLException
 	{
 		return LevelDAO.getInstance().findByName(name);
+	}
+	
+	public static ArrayList<Level> getAllLevels()throws SQLException
+	{
+		return LevelDAO.getInstance().getAllLevels();
 	}
 
 }

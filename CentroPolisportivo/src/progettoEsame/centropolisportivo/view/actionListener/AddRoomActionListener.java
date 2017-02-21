@@ -5,7 +5,9 @@ import java.awt.event.ActionListener;
 import java.sql.SQLException;
 import java.util.ArrayList;
 
+import progettoEsame.centropolisportivo.business.RoomBusiness;
 import progettoEsame.centropolisportivo.business.Session;
+import progettoEsame.centropolisportivo.exception.RoomException;
 import progettoEsame.centropolisportivo.exception.SessionException;
 import progettoEsame.centropolisportivo.model.CenterManager;
 import progettoEsame.centropolisportivo.model.Room;
@@ -37,11 +39,12 @@ public class AddRoomActionListener implements ActionListener {
 				room.setCenterManager(CenterManager.findByEmail(Session.getInstance().getEmail()));
 				room.setDescription(newRoom.get(1));
 				room.setCapability(Integer.parseInt(newRoom.get(2)));
+				RoomBusiness.getInstance().insert(room);
 				addRoomPanel.removeMessageToPanel();
 				addRoomPanel.addMessageToPanel(Message.getInstance().printSuccessMsg(ADD_ROOM_SUCCESS_MSG));
-			} catch (SessionException | SQLException e) {
+			} catch (SessionException | SQLException | RoomException e) {
 				addRoomPanel.removeMessageToPanel();
-				addRoomPanel.addMessageToPanel(Message.getInstance().printErrorMsg(ADD_ROOM_DB_ERROR));
+				addRoomPanel.addMessageToPanel(Message.getInstance().printErrorMsg(e.getMessage()));
 			}
 		}
 

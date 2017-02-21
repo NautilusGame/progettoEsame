@@ -103,7 +103,7 @@ public class AddActivity extends JPanel {
 		this.insertButton.setActionCommand(ADD_ACTIVITY_INSERT_BUTTON_ACTION_CMD);
 		this.insertButton.addActionListener(new AddActivityActionListener(this));
 		this.titlePage.setFont(new Font(Font.SANS_SERIF, 10, 30));
-		this.image = new ImageIcon(new ImageIcon("../progettoEsame/image/default.png").getImage().getScaledInstance(300, 200, Image.SCALE_DEFAULT));
+		this.image = new ImageIcon(new ImageIcon("../progettoEsame/image/SystemImage/default.png").getImage().getScaledInstance(300, 200, Image.SCALE_DEFAULT));
 		this.img  = new JLabel();
 		this.img.setBounds(0, 0, 10, 10);
 		this.img.setIcon(image);
@@ -207,6 +207,9 @@ public class AddActivity extends JPanel {
 	
 	public void setPathToImageLabel(String path)
 	{
+		File a = new File(path);
+		a.renameTo(new File("../progettoEsame/image/ActivityImage/" + a.getName()));
+		path = "../progettoEsame/image/ActivityImage/" + a.getName();
 		this.invisibleImagePath.setText(path);
 	}
 	

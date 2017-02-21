@@ -1,21 +1,21 @@
 package progettoEsame.centropolisportivo.view;
 
 import java.awt.BorderLayout;
-import java.awt.Dimension;
+import java.awt.Component;
+import java.awt.FlowLayout;
 import java.awt.GridLayout;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
 
 import javax.imageio.ImageIO;
+import javax.swing.BoxLayout;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JLabel;
-import javax.swing.JMenu;
-import javax.swing.JMenuBar;
 import javax.swing.JPanel;
+import javax.swing.JScrollPane;
 
-import progettoEsame.centropolisportivo.business.Session;
 import progettoEsame.centropolisportivo.view.actionListener.SessionCheck;
 import progettoEsame.centropolisportivo.view.actionListener.TemplateActionListener;
 import progettoEsame.centropolisportivo.view.actionListener.TemplateFixedMenuListener;
@@ -30,7 +30,8 @@ public class Template extends JPanel {
 	private JPanel panelNord;//Panel eddicato al banner e al menu nella sezione nord del template
 	private JPanel panelOvest;//Panel dedicato a tutte le voci di menu aggiuntive per ogni entità
 	private JPanel panelSud;//panel eddicato alla zona per i messaggi di errori
-	private JPanel panelCenter;//pannello per richiamare tutte le pagine
+	//private JScrollPane panelCenter;//pannello per richiamare tutte le pagine
+	private JPanel panelCenter;
 	private JPanel fixedMenu;//pannello per il menu comune
 	
 	/*menu comune a tute le enetità*/
@@ -60,10 +61,10 @@ public class Template extends JPanel {
 	private JButton centerManager3;
 	private JButton centerManager4;
 	private JButton centerManager5;
+	private JButton centerManager6;
 
 	private BufferedImage image;
 	private JLabel picLabel;
-	
 	//inizio del cotruttore della view
 	public Template (MainFrame mf)
 	{
@@ -71,13 +72,13 @@ public class Template extends JPanel {
 		this.setLayout(new BorderLayout());
 		
 		this.mf=mf;
-		
 		//inizializzazione di tutti i panel
 		this.panelNord=new JPanel();
-		this.panelOvest=new JPanel();
+		this.panelOvest=new JPanel(new BoxLayout(this.panelOvest, BoxLayout.Y_AXIS));
 		this.panelSud=new JPanel();
 		this.panelCenter=new JPanel();
 		this.fixedMenu=new JPanel();
+		
 		
 		this.panelNord.setLayout(new GridLayout(2, 1));
 		this.fixedMenu.setLayout(new GridLayout(1, 5));
@@ -178,7 +179,7 @@ public class Template extends JPanel {
 		
 		this.panelOvest.setLayout(new GridLayout(5, 1));	
 		
-		this.trainer1=new JButton("Info2");
+		this.trainer1=new JButton("Add Event");
 		this.trainer2=new JButton("Info2");
 		this.trainer3=new JButton("Info2");
 		this.trainer4=new JButton("Info2");
@@ -205,31 +206,36 @@ public class Template extends JPanel {
 	
 	public void addMenuCenterManager(){
 		
-		this.panelOvest.setLayout(new GridLayout(5, 1));	
+		this.panelOvest.setLayout(new GridLayout(6, 1));	
 		
 		this.centerManager1=new JButton("Accept registration");
 		this.centerManager2=new JButton("Add activity");
 		this.centerManager3=new JButton("Add level");
 		this.centerManager4=new JButton("Add room");
 		this.centerManager5=new JButton("Add activity type");
+		this.centerManager6=new JButton("Accept payment");
 		
 		this.centerManager1.setActionCommand(CENTERMANAGER_MENU_1);
 		this.centerManager2.setActionCommand(CENTERMANAGER_MENU_2);
 		this.centerManager3.setActionCommand(CENTERMANAGER_MENU_3);
 		this.centerManager4.setActionCommand(CENTERMANAGER_MENU_4);
 		this.centerManager5.setActionCommand(CENTERMANAGER_MENU_5);
+		this.centerManager6.setActionCommand(CENTERMANAGER_MENU_6);
 		
 		this.centerManager1.addActionListener(new TemplateActionListener(this));
 		this.centerManager2.addActionListener(new TemplateActionListener(this));
 		this.centerManager3.addActionListener(new TemplateActionListener(this));
 		this.centerManager4.addActionListener(new TemplateActionListener(this));
 		this.centerManager5.addActionListener(new TemplateActionListener(this));
-		
+		this.centerManager6.addActionListener(new TemplateActionListener(this));
+
 		this.panelOvest.add(centerManager1);
 		this.panelOvest.add(centerManager2);
 		this.panelOvest.add(centerManager3);
 		this.panelOvest.add(centerManager4);
 		this.panelOvest.add(centerManager5);
+		this.panelOvest.add(centerManager6);
+		
 	}
 	
 	public void addMessageToPanel(JLabel msg){
@@ -251,6 +257,8 @@ public class Template extends JPanel {
 	public void setPage(JPanel newPage)
 	{
 		this.panelCenter.add(newPage);
+		//this.panelCenter = new JScrollPane(newPage);
+		//this.add(panelCenter, BorderLayout.CENTER);
 		this.revalidate();
 		this.repaint();
 	}

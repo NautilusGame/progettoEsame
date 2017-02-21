@@ -7,7 +7,7 @@ import java.util.ArrayList;
 import java.util.Date;
 import progettoEsame.centropolisportivo.dbConnection.DbConnection;
 import progettoEsame.centropolisportivo.model.Member;
-import progettoEsame.centropolisportivo.view.CenterManagerRegistrationProposal;
+import progettoEsame.centropolisportivo.view.AcceptRegistrationProposal;
 
 public class MemberDAO {
 
@@ -23,7 +23,7 @@ public class MemberDAO {
 
 	public void insert(Member newMember) throws SQLException
 	{
-		String query = "INSERT INTO member(name,surname,birthday,email,password,confirmed) VALUES ('"+newMember.getName()+"','"+newMember.getSurname()+"','"+newMember.getBirthday()+"','"+newMember.getEmail()+"','"+newMember.getPassword()+"',"+newMember.isConfirmed()+")";
+		String query = "INSERT INTO member(name,surname,birthday,email,password,confirmed) VALUES ('"+newMember.getName()+"','"+newMember.getSurname()+"','"+newMember.getBirthday()+"','"+newMember.getEmail()+"','"+newMember.getPassword()+"',"+newMember.getConfirmed()+")";
 		DbConnection.getInstance().eseguiAggiornamento(query);
 	}
 
@@ -35,7 +35,7 @@ public class MemberDAO {
 
 	public void update(Member newMember) throws SQLException
 	{
-		String query = "UPDATE member SET name = '"+newMember.getName()+"', surname = '"+newMember.getSurname()+"', password = '"+newMember.getPassword()+"', birthday = '"+newMember.getBirthday()+"', center_manager_email = '"+newMember.getCenterManager().getEmail()+"', confirmed = "+newMember.isConfirmed()+" WHERE email = '"+newMember.getEmail()+"';";
+		String query = "UPDATE member SET name = '"+newMember.getName()+"', surname = '"+newMember.getSurname()+"', password = '"+newMember.getPassword()+"', birthday = '"+newMember.getBirthday()+"', center_manager_email = '"+newMember.getCenterManager().getEmail()+"', confirmed = "+newMember.getConfirmed()+" WHERE email = '"+newMember.getEmail()+"';";
 		DbConnection.getInstance().eseguiAggiornamento(query);
 	}
 	public Member findByEmail(String email) throws SQLException

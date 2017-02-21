@@ -61,4 +61,9 @@ public class ActivityType{
 	{
 		return ActivityTypeDAO.getInstance().findByType(type);
 	}
+	
+	public static void insert(ActivityType newActivityType) throws SQLException
+	{
+		ActivityTypeDAO.getInstance().insert(newActivityType);
+	}
 }

@@ -40,7 +40,7 @@ public class TemplateFixedMenuListener implements ActionListener {
 		else if(e.getActionCommand().equals(FLYER_ACTION_CMD))
 		{
 			this.template.removePage();
-			Flyer f=new Flyer();
+			Flyer f=new Flyer(this.template);
 			this.template.setPage(f);
 			this.template.revalidate();
 			this.template.repaint();

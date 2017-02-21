@@ -6,9 +6,11 @@ import java.awt.event.ActionListener;
 import progettoEsame.centropolisportivo.business.Session;
 import progettoEsame.centropolisportivo.view.AddActivity;
 import progettoEsame.centropolisportivo.view.AddActivityType;
+import progettoEsame.centropolisportivo.view.AddEvent;
 import progettoEsame.centropolisportivo.view.AddNewLevel;
 import progettoEsame.centropolisportivo.view.AddRoom;
-import progettoEsame.centropolisportivo.view.CenterManagerRegistrationProposal;
+import progettoEsame.centropolisportivo.view.AcceptPaymentProposal;
+import progettoEsame.centropolisportivo.view.AcceptRegistrationProposal;
 import progettoEsame.centropolisportivo.view.Template;
 import static progettoEsame.centropolisportivo.view.ConstantClass.*;
 
@@ -47,9 +49,11 @@ public class TemplateActionListener implements ActionListener{
 		}
 		else if(e.getActionCommand().equals(TRAINER_MENU_1))
 		{
-			/*Prova p=new Prova();
-			System.out.println("Okay");
-			this.template.setPage(p);*/
+			this.template.removePage();
+			AddEvent addEventPanel = new AddEvent();
+			this.template.setPage(addEventPanel);
+			this.template.revalidate();
+			this.template.repaint();
 		}
 		else if(e.getActionCommand().equals(TRAINER_MENU_2))
 		{
@@ -70,7 +74,7 @@ public class TemplateActionListener implements ActionListener{
 		else if(e.getActionCommand().equals(CENTERMANAGER_MENU_1))
 		{
 			this.template.removePage();
-			CenterManagerRegistrationProposal registrationProposal=new CenterManagerRegistrationProposal();
+			AcceptRegistrationProposal registrationProposal=new AcceptRegistrationProposal();
 			this.template.setPage(registrationProposal);
 			this.template.revalidate();
 			this.template.repaint();
@@ -105,6 +109,15 @@ public class TemplateActionListener implements ActionListener{
 			this.template.removePage();
 			AddActivityType addActivityType = new AddActivityType();
 			this.template.setPage(addActivityType);
+			this.template.revalidate();
+			this.template.repaint();
+		}
+
+		else if(e.getActionCommand().equals(CENTERMANAGER_MENU_6))
+		{
+			this.template.removePage();
+			AcceptPaymentProposal acceptPaymentProposal = new AcceptPaymentProposal();
+			this.template.setPage(acceptPaymentProposal);
 			this.template.revalidate();
 			this.template.repaint();
 		}

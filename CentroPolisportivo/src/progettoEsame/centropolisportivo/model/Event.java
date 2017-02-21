@@ -1,7 +1,10 @@
 package progettoEsame.centropolisportivo.model;
 // Generated 26-gen-2017 22.33.09 by Hibernate Tools 5.2.0.CR1
 
+import java.sql.SQLException;
 import java.util.Date;
+
+import progettoEsame.centropolisportivo.dao.EventDAO;
 
 
 /**
@@ -12,8 +15,8 @@ public class Event  {
 	private Integer id;
 	private Trainer trainer;
 	private String name;
-	private Date startDate;
-	private Date finishDate;
+	private java.sql.Date startDate;
+	private java.sql.Date finishDate;
 	private int cost;
 	private String type;
 	private boolean free;
@@ -23,7 +26,7 @@ public class Event  {
 		super();
 	}
 
-	public Event(Trainer trainer, String name, Date startDate, Date finishDate, int cost, String type, boolean free) {
+	public Event(Trainer trainer, String name, java.sql.Date startDate, java.sql.Date finishDate, int cost, String type, boolean free) {
 		this.trainer = trainer;
 		this.name = name;
 		this.startDate = startDate;
@@ -57,19 +60,19 @@ public class Event  {
 		this.name = name;
 	}
 
-	public Date getStartDate() {
+	public java.sql.Date getStartDate() {
 		return this.startDate;
 	}
 
-	public void setStartDate(Date startDate) {
+	public void setStartDate(java.sql.Date startDate) {
 		this.startDate = startDate;
 	}
 
-	public Date getFinishDate() {
+	public java.sql.Date getFinishDate() {
 		return this.finishDate;
 	}
 
-	public void setFinishDate(Date finishDate) {
+	public void setFinishDate(java.sql.Date finishDate) {
 		this.finishDate = finishDate;
 	}
 
@@ -95,6 +98,11 @@ public class Event  {
 
 	public void setFree(boolean free) {
 		this.free = free;
+	}
+	
+	public static void insert(Event newEvent) throws SQLException
+	{
+		EventDAO.getInstance().insert(newEvent);
 	}
 
 	
