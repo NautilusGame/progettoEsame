@@ -30,8 +30,9 @@ public class RegistrationDAO {
 		}
 		else
 		{
-			String query = "INSERT INTO registration(deadline, date, cost, member_email, activity_id, event_id, level_id) VALUES"
-					+ "('"+newRegistration.getDeadline()+"','"+newRegistration.getDate()+"',"+newRegistration.getCost()+",'"+newRegistration.getMember().getEmail()+"',"+newRegistration.getActivity().getId()+","+newRegistration.getEvent().getId()+","+newRegistration.getLevel().getId()+")";
+			String query = "INSERT INTO registration(deadline, date, cost, member_email, activity_id, level_id) VALUES"
+					+ "('"+newRegistration.getDeadline()+"','"+newRegistration.getDate()+"',"+newRegistration.getCost()+",'"+newRegistration.getMember().getEmail()+"',"+newRegistration.getActivity().getId()+","+newRegistration.getLevel().getId()+")";
+			System.out.println(query);
 			return DbConnection.getInstance().eseguiAggiornamento(query);
 		}
 	}
