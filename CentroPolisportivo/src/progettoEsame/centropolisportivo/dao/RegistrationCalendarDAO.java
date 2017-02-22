@@ -22,8 +22,8 @@ public class RegistrationCalendarDAO {
 	
 	public void insert(RegistrationCalendar newRegistrationCalendar) throws SQLException
 	{
-			String query = "INSERT INTO registration_calendar(schedule_id, registration_id) VALUES"
-					+ "("+newRegistrationCalendar.getSchedule().getId()+","+newRegistrationCalendar.getRegistration().getId()+");";
+			String query = "INSERT INTO registration_calendar(schedule_id, registration_id,temp_alter_registration_id) VALUES"
+					+ "("+newRegistrationCalendar.getSchedule().getId()+","+newRegistrationCalendar.getRegistration().getId()+","+newRegistrationCalendar.getTempAlterRegistration().getId()+");";
 			DbConnection.getInstance().eseguiAggiornamento(query);
 	}
 	
@@ -36,7 +36,7 @@ public class RegistrationCalendarDAO {
 	public void update(RegistrationCalendar newRegistrationCalendar) throws SQLException
 	{
 			String query = "UPDATE registration_calendar SET schedule_id = "+newRegistrationCalendar.getSchedule().getId()+","
-					+ " registration_id = "+newRegistrationCalendar.getRegistration().getId()+");";
+					+ " registration_id = "+newRegistrationCalendar.getRegistration().getId()+",temp_alter_registration_id = "+newRegistrationCalendar.getTempAlterRegistration().getId()+");";
 
 			DbConnection.getInstance().eseguiAggiornamento(query);
 	}
@@ -51,7 +51,7 @@ public class RegistrationCalendarDAO {
 		registrationCalendar.setId(Integer.parseInt(row[0]));
 		registrationCalendar.setSchedule(Schedule.findById(Integer.parseInt(row[1])));
 		registrationCalendar.setRegistration(Registration.findById(Integer.parseInt(row[2])));
-
+		registrationCalendar.setTempAlterRegistration(TempAlterRegistrationDAO.getInstance().findById(Integer.parseInt(row[3])));
 		return registrationCalendar;
 
 	}

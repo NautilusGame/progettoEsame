@@ -21,7 +21,7 @@ public class TempAlterRegistrationDAO {
 
 	public void insert(TempAlterRegistration newTempAlterRegistration) throws SQLException
 	{
-			String query = "INSERT INTO temp_alter_registration(deadline, date, registration_id, center_manager_email, member_email, confirmed) VALUES ("+newTempAlterRegistration.getDeadline()+","+newTempAlterRegistration.getDate()+","+newTempAlterRegistration.getRegistration().getId()+",'"+newTempAlterRegistration.getCenterManager().getEmail()+"','"+newTempAlterRegistration.getMember().getEmail()+"',"+newTempAlterRegistration.isConfirmed()+")";
+			String query = "INSERT INTO temp_alter_registration(registration_id, center_manager_email, member_email, confirmed,level_id) VALUES ("+newTempAlterRegistration.getRegistration().getId()+",'"+newTempAlterRegistration.getCenterManager().getEmail()+"','"+newTempAlterRegistration.getMember().getEmail()+"',"+newTempAlterRegistration.isConfirmed()+","+newTempAlterRegistration.getLevel().getId()+")";
 			DbConnection.getInstance().eseguiAggiornamento(query);
 	}
 
@@ -33,47 +33,23 @@ public class TempAlterRegistrationDAO {
 
 	public void update(TempAlterRegistration newTempAlterRegistration) throws SQLException
 	{
-			String query = "UPDATE temp_alter_registration SET deadline="+newTempAlterRegistration.getDeadline()+",date="+newTempAlterRegistration.getDate()+",registration_id='"+newTempAlterRegistration.getRegistration().getId()+"',center_manager_email='"+newTempAlterRegistration.getCenterManager().getEmail()+"',member_email='"+newTempAlterRegistration.getMember().getEmail()+"',confirmed='"+newTempAlterRegistration.isConfirmed()+"';";
+			String query = "UPDATE temp_alter_registration SET registration_id='"+newTempAlterRegistration.getRegistration().getId()+"',center_manager_email='"+newTempAlterRegistration.getCenterManager().getEmail()+"',member_email='"+newTempAlterRegistration.getMember().getEmail()+"',confirmed='"+newTempAlterRegistration.isConfirmed()+"', level_id = "+newTempAlterRegistration.getLevel().getId()+";";
 			DbConnection.getInstance().eseguiAggiornamento(query);
 	}
 	
-	public TempAlterRegistration findById(String id) throws SQLException
+	public TempAlterRegistration findById(int id) throws SQLException
 	{
 		TempAlterRegistration tempAlterRegistration = new TempAlterRegistration();
-		ArrayList <String[]> result  = DbConnection.getInstance().eseguiQuery("SELECT * FROM tempAlterRegistration WHERE id= '"+id+"';");
+		ArrayList <String[]> result  = DbConnection.getInstance().eseguiQuery("SELECT * FROM tempAlterRegistration WHERE id= "+id+";");
 		if(result.size() == 0) return null;
 
 		String[] row = result.get(0);
 		tempAlterRegistration.setId(Integer.parseInt(row[0]));
-		
-		String deadline = row[1];
-		try
-		{
-			SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
-			Date myDate = dateFormat.parse(deadline);
-			tempAlterRegistration.setDeadline(new java.sql.Date(myDate.getTime()));
-		}
-		catch(ParseException exception)
-		{
-			exception.printStackTrace();
-		}
-		
-		String date = row[2];
-		try
-		{
-			SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
-			Date myDate = dateFormat.parse(date);
-			tempAlterRegistration.setDate(new java.sql.Date(myDate.getTime()));
-		}
-		catch(ParseException exception)
-		{
-			exception.printStackTrace();
-		}
-		
-		tempAlterRegistration.setRegistration(RegistrationDAO.getInstance().findById(Integer.parseInt(row[3])));
-		tempAlterRegistration.setCenterManager(CenterManagerDAO.getInstance().findByEmail(row[4]));
-		tempAlterRegistration.setMember(MemberDAO.getInstance().findByEmail(row[5]));
-		tempAlterRegistration.setConfirmed(Boolean.parseBoolean(row[6]));
+		tempAlterRegistration.setRegistration(RegistrationDAO.getInstance().findById(Integer.parseInt(row[1])));
+		tempAlterRegistration.setCenterManager(CenterManagerDAO.getInstance().findByEmail(row[2]));
+		tempAlterRegistration.setMember(MemberDAO.getInstance().findByEmail(row[3]));
+		tempAlterRegistration.setConfirmed(Integer.parseInt(row[4]));
+		tempAlterRegistration.setLevel(LevelDAO.getInstance().findById(Integer.parseInt(row[5])));
 		return tempAlterRegistration;
 
 	}

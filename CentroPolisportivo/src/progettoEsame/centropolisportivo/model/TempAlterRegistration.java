@@ -12,9 +12,8 @@ public class TempAlterRegistration  {
 	private CenterManager centerManager;
 	private Member member;
 	private Registration registration;
-	private Date deadline;
-	private Date date;
-	private boolean confirmed;
+	private int confirmed;
+	private Level level;
 
 	
 
@@ -22,14 +21,12 @@ public class TempAlterRegistration  {
 		super();
 	}
 
-	public TempAlterRegistration(CenterManager centerManager, Member member, Registration registration, Date deadline,
-			Date date, boolean confirmed) {
+	public TempAlterRegistration(CenterManager centerManager, Member member, Registration registration,int confirmed,Level level) {
 		this.centerManager = centerManager;
 		this.member = member;
 		this.registration = registration;
-		this.deadline = deadline;
-		this.date = date;
 		this.confirmed = confirmed;
+		this.level = level;
 	}
 
 	public Integer getId() {
@@ -64,27 +61,20 @@ public class TempAlterRegistration  {
 		this.registration = registration;
 	}
 
-	public Date getDeadline() {
-		return this.deadline;
+
+	public Level getLevel() {
+		return level;
 	}
 
-	public void setDeadline(Date deadline) {
-		this.deadline = deadline;
+	public void setLevel(Level level) {
+		this.level = level;
 	}
 
-	public Date getDate() {
-		return this.date;
-	}
-
-	public void setDate(Date date) {
-		this.date = date;
-	}
-
-	public boolean isConfirmed() {
+	public int isConfirmed() {
 		return this.confirmed;
 	}
 
-	public void setConfirmed(boolean confirmed) {
+	public void setConfirmed(int confirmed) {
 		this.confirmed = confirmed;
 	}
 
