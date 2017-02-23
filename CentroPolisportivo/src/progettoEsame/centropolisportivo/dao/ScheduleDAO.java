@@ -74,7 +74,7 @@ public class ScheduleDAO  {
 	
 	public Schedule getScheduleByDay(String day,String time,int idActivity)throws SQLException
 	{
-		String query = "SELECT * FROM schedule where activity_id="+idActivity+"and day='"+day+"'and time='"+time+"';";
+		String query = "SELECT * FROM schedule where activity_id="+idActivity+" AND day='"+day+"' AND time='"+time+"';";
 		ArrayList<String[]> result = DbConnection.getInstance().eseguiQuery(query);
 		Schedule schedule = new Schedule();
 		

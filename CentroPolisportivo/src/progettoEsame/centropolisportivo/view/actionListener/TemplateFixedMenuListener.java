@@ -9,6 +9,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 import progettoEsame.centropolisportivo.business.Session;
+import progettoEsame.centropolisportivo.view.ActivityFlyer;
 import progettoEsame.centropolisportivo.view.Flyer;
 import progettoEsame.centropolisportivo.view.LoginRegister;
 import progettoEsame.centropolisportivo.view.MainFrame;
@@ -49,7 +50,7 @@ public class TemplateFixedMenuListener implements ActionListener {
 		{
 			Session.getInstance().destroySession();
 			this.mf.remove(template);
-			this.mf.add(new LoginRegister(this.mf));
+			this.mf.add(new Template(this.mf));
 			this.mf.revalidate();
 			this.mf.repaint();
 			
@@ -68,6 +69,13 @@ public class TemplateFixedMenuListener implements ActionListener {
 			//Inserisci qui la nuova pagina
 			this.template.revalidate();
 			this.template.repaint();
+		}
+		else if(e.getActionCommand().equals(LOGIN_REGISTER_BUTTON))
+		{
+			this.mf.remove(template);
+			this.mf.add(new LoginRegister(this.mf));
+			this.mf.revalidate();
+			this.mf.repaint();
 		}
 	}
 

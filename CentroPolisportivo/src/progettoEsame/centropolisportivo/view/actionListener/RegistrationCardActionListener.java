@@ -8,6 +8,7 @@ import java.util.ArrayList;
 
 import progettoEsame.centropolisportivo.business.RegistrationActivityBusiness;
 import progettoEsame.centropolisportivo.business.ReviewBusiness;
+import progettoEsame.centropolisportivo.business.Session;
 import progettoEsame.centropolisportivo.view.ConstantClass;
 import progettoEsame.centropolisportivo.view.Message;
 import progettoEsame.centropolisportivo.view.RegistrationCard;
@@ -49,10 +50,8 @@ public class RegistrationCardActionListener implements ActionListener
 		}
 		else if(e.getActionCommand().equals(ConstantClass.NEXT_STEP_REGISTRATION))
 		{
-			if(RegistrationActivityBusiness.getInstance().insertNewRegistration(this.card.getData()))
-				System.out.println("ok");//TODO cmabire con messaggio di successo
-			else
-				System.out.println("problema");//TODO cmabire con messaggio di errore
+			Session.getInstance().saveOnSession("dataRegistration", this.card.getData());
+			this.card.showPaymentPanel();
 		}
 	}
 

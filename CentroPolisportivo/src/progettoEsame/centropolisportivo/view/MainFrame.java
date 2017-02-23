@@ -14,14 +14,13 @@ public class MainFrame extends JFrame {
 	
 	public MainFrame(String title,Dimension d)
 	{
-		loginRegisterPanel = new LoginRegister(this);
+		Template template = new Template(this);
 		DbConnection.connetti("sports_center", "root", "");
-		Session.getInstance().createSession("ciao", "center_manager");
 		this.setTitle(title);
 		this.setSize(d);
 		this.setVisible(true);
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		this.getContentPane().add(loginRegisterPanel);
+		this.getContentPane().add(template);
 	}
 
 }

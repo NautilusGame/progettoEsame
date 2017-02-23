@@ -19,15 +19,15 @@ public class TempAlterRegistrationDAO {
 		return instance;
 	}
 
-	public void insert(TempAlterRegistration newTempAlterRegistration) throws SQLException
+	public int insert(TempAlterRegistration newTempAlterRegistration) throws SQLException
 	{
 			String query = "INSERT INTO temp_alter_registration(registration_id, center_manager_email, member_email, confirmed,level_id) VALUES ("+newTempAlterRegistration.getRegistration().getId()+",'"+newTempAlterRegistration.getCenterManager().getEmail()+"','"+newTempAlterRegistration.getMember().getEmail()+"',"+newTempAlterRegistration.isConfirmed()+","+newTempAlterRegistration.getLevel().getId()+")";
-			DbConnection.getInstance().eseguiAggiornamento(query);
+			return DbConnection.getInstance().eseguiAggiornamento(query);
 	}
 
 	public void delete(Integer id) throws SQLException
 	{
-		String query = "DELETE FROM tempAlterRegistration WHERE id = '"+id+"'";
+		String query = "DELETE FROM tempAlterRegistration WHERE id = "+id+"";
 		DbConnection.getInstance().eseguiAggiornamento(query);
 	}
 
@@ -40,7 +40,7 @@ public class TempAlterRegistrationDAO {
 	public TempAlterRegistration findById(int id) throws SQLException
 	{
 		TempAlterRegistration tempAlterRegistration = new TempAlterRegistration();
-		ArrayList <String[]> result  = DbConnection.getInstance().eseguiQuery("SELECT * FROM tempAlterRegistration WHERE id= "+id+";");
+		ArrayList <String[]> result  = DbConnection.getInstance().eseguiQuery("SELECT * FROM temp_alter_registration WHERE id= "+id+";");
 		if(result.size() == 0) return null;
 
 		String[] row = result.get(0);
@@ -52,6 +52,28 @@ public class TempAlterRegistrationDAO {
 		tempAlterRegistration.setLevel(LevelDAO.getInstance().findById(Integer.parseInt(row[5])));
 		return tempAlterRegistration;
 
+	}
+	public ArrayList<TempAlterRegistration> getAllTempAlertRegistrations()throws SQLException
+	{
+		String query = "SELECT * FROM temp_alter_registration";
+		ArrayList<String[]> result = DbConnection.getInstance().eseguiQuery(query);
+		ArrayList<TempAlterRegistration> allTempAlterRegistrations = new ArrayList<TempAlterRegistration>();
+		
+		if(result.size() == 0)
+			return null;
+		for(int i = 0;i<result.size();i++)
+		{
+			TempAlterRegistration tempAlterRegistration = new TempAlterRegistration();
+			String[] row = result.get(i);
+			tempAlterRegistration.setId(Integer.parseInt(row[0]));
+			tempAlterRegistration.setRegistration(RegistrationDAO.getInstance().findById(Integer.parseInt(row[1])));
+			tempAlterRegistration.setCenterManager(CenterManagerDAO.getInstance().findByEmail(row[2]));
+			tempAlterRegistration.setMember(MemberDAO.getInstance().findByEmail(row[3]));
+			tempAlterRegistration.setConfirmed(Integer.parseInt(row[4]));
+			tempAlterRegistration.setLevel(LevelDAO.getInstance().findById(Integer.parseInt(row[5])));
+			allTempAlterRegistrations.add(tempAlterRegistration);
+		}
+		return allTempAlterRegistrations;
 	}
 
 }

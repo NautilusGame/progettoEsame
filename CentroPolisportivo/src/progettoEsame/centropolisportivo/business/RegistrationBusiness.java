@@ -1,6 +1,7 @@
 package progettoEsame.centropolisportivo.business;
 
 import java.sql.SQLException;
+import java.util.ArrayList;
 
 import javax.swing.JLabel;
 
@@ -64,6 +65,16 @@ public class RegistrationBusiness {
 	public void insert(Registration newRegistration) throws SQLException
 	{
 		RegistrationDAO.getInstance().insert(newRegistration);
+	}
+	
+	public ArrayList<Registration> getAllRegisteredRegistration(String memberEmail)throws SQLException
+	{
+		return Registration.getAllRegisteredRegistration(memberEmail);
+	}
+	
+	public Registration findById(int id)throws SQLException
+	{
+		return Registration.findById(id);
 	}
 
 }

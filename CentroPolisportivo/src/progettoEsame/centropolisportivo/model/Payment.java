@@ -17,18 +17,16 @@ public class Payment   {
 	private String number;
 	private Double amount;
 	private int confirmed;
-	private Activity activity;
 	private CenterManager centerManager;
+	private Activity activity;
 	private Event event;
-	
 	
 	public Payment() {
 		super();
 	}
 
 
-	public Payment(Integer id, Member member, String type, String number, Double amount, int confirmed,
-			Activity activity,CenterManager centerManager) {
+	public Payment(Integer id, Member member, String type, String number, Double amount, int confirmed,CenterManager centerManager,Activity activity,Event event) {
 		super();
 		this.id = id;
 		this.member = member;
@@ -37,6 +35,7 @@ public class Payment   {
 		this.amount = amount;
 		this.confirmed = confirmed;
 		this.activity = activity;
+		this.event = event;
 	}
 
 
@@ -110,6 +109,8 @@ public class Payment   {
 	}
 
 
+
+
 	public Activity getActivity() {
 		return activity;
 	}
@@ -128,7 +129,8 @@ public class Payment   {
 	public void setEvent(Event event) {
 		this.event = event;
 	}
-	
+
+
 	public static ArrayList<Payment> getAllUnconfirmedPayment() throws SQLException
 	{
 		return PaymentDAO.getInstance().getAllUnconfirmedPayment();
@@ -147,6 +149,16 @@ public class Payment   {
 	public static void update(Payment newPayment) throws SQLException
 	{
 		PaymentDAO.getInstance().update(newPayment);
+	}
+	
+	public static Payment findByActivityAndMember(int idActivity, String memberEmail)throws SQLException
+	{
+		return PaymentDAO.getInstance().findByActivityAndMember(idActivity, memberEmail);
+	}
+	
+	public static Payment findByEventAndMember(int idEvent, String memberEmail)throws SQLException
+	{
+		return PaymentDAO.getInstance().findByEventAndMember(idEvent, memberEmail);
 	}
 	
 	

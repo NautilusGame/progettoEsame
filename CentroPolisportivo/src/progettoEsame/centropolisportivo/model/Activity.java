@@ -4,6 +4,7 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 
 import progettoEsame.centropolisportivo.dao.ActivityDAO;
+import progettoEsame.centropolisportivo.dbConnection.DbConnection;
 
 // Generated 26-gen-2017 22.33.09 by Hibernate Tools 5.2.0.CR1
 
@@ -123,6 +124,11 @@ public class Activity {
 	public static Activity findByID(int id)throws SQLException
 	{
 		return ActivityDAO.getInstance().findById(id);
+	}
+	
+	public static ArrayList<Activity> getAllRegisteredActivities(String memberEmail) throws SQLException
+	{
+		return ActivityDAO.getInstance().getAllRegisteredActivities(memberEmail);
 	}
 
 }

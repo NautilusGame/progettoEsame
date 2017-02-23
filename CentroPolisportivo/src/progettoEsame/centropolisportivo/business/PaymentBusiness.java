@@ -38,4 +38,13 @@ public class PaymentBusiness {
 		Payment.update(newPayment);
 	}
 
+	public Payment findByActivityAndMember(int idActivity, String memberEmail)throws SQLException
+	{
+		return Payment.findByActivityAndMember(idActivity, memberEmail);
+	}
+	
+	public Payment findByEventAndMember(int idEvent, String memberEmail)throws SQLException
+	{
+		return Payment.findByEventAndMember(idEvent, memberEmail);
+	}
 }

@@ -1,6 +1,7 @@
 package progettoEsame.centropolisportivo.model;
 
 import java.sql.SQLException;
+import java.util.ArrayList;
 
 import progettoEsame.centropolisportivo.dao.ActivityDAO;
 import progettoEsame.centropolisportivo.dao.RegistrationCalendarDAO;
@@ -66,5 +67,29 @@ public class RegistrationCalendar {
 		this.tempAlterRegistration = tempAlterRegistration;
 	}
 	
+	public static void deleteByTempAlteRegistration(Integer id) throws SQLException
+	{
+		RegistrationCalendarDAO.getInstance().deleteByTempAlteRegistration(id);
+	}
+	
+	public static ArrayList<RegistrationCalendar> findCalendarByTempAlterRegistrations(int id) throws SQLException
+	{
+		return RegistrationCalendarDAO.getInstance().findCalendarByTempAlterRegistrations(id);
+	}
+	
+	public static void deleteByRegistration(Integer id) throws SQLException
+	{
+		RegistrationCalendarDAO.getInstance().deleteByRegistration(id);
+	}
+	
+	public static ArrayList<RegistrationCalendar> findCalendarByRegistrations(int id) throws SQLException
+	{
+		return RegistrationCalendarDAO.getInstance().findCalendarByRegistrations(id);
+	}
+	
+	public static void updateForeignKeyTempAlter(int id) throws SQLException
+	{
+		RegistrationCalendarDAO.getInstance().updateForeignKeyTempAlter(id);
+	}
 	
 }

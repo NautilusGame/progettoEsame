@@ -69,7 +69,8 @@ public final class ConstantClass {
 	public static final String CENTERMANAGER_MENU_4 = "settingFourManager";
 	public static final String CENTERMANAGER_MENU_5 = "settingFiveManager";
 	public static final String CENTERMANAGER_MENU_6 = "settingSixManager";
-
+	public static final String CENTERMANAGER_MENU_7 = "settingSevenManager";
+	public static final String LOGIN_REGISTER_BUTTON = "loginRegisterPanel";
 	//Costanti per le impostazioni
 	public static final String BUTTON_SAVE_SETTINGS = "Save";
 	public static final String TITLE_SETTINGS = "Change settings";
@@ -234,7 +235,37 @@ public final class ConstantClass {
 	public static final String ACCEPT_PAYMENT_PROPOSAL_ACCEPT_BUTTON_NAME = "AcceptButton";
 	public static final String ACCEPT_PAYMENT_PROPOSAL_DECLINE_BUTTON_NAME = "DeclineButton";
 
+	//confirm alter registration car//
+		public static final String  ACCEPT_BUTTON= "Accept";
+		public static final String  DENY_BUTTON= "Deny";
+		public static final String  NAME_MEMBER = "Name member: ";
+		public static final String  ID_REGISTRATION = "#Id-registration: ";
+		public static final String  ACCEPT_BUTTON_CMD= "accpet#id";
+		public static final String  DENY_BUTTON_CMD= "deny#id";
+		
+		
+	//activity panel//
 
+	public static final String REGISTRATION_PANEL_TITLE_PAGE = "Registration that you have done";
+	public static final String REGISTRATION_PANEL_MODIFY_BUTTON = "Modify";
+	public static final String REGISTRATION_PANEL_MODIFY_BUTTON_EVENT_ACTION_CMD = "ModifyButtonEvent";
+	public static final String REGISTRATION_PANEL_MODIFY_BUTTON_ACTIVITY_ACTION_CMD = "ModifyButtonActivity";
+	public static final String REGISTRATION_PANEL_DB_ERROR = "DB error";
+	
+	//modify panel //
+
+	public static final String MODIFY_PANEL_MODIFY_BUTTON = "Modify";
+	public static final String MODIFY_PANEL_NO_SCHEDULE = "You have to select at least one schedule";
+	public static final String MODIFY_PANEL_SUCCESS = "Success";
+	
+	// event card //
+
+	public static final String EVENT_CARD_NAME_ACTIVITY_LABEL = "Name :";
+	public static final String EVENT_CARD_PRICE_ACTIVITY_LABEL = "Price :";
+	public static final String EVENT_CARD_START_ACTIVITY_LABEL = "Start :";
+	public static final String EVENT_CARD_OPEN_BUTTON= "Register";
+	public static final String EVENT_CARD_FINISH_ACTIVITY_LABEL = "Finish :";
+	public static final String EVENT_CARD_TYPE_ACTIVITY_LABEL = "Type :";
 	/***************************finish string constant******************************/
 
 	/***************************start int constant******************************/

@@ -3,11 +3,13 @@ package progettoEsame.centropolisportivo.view.actionListener;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.sql.SQLException;
+import java.util.ArrayList;
 
 import progettoEsame.centropolisportivo.business.ActivityBusiness;
 import progettoEsame.centropolisportivo.business.CsrcBusiness;
 import progettoEsame.centropolisportivo.business.EventBusiness;
 import progettoEsame.centropolisportivo.business.PaymentBusiness;
+import progettoEsame.centropolisportivo.business.RegistrationActivityBusiness;
 import progettoEsame.centropolisportivo.business.RegistrationBusiness;
 import progettoEsame.centropolisportivo.business.Session;
 import progettoEsame.centropolisportivo.model.Csrc;
@@ -16,6 +18,7 @@ import progettoEsame.centropolisportivo.model.Registration;
 import progettoEsame.centropolisportivo.view.Message;
 import progettoEsame.centropolisportivo.view.PaymentView;
 import progettoEsame.centropolisportivo.view.RegisterToEvent;
+import progettoEsame.centropolisportivo.view.RegistrationCard;
 
 import static progettoEsame.centropolisportivo.view.ConstantClass.*;
 
@@ -65,11 +68,21 @@ public class PaymentActionListener implements ActionListener {
 		{
 			paymentViewPanel.makeVisibleMainPanel();
 			try {
+				if(paymentViewPanel.getTypology().equals("Activity"))
+				{
+					RegistrationActivityBusiness.getInstance().insertNewRegistration((ArrayList<ArrayList<String>>)Session.getInstance().getFromSession("dataRegistration"));
+				}
+				else
+				{
+					RegistrationActivityBusiness.getInstance().insertNewRegistration((Registration)Session.getInstance().getFromSession("newRegistration"));
+					CsrcBusiness.getInstance().insert((Csrc)Session.getInstance().getFromSession("newCsrc"));
+				}
 				PaymentBusiness.getInstance().insert(newPayment);
-				RegistrationBusiness.getInstance().insert((Registration)Session.getInstance().getFromSession("newRegistration"));
-				CsrcBusiness.getInstance().insert((Csrc)Session.getInstance().getFromSession("newCsrc"));
+				Session.getInstance().deleteFromSession("dataRegistration");
+				Session.getInstance().deleteFromSession("newRegistration");
+				Session.getInstance().deleteFromSession("newCsrc");
 				this.paymentViewPanel.addMessageToPanel(Message.getInstance().printSuccessMsg(REGISTER_TO_COMPETITION_SUCCESS));
-				
+
 				paymentViewPanel.removeMessageToPanel();
 				this.paymentViewPanel.addMessageToPanel(Message.getInstance().printSuccessMsg(PAYMENT_SUCCESS_MSG));
 
@@ -81,11 +94,14 @@ public class PaymentActionListener implements ActionListener {
 		}
 		else if(arg0.getActionCommand().equals(PAYMENT_CARD_NO_BUTTON_ACTION_CMD))
 		{
-			if(newPayment.getActivity() != null)
+			if(paymentViewPanel.getTypology().equals("Activity"))
 			{
-				System.out.println("Ciao");
-				
-				/*CHIAMA FUNZIONE CHE RITORNA ALLA PAGINA INIZIALE PER ACTIVITY E FAI IL CASTING DEL REGISTRATION PANEL*/
+				RegistrationCard registerToActivity = (RegistrationCard)this.registrationPanel;
+				registerToActivity.hidePaymentPanel();
+				this.paymentViewPanel.makeVisibleMainPanel();
+				Session.getInstance().deleteFromSession("dataRegistration");
+				Session.getInstance().deleteFromSession("newRegistration");
+				Session.getInstance().deleteFromSession("newCsrc");
 			}
 			else
 			{

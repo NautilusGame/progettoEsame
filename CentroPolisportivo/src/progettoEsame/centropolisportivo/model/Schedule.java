@@ -26,6 +26,10 @@ public class Schedule  {
 		super();
 	}
 
+	public Schedule(int id) {
+		this.id=id;
+	}
+	
 	public Schedule(Activity activity, Trainer trainer, String day, String time) {
 		this.activity = activity;
 		this.trainer = trainer;

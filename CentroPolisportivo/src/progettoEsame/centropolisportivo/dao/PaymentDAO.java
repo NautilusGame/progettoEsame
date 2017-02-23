@@ -31,6 +31,7 @@ public class PaymentDAO  {
 				String query = "INSERT INTO payment( type, number, amount,confirmed,member_email,event_id) VALUES ('"+newPayment.getType()+"','"+newPayment.getNumber()+"',"+newPayment.getAmount()+","+newPayment.getConfirmed()+",'"+newPayment.getMember().getEmail()+"',"+newPayment.getEvent().getId()+");";
 				DbConnection.getInstance().eseguiAggiornamento(query);
 			}
+			
 		}
 		else
 		{
@@ -142,6 +143,58 @@ public class PaymentDAO  {
 			unconfirmedPayment.add(payment);
 		}
 		return unconfirmedPayment;
+	}
+	
+	public Payment findByActivityAndMember(int idActivity,String memberEmail)throws SQLException
+	{
+		String query = "SELECT * FROM payment as p WHERE p.member_email = '"+memberEmail+"' AND p.activity_id = "+idActivity+";";
+		Payment payment = new Payment();
+		ArrayList <String[]> result  = DbConnection.getInstance().eseguiQuery(query);
+		if(result.size() == 0) return null;
+
+		String[] row = result.get(0);
+		payment.setId(Integer.parseInt(row[0]));
+		payment.setType(row[1]);
+		payment.setNumber(row[2]);
+		payment.setAmount(Double.parseDouble(row[3]));
+		payment.setConfirmed(Integer.parseInt(row[4]));
+		payment.setMember(MemberDAO.getInstance().findByEmail(row[5]));
+		payment.setCenterManager(CenterManagerDAO.getInstance().findByEmail(row[6]));
+		if(row[7] != null)
+		{
+			payment.setActivity(ActivityDAO.getInstance().findById(Integer.parseInt(row[7])));
+		}
+		else
+		{
+			payment.setEvent(EventDAO.getInstance().findById(Integer.parseInt(row[8])));
+		}
+		return payment;
+	}
+	
+	public Payment findByEventAndMember(int idEvent,String memberEmail)throws SQLException
+	{
+		String query = "SELECT * FROM payment as p WHERE p.member_email = '"+memberEmail+"' AND p.event_id = "+idEvent+";";
+		Payment payment = new Payment();
+		ArrayList <String[]> result  = DbConnection.getInstance().eseguiQuery(query);
+		if(result.size() == 0) return null;
+
+		String[] row = result.get(0);
+		payment.setId(Integer.parseInt(row[0]));
+		payment.setType(row[1]);
+		payment.setNumber(row[2]);
+		payment.setAmount(Double.parseDouble(row[3]));
+		payment.setConfirmed(Integer.parseInt(row[4]));
+		payment.setMember(MemberDAO.getInstance().findByEmail(row[5]));
+		payment.setCenterManager(CenterManagerDAO.getInstance().findByEmail(row[6]));
+		if(row[7] != null)
+		{
+			payment.setActivity(ActivityDAO.getInstance().findById(Integer.parseInt(row[7])));
+		}
+		else
+		{
+			payment.setEvent(EventDAO.getInstance().findById(Integer.parseInt(row[8])));
+		}
+		return payment;
 	}
 
 }

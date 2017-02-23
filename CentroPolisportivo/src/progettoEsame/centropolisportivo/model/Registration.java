@@ -28,6 +28,10 @@ public class Registration  {
 	public Registration() {
 		super();
 	}
+	
+	public Registration(int id) {
+		this.id=id;
+	}
 
 	public Registration(Activity activity, Event event, Member member, Level level, java.sql.Date deadline, java.sql.Date date) {
 		this.activity = activity;
@@ -116,5 +120,15 @@ public class Registration  {
 	public static int insertNewRegistration(Registration newReg) throws SQLException
 	{
 		return RegistrationDAO.getInstance().insert(newReg);
+	}
+	
+	public static ArrayList<Registration> getAllRegisteredRegistration(String memberEmail)throws SQLException
+	{
+		return RegistrationDAO.getInstance().getAllRegisteredRegistration(memberEmail);
+	}
+	
+	public static void updateLevelRegistration(int idRegistration, int idLevel) throws SQLException
+	{
+		RegistrationDAO.getInstance().updateLevel(idRegistration, idLevel);
 	}
 }

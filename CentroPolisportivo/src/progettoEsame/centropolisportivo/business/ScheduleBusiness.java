@@ -49,5 +49,10 @@ public class ScheduleBusiness {
 	{
 		return ScheduleDAO.getInstance().getScheduleByDay(day, time, idActivity);
 	}
+	
+	public ArrayList<Schedule> getSchedulesByActivity(int activityId)throws SQLException
+	{
+		return Schedule.getScheduleByActivity(activityId);
+	}
 
 }

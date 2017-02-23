@@ -1,6 +1,7 @@
 package progettoEsame.centropolisportivo.business;
 
 import java.sql.SQLException;
+import java.util.ArrayList;
 
 import progettoEsame.centropolisportivo.dao.EventDAO;
 import progettoEsame.centropolisportivo.model.Event;
@@ -27,6 +28,16 @@ private static EventBusiness instance;
 	public Event findById(int id) throws SQLException
 	{
 		return EventDAO.getInstance().findById(id);
+	}
+	
+	public ArrayList<Event> getAllEvent() throws SQLException
+	{
+		return Event.getAllEvent();
+	}
+	
+	public ArrayList<Event> getAllRegisteredActivities(String memberEmail) throws SQLException
+	{
+		return Event.getAllRegisteredActivities(memberEmail);
 	}
 	
 }

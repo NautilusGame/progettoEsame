@@ -16,6 +16,7 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 
+import progettoEsame.centropolisportivo.business.Session;
 import progettoEsame.centropolisportivo.view.actionListener.SessionCheck;
 import progettoEsame.centropolisportivo.view.actionListener.TemplateActionListener;
 import progettoEsame.centropolisportivo.view.actionListener.TemplateFixedMenuListener;
@@ -40,6 +41,7 @@ public class Template extends JPanel {
 	private JButton profile;//per andare al profilo
 	private JButton logout;//per effettuare il logout
 	private JButton info;
+	private JButton loginRegisterButton;
 	
 	/*
 	 * Pulsanti dedicati per ogni entita nel menu laterale
@@ -62,6 +64,7 @@ public class Template extends JPanel {
 	private JButton centerManager4;
 	private JButton centerManager5;
 	private JButton centerManager6;
+	private JButton centerManager7;
 
 	private BufferedImage image;
 	private JLabel picLabel;
@@ -81,7 +84,7 @@ public class Template extends JPanel {
 		
 		
 		this.panelNord.setLayout(new GridLayout(2, 1));
-		this.fixedMenu.setLayout(new GridLayout(1, 5));
+		this.fixedMenu.setLayout(new GridLayout(1, 6));
 		//caricamento del banner del sito trimite immagine
 		try {                
 			image = ImageIO.read(new File("ciao.jpg"));//TODO inserire il banner
@@ -102,40 +105,50 @@ public class Template extends JPanel {
 		this.profile = new JButton("Profile");
 		this.logout = new JButton("Logout");
 		this.info = new JButton("Info");
+		this.loginRegisterButton= new JButton("Login/Register");
 		
 		this.home.setActionCommand(ConstantClass.HOME_ACTION_CMD);
 		this.flyer.setActionCommand(ConstantClass.FLYER_ACTION_CMD);
 		this.profile.setActionCommand(ConstantClass.PROFILE_ACTION_CMD);
 		this.logout.setActionCommand(ConstantClass.LOGOUT_ACTION_CMD);
 		this.info.setActionCommand(ConstantClass.INFO_ACTION_CMD);
+		this.loginRegisterButton.setActionCommand(ConstantClass.LOGIN_REGISTER_BUTTON);
 		
 		this.home.addActionListener(new TemplateFixedMenuListener(this,this.mf));
 		this.flyer.addActionListener(new TemplateFixedMenuListener(this,this.mf));
 		this.profile.addActionListener(new TemplateFixedMenuListener(this,this.mf));
 		this.logout.addActionListener(new TemplateFixedMenuListener(this,this.mf));
 		this.info.addActionListener(new TemplateFixedMenuListener(this,this.mf));
-
+		this.loginRegisterButton.addActionListener(new TemplateFixedMenuListener(this,this.mf));
+		
 		this.fixedMenu.add(home);
 		this.fixedMenu.add(flyer);
-		this.fixedMenu.add(profile);
-		this.fixedMenu.add(logout);
 		this.fixedMenu.add(info);
+		
 		this.panelNord.add(this.fixedMenu);
-
 		//si verifica quale tipo di utente ha fatto l'accesso e si aggiunge il menu dedicato
-		if (this.getTypeUser().equals("member")){
-			this.addMenuMember();
+		if(this.getSessionStatus())
+		{
+			this.fixedMenu.add(this.profile);
+			this.fixedMenu.add(this.logout);
+			this.remove(this.loginRegisterButton);
+			if (this.getTypeUser().equals("member")){
+				this.addMenuMember();
+			}
+			else if (this.getTypeUser().equals("trainer")){
+				this.addMenuTraienr();
+			}
+			else if (this.getTypeUser().equals("centerManager")){
+				this.addMenuCenterManager();
+			}
+			this.add(panelOvest, BorderLayout.WEST);
 		}
-		else if (this.getTypeUser().equals("trainer")){
-			this.addMenuTraienr();
-		}
-		else{
-			this.addMenuCenterManager();
-		}
+		else 
+			this.fixedMenu.add(this.loginRegisterButton);
+		
 		
 		//aggiunta di tutti i pannelli creati al panel template
 		this.add(panelNord, BorderLayout.NORTH);
-		this.add(panelOvest, BorderLayout.WEST);
 		this.add(panelSud, BorderLayout.SOUTH);
 		this.add(panelCenter, BorderLayout.CENTER);
 		
@@ -150,7 +163,7 @@ public class Template extends JPanel {
 		
 		this.panelOvest.setLayout(new GridLayout(5, 1));	
 		
-		this.member1=new JButton("Info1");
+		this.member1=new JButton("Registration Panel");
 		this.member2=new JButton("Info1");
 		this.member3=new JButton("Info1");
 		this.member4=new JButton("Info1");
@@ -214,6 +227,7 @@ public class Template extends JPanel {
 		this.centerManager4=new JButton("Add room");
 		this.centerManager5=new JButton("Add activity type");
 		this.centerManager6=new JButton("Accept payment");
+		this.centerManager7=new JButton("Accept modify request");
 		
 		this.centerManager1.setActionCommand(CENTERMANAGER_MENU_1);
 		this.centerManager2.setActionCommand(CENTERMANAGER_MENU_2);
@@ -221,6 +235,7 @@ public class Template extends JPanel {
 		this.centerManager4.setActionCommand(CENTERMANAGER_MENU_4);
 		this.centerManager5.setActionCommand(CENTERMANAGER_MENU_5);
 		this.centerManager6.setActionCommand(CENTERMANAGER_MENU_6);
+		this.centerManager6.setActionCommand(CENTERMANAGER_MENU_7);
 		
 		this.centerManager1.addActionListener(new TemplateActionListener(this));
 		this.centerManager2.addActionListener(new TemplateActionListener(this));
@@ -228,6 +243,7 @@ public class Template extends JPanel {
 		this.centerManager4.addActionListener(new TemplateActionListener(this));
 		this.centerManager5.addActionListener(new TemplateActionListener(this));
 		this.centerManager6.addActionListener(new TemplateActionListener(this));
+		this.centerManager7.addActionListener(new TemplateActionListener(this));
 
 		this.panelOvest.add(centerManager1);
 		this.panelOvest.add(centerManager2);
@@ -235,6 +251,7 @@ public class Template extends JPanel {
 		this.panelOvest.add(centerManager4);
 		this.panelOvest.add(centerManager5);
 		this.panelOvest.add(centerManager6);
+		this.panelOvest.add(centerManager7);
 		
 	}
 	
@@ -254,6 +271,10 @@ public class Template extends JPanel {
 		return SessionCheck.getInstance().getTypeUser();
 	}
 	
+	public boolean getSessionStatus(){
+		return SessionCheck.getInstance().getStatusSession();
+	}
+	
 	public void setPage(JPanel newPage)
 	{
 		this.panelCenter.add(newPage);
@@ -271,7 +292,7 @@ public class Template extends JPanel {
 		}
 		catch(Exception e)
 		{
-			
+			e.printStackTrace();
 		}
 	}
 	

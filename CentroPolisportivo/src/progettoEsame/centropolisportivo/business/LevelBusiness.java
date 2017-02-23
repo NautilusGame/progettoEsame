@@ -51,6 +51,16 @@ public class LevelBusiness {
 		}
 	
 		return levelsName;
-	}		
+	}	
+	
+	public ArrayList<Level> getLevels() throws SQLException
+	{
+		return Level.getAllLevels();
+	}
+	
+	public Level findLevelByName(String levelName)throws SQLException
+	{
+		return Level.findByName(levelName);
+	}
 
 }

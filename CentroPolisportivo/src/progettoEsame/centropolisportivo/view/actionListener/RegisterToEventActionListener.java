@@ -27,46 +27,48 @@ public class RegisterToEventActionListener implements ActionListener {
 		{
 			Registration newRegistration = this.registerToCompetitionPanel.getRegistration();
 			Csrc newCsrc = this.registerToCompetitionPanel.getCSRC();
-			try {
-				if(newCsrc.getPath().equals("") && EventBusiness.getInstance().findById(newRegistration.getEvent().getId()).getType().equals("stage"))
-				{
-					this.registerToCompetitionPanel.removeMessageToPanel();
-					this.registerToCompetitionPanel.addMessageToPanel(Message.getInstance().printErrorMsg(REGISTER_TO_COMPETITION_PATH_BLANK));
-				}
-				else
-				{
+
+			if(newCsrc.getPath().equals(""))
+			{
+				this.registerToCompetitionPanel.removeMessageToPanel();
+				this.registerToCompetitionPanel.addMessageToPanel(Message.getInstance().printErrorMsg(REGISTER_TO_COMPETITION_PATH_BLANK));
+			}
+			else
+			{
+				try {
 					newRegistration.setMember(MemberBusiness.getInstance().findByEmail(Session.getInstance().getEmail()));
+					System.out.println(newRegistration.getMember().getEmail());
 					newRegistration.setCost(EventBusiness.getInstance().findById(newRegistration.getEvent().getId()).getCost());
 					newCsrc.setMember(MemberBusiness.getInstance().findByEmail(Session.getInstance().getEmail()));
-				}
-			} catch (SQLException | SessionException e) {	
+				}catch (SQLException | SessionException e) {	
 
-				this.registerToCompetitionPanel.removeMessageToPanel();
-				this.registerToCompetitionPanel.addMessageToPanel(Message.getInstance().printErrorMsg(REGISTER_TO_COMPETITION_DB_ERROR));
-			}
-			try {
-				if(!EventBusiness.getInstance().findById(newRegistration.getEvent().getId()).isFree())
-				{
-					Session.getInstance().saveOnSession("newRegistration", newRegistration);
-					Session.getInstance().saveOnSession("newCsrc", newCsrc);
-					this.registerToCompetitionPanel.makeInvisibleMainPanel(newRegistration.getCost(),newRegistration.getEvent().getId());
+					this.registerToCompetitionPanel.removeMessageToPanel();
+					this.registerToCompetitionPanel.addMessageToPanel(Message.getInstance().printErrorMsg(REGISTER_TO_COMPETITION_DB_ERROR));
 				}
-				else
-				{
-					newRegistration.setCost(0);
-					RegistrationBusiness.getInstance().insert(newRegistration);
-					CsrcBusiness.getInstance().insert(newCsrc);		
-					this.registerToCompetitionPanel.addMessageToPanel(Message.getInstance().printSuccessMsg(REGISTER_TO_COMPETITION_SUCCESS));
-					
-					
-				}
-			} catch (SQLException e) {
-				this.registerToCompetitionPanel.removeMessageToPanel();
-				this.registerToCompetitionPanel.addMessageToPanel(Message.getInstance().printErrorMsg(REGISTER_TO_COMPETITION_DB_ERROR));
-				e.printStackTrace();
-			}
-		}
+				try {
+					if(!EventBusiness.getInstance().findById(newRegistration.getEvent().getId()).isFree())
+					{
+						Session.getInstance().saveOnSession("newRegistration", newRegistration);
+						Session.getInstance().saveOnSession("newCsrc", newCsrc);
+						this.registerToCompetitionPanel.makeInvisibleMainPanel(newRegistration.getCost(),newRegistration.getEvent().getId());
+					}
+					else
+					{
+						newRegistration.setCost(0);
+						RegistrationBusiness.getInstance().insert(newRegistration);
+						CsrcBusiness.getInstance().insert(newCsrc);		
+						this.registerToCompetitionPanel.addMessageToPanel(Message.getInstance().printSuccessMsg(REGISTER_TO_COMPETITION_SUCCESS));
 
+
+					}
+				} catch (SQLException e) {
+					this.registerToCompetitionPanel.removeMessageToPanel();
+					this.registerToCompetitionPanel.addMessageToPanel(Message.getInstance().printErrorMsg(REGISTER_TO_COMPETITION_DB_ERROR));
+					e.printStackTrace();
+				}
+			}
+
+		} 
 
 	}
 

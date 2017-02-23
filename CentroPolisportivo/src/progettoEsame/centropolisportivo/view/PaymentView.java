@@ -188,6 +188,7 @@ public class PaymentView extends JPanel{
 			{
 				newPayment.setEvent(EventBusiness.getInstance().findById(this.id));
 			}
+			
 
 		} catch (SQLException | SessionException e) {
 			this.removeMessageToPanel();
@@ -225,5 +226,10 @@ public class PaymentView extends JPanel{
 	public int getid()
 	{
 		return this.id;
+	}
+	
+	public String getTypology()
+	{
+		return this.typology;
 	}
 }

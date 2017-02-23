@@ -33,6 +33,18 @@ public class RegistrationCalendarDAO {
 		DbConnection.getInstance().eseguiAggiornamento(query);
 	}
 	
+	public void deleteByTempAlteRegistration(Integer id) throws SQLException
+	{
+		String query = "DELETE FROM registration_calendar WHERE temp_alter_registration_id = "+id;
+		DbConnection.getInstance().eseguiAggiornamento(query);
+	}
+	
+	public void deleteByRegistration(Integer id) throws SQLException
+	{
+		String query = "DELETE FROM registration_calendar WHERE registration_id ="+id+" and temp_alter_registration_id IS NULL";
+		DbConnection.getInstance().eseguiAggiornamento(query);
+	}
+	
 	public void update(RegistrationCalendar newRegistrationCalendar) throws SQLException
 	{
 			String query = "UPDATE registration_calendar SET schedule_id = "+newRegistrationCalendar.getSchedule().getId()+","
@@ -41,10 +53,17 @@ public class RegistrationCalendarDAO {
 			DbConnection.getInstance().eseguiAggiornamento(query);
 	}
 	
+	public void updateForeignKeyTempAlter(int id) throws SQLException
+	{
+			String query = "UPDATE registration_calendar SET temp_alter_registration_id = null where registration_id="+id;
+
+			DbConnection.getInstance().eseguiAggiornamento(query);
+	}
+	
 	public RegistrationCalendar findById(Integer id) throws SQLException
 	{
 		RegistrationCalendar registrationCalendar = new RegistrationCalendar();
-		ArrayList <String[]> result  = DbConnection.getInstance().eseguiQuery("SELECT * FROM registration_calendar WHERE id= '"+id+"';");
+		ArrayList <String[]> result  = DbConnection.getInstance().eseguiQuery("SELECT * FROM registration_calendar WHERE id= "+id+";");
 		if(result.size() == 0) return null;
 
 		String[] row = result.get(0);
@@ -54,5 +73,51 @@ public class RegistrationCalendarDAO {
 		registrationCalendar.setTempAlterRegistration(TempAlterRegistrationDAO.getInstance().findById(Integer.parseInt(row[3])));
 		return registrationCalendar;
 
+	}
+	
+	public ArrayList<RegistrationCalendar> findCalendarByTempAlterRegistrations(Integer id) throws SQLException
+	{
+		String query = "SELECT * FROM registration_calendar WHERE temp_alter_registration_id= "+id;
+		ArrayList<String[]> result = DbConnection.getInstance().eseguiQuery(query);
+		ArrayList<RegistrationCalendar> allCalendarByTempAlterRegistration = new ArrayList<RegistrationCalendar>();
+		
+		if(result.size() == 0)
+			return null;
+		for(int i = 0;i<result.size();i++)
+		{
+			RegistrationCalendar registrationCalendar = new RegistrationCalendar();
+			String[] row = result.get(i);
+			registrationCalendar.setId(Integer.parseInt(row[0]));
+			registrationCalendar.setSchedule(Schedule.findById(Integer.parseInt(row[1])));
+			registrationCalendar.setRegistration(Registration.findById(Integer.parseInt(row[2])));
+			registrationCalendar.setTempAlterRegistration(TempAlterRegistrationDAO.getInstance().findById(Integer.parseInt(row[3])));
+			allCalendarByTempAlterRegistration.add(registrationCalendar);
+		}
+		return allCalendarByTempAlterRegistration;
+	}
+	
+	public ArrayList<RegistrationCalendar> findCalendarByRegistrations(Integer id) throws SQLException
+	{
+		String query = "SELECT * FROM registration_calendar WHERE registration_id= "+id+" and temp_alter_registration_id IS NULL";
+		
+		ArrayList<String[]> result = DbConnection.getInstance().eseguiQuery(query);
+		System.out.println(result.size());
+		ArrayList<RegistrationCalendar> allCalendarByTempAlterRegistration = new ArrayList<RegistrationCalendar>();
+		
+		if(result.size() == 0)
+			return null;
+		for(int i = 0;i<result.size();i++)
+		{
+			RegistrationCalendar registrationCalendar = new RegistrationCalendar();
+			String[] row = result.get(i);
+			registrationCalendar.setId(Integer.parseInt(row[0]));
+			
+			registrationCalendar.setSchedule(Schedule.findById(Integer.parseInt(row[1])));
+			registrationCalendar.setRegistration(Registration.findById(Integer.parseInt(row[2])));			
+			//registrationCalendar.setTempAlterRegistration(TempAlterRegistrationDAO.getInstance().findById(Integer.parseInt(row[3])));
+			registrationCalendar.setTempAlterRegistration(null);
+			allCalendarByTempAlterRegistration.add(registrationCalendar);
+		}
+		return allCalendarByTempAlterRegistration;
 	}
 }

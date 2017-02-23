@@ -8,11 +8,13 @@ import progettoEsame.centropolisportivo.model.Activity;
 import progettoEsame.centropolisportivo.model.Level;
 import progettoEsame.centropolisportivo.model.Member;
 import progettoEsame.centropolisportivo.model.Registration;
+import progettoEsame.centropolisportivo.model.RegistrationCalendar;
+import progettoEsame.centropolisportivo.model.Schedule;
 
 public class RegistrationActivityBusiness 
 {
-private static RegistrationActivityBusiness instance;
-	
+	private static RegistrationActivityBusiness instance;
+	private int idRegistration;
 	public static RegistrationActivityBusiness getInstance() 
 	{
 		if(instance == null)
@@ -31,11 +33,13 @@ private static RegistrationActivityBusiness instance;
 			return false;
 	}
 	
+	
 	public boolean insertNewRegistration(ArrayList<ArrayList<String>> valueArray)
 	{
 		ArrayList<String> newRegistration=valueArray.get(1);
 		ArrayList<String> schedules=valueArray.get(0);
 		Registration tmp=new Registration();
+		int idRegistration;
 		
 		tmp.setActivity(new Activity(Integer.parseInt(newRegistration.get(3))));
 		tmp.setDate(java.sql.Date.valueOf(newRegistration.get(2)));
@@ -49,13 +53,13 @@ private static RegistrationActivityBusiness instance;
 		}
 		catch (Exception e) 
 		{
-			// TODO: handle exception
 			e.printStackTrace();
 		}
 		
 		try
 		{
-			Registration.insertNewRegistration(tmp);
+			idRegistration=Registration.insertNewRegistration(tmp);
+			this.setIdRegistration(idRegistration);
 		}
 		catch (Exception e) 
 		{
@@ -72,7 +76,9 @@ private static RegistrationActivityBusiness instance;
 			ScheduleBusiness.getInstance();
 			try
 			{
-				//int idSchedule=ScheduleBusiness.getScheduleByDay(day, time, Integer.parseInt(newRegistration.get(3))).getId();
+				int idSchedule=ScheduleBusiness.getScheduleByDay(day, time, Integer.parseInt(newRegistration.get(3))).getId();
+				RegistrationCalendar calendar = new RegistrationCalendar(new Schedule(idSchedule),new Registration(idRegistration));
+				RegistrationCalendar.insert(calendar);
 			}
 			catch(Exception e)
 			{
@@ -81,6 +87,24 @@ private static RegistrationActivityBusiness instance;
 			}
 		}
 		return true;
-		
+	}
+	
+	public void insertNewRegistration(Registration newRegistration)
+	{
+		try {
+			this.setIdRegistration(Registration.insertNewRegistration(newRegistration));
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
+	public void setIdRegistration(int id)
+	{
+		this.idRegistration = id;
+	}
+	
+	public int getIdRegistration()
+	{
+		return this.idRegistration;
 	}
 }

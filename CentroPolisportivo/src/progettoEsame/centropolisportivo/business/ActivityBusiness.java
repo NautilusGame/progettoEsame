@@ -3,6 +3,7 @@ package progettoEsame.centropolisportivo.business;
 import java.sql.SQLException;
 import java.util.ArrayList;
 
+import progettoEsame.centropolisportivo.dao.ActivityDAO;
 import progettoEsame.centropolisportivo.model.Activity;
 
 public class ActivityBusiness
@@ -44,5 +45,12 @@ public class ActivityBusiness
 		
 		return valueActivity;
 	}
+	
+
+	public ArrayList<Activity> getAllRegisteredActivities(String memberEmail) throws SQLException
+	{
+		return Activity.getAllRegisteredActivities(memberEmail);
+	}
+
 
 }

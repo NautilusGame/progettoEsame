@@ -50,6 +50,8 @@ public class RegistrationCard extends JPanel
 	private JPanel descriptionPanel;
 	private JPanel reviewsPanel;
 	private JPanel newReviewPanel;
+	private JPanel paymentPanel;
+	private JPanel mainPanel;
 	
 	private JScrollPane scr;
 	private JScrollPane scrReview;
@@ -96,6 +98,8 @@ public class RegistrationCard extends JPanel
 		this.descriptionPanel= new JPanel();
 		this.reviewsPanel= new JPanel();
 		this.newReviewPanel= new JPanel();
+		this.mainPanel=new JPanel();
+		this.paymentPanel=new JPanel();
 		
 		this.queueReviews = new ReviewsQueue(this);//dichiara una nuova coda per tutte le recensioni scrite
 		
@@ -153,7 +157,9 @@ public class RegistrationCard extends JPanel
 		this.scrReview= new JScrollPane(reviewsPanel);
 		
 		//set del layout dei pannelli
-		this.setLayout(new BorderLayout());
+		//this.setLayout(new BorderLayout());
+		
+		this.mainPanel.setLayout(new BorderLayout());
 		
 		this.descriptionPanel.setLayout(new GridBagLayout());
 		this.gbc = new GridBagConstraints();
@@ -163,6 +169,8 @@ public class RegistrationCard extends JPanel
 		
 		this.newReviewPanel.setLayout(new GridBagLayout());
 		this.gbcNewReview = new GridBagConstraints();
+		
+		this.paymentPanel.setVisible(false);
 		
 		/**************************************regitsrazione*****************************/
 		//label info activity
@@ -295,10 +303,10 @@ public class RegistrationCard extends JPanel
 		this.next.setActionCommand(ConstantClass.NEXT_STEP_REGISTRATION);
 		
 		//TODO aggiungere il pannello con tutte le review e aggiungerlo al pannello delle review this
-		this.add(this.descriptionPanel,BorderLayout.NORTH);	
-		this.add(this.newReviewPanel,BorderLayout.SOUTH);	
+		this.mainPanel.add(this.descriptionPanel,BorderLayout.NORTH);	
+		this.mainPanel.add(this.newReviewPanel,BorderLayout.SOUTH);	
 		
-		
+		this.add(this.mainPanel);
 	}
 	
 	private Image getScaledImage(Image srcImg, int w, int h)
@@ -320,12 +328,17 @@ public class RegistrationCard extends JPanel
 		ArrayList<ArrayList<String>> dataRegistration= new ArrayList<>();
 		Calendar c = Calendar.getInstance();
 		SimpleDateFormat sdf=new SimpleDateFormat("yyyy-MM-dd");
-		
+		 
+		int[] selectedIx = this.schedulesList.getSelectedIndices();  
 		//serve per prendere tutti gli orari selezioanti
-		for(int i=0; i < model.getSize(); i++)
+		if(selectedIx.length!=0)
 		{
-		     schedule.add(String.valueOf(model.getElementAt(i)));  
+			for(int i=0; i < selectedIx.length; i++)
+			{
+			     schedule.add(String.valueOf(this.schedulesList.getModel().getElementAt(selectedIx[i])));  
+			}
 		}
+		else schedule.add(null);
 		
 		//server per pender i dati rimanenti
 		try
@@ -457,5 +470,24 @@ public class RegistrationCard extends JPanel
 		this.repaint();
 	}
 	
+	public void showPaymentPanel()
+	{
+		this.mainPanel.setVisible(false);
+		this.paymentPanel=new JPanel();
+		this.paymentPanel.add(new PaymentView(Double.parseDouble(this.priceActivity.getText()),this.idActivity,"Activity",this));
+		this.add(this.paymentPanel);
+		this.paymentPanel.setVisible(true);
+		this.revalidate();
+		this.repaint();
+	}
+	
+	public void hidePaymentPanel()
+	{
+		this.paymentPanel.setVisible(false);
+		this.remove(this.paymentPanel);
+		this.mainPanel.setVisible(true);
+		this.revalidate();
+		this.repaint();
+	}
 
 }

@@ -88,4 +88,19 @@ public class ActivityDAO {
 		}
 		return allActivity;
 	}
+	
+	public ArrayList<Activity> getAllRegisteredActivities(String memberEmail) throws SQLException
+	{
+		String query = "SELECT a.id FROM activity AS a,registration AS r WHERE a.id = r.activity_id AND r.member_email = '"+memberEmail+"' ;";
+		ArrayList<String[]> result = DbConnection.getInstance().eseguiQuery(query);
+		ArrayList<Activity> allActivity = new ArrayList<>();
+		
+		if(result.size() == 0)
+			return null;
+		for(int i = 0;i<result.size();i++)
+		{
+			allActivity.add(this.findById(Integer.parseInt(result.get(0)[0])));
+		}
+		return allActivity;
+	}
 }

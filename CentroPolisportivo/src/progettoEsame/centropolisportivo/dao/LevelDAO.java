@@ -19,7 +19,7 @@ public class LevelDAO  {
 
 	public void insert(Level newLevel) throws SQLException
 	{
-			String query = "INSERT INTO level( name, description, center_manager_email) VALUES ('"+newLevel.getName()+"','"+newLevel.getDescription()+"','"+newLevel.getCenterManager().getEmail()+");";
+			String query = "INSERT INTO level( name, description, center_manager_email) VALUES ('"+newLevel.getName()+"','"+newLevel.getDescription()+"','"+newLevel.getCenterManager().getEmail()+"');";
 			DbConnection.getInstance().eseguiAggiornamento(query);
 	}
 
@@ -37,7 +37,7 @@ public class LevelDAO  {
 	public Level findById(Integer id) throws SQLException
 	{
 		Level level = new Level();
-		ArrayList <String[]> result  = DbConnection.getInstance().eseguiQuery("SELECT * FROM level WHERE  id= "+id+";");
+		ArrayList <String[]> result  = DbConnection.getInstance().eseguiQuery("SELECT * FROM level WHERE  id= "+id);
 		if(result.size() == 0) return null;
 
 		String[] row = result.get(0);

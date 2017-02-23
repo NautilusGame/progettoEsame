@@ -80,7 +80,7 @@ public class DbConnection {
 			throw new SQLException();
 		}
 		return risultato;
-	}
+	}*/
 
 	// Chiude la connessione con il Database
 	public void disconnetti() {
@@ -88,24 +88,31 @@ public class DbConnection {
 			db.close();
 			connesso = false;
 		} catch (Exception e) { e.printStackTrace(); }
-	}*/
+	}
 
 	public boolean isConnesso() { return connesso; }   // Ritorna TRUE se la connessione con il Database e' attiva
-	
-	
-	
-	public int eseguiAggiornamento(String query) throws SQLException{
-	int key;
-	try {
-		PreparedStatement  stmt = db.prepareStatement(query, Statement.RETURN_GENERATED_KEYS);
-		ResultSet keys = stmt.getGeneratedKeys();    
-		keys.next();  
-		key = keys.getInt(1);
-		stmt.close();
-	} catch (SQLException e) {
-		throw new SQLException();
+
+
+
+	public int eseguiAggiornamento(String query) throws SQLException
+	{
+		int key;
+		try {
+			PreparedStatement  stmt = db.prepareStatement(query, Statement.RETURN_GENERATED_KEYS);
+			stmt.executeUpdate();
+			ResultSet keys = stmt.getGeneratedKeys();    
+			if(keys.next()){
+				key = keys.getInt(1);
+				stmt.close();
+				return key;
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+			throw new SQLException();	
+		}
+		return -1;
+
 	}
-	return key;
-}
+
 
 }
