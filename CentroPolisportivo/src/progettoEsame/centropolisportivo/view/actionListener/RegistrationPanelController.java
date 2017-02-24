@@ -65,7 +65,7 @@ public class RegistrationPanelController {
 				gbc.gridy = 0;
 				if(registrations.get(i).getActivity()==null)
 				{
-					modifyButton.setName((registrations.get(i).getEvent().getId()).toString());
+					modifyButton.setName((registrations.get(i).getId()).toString());
 					modifyButton.setActionCommand(REGISTRATION_PANEL_MODIFY_BUTTON_EVENT_ACTION_CMD);
 					modifyButton.addActionListener(new RegistrationPanelActionListener(this.registrationPanel));
 					int confirmed = PaymentBusiness.getInstance().findByEventAndMember(registrations.get(i).getEvent().getId(), memberEmail).getConfirmed();
@@ -85,8 +85,9 @@ public class RegistrationPanelController {
 				}
 				else
 				{
-					modifyButton.setName(Integer.valueOf((registrations.get(i).getActivity().getId())).toString());
-					modifyButton.setActionCommand(REGISTRATION_PANEL_MODIFY_BUTTON_ACTIVITY_ACTION_CMD);	
+					modifyButton.setName(Integer.valueOf((registrations.get(i).getId())).toString());
+					modifyButton.setActionCommand(REGISTRATION_PANEL_MODIFY_BUTTON_ACTIVITY_ACTION_CMD);
+					modifyButton.addActionListener(new RegistrationPanelActionListener(this.registrationPanel));	
 					int confirmed = PaymentBusiness.getInstance().findByActivityAndMember(registrations.get(i).getActivity().getId(), memberEmail).getConfirmed();
 					if( confirmed == 0)
 					{

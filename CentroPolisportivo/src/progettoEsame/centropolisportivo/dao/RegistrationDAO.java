@@ -33,7 +33,6 @@ public class RegistrationDAO {
 		{
 			String query = "INSERT INTO registration(deadline, date, cost, member_email, activity_id, level_id) VALUES"
 					+ "('"+newRegistration.getDeadline()+"','"+newRegistration.getDate()+"',"+newRegistration.getCost()+",'"+newRegistration.getMember().getEmail()+"',"+newRegistration.getActivity().getId()+","+newRegistration.getLevel().getId()+")";
-			System.out.println(query);
 			return DbConnection.getInstance().eseguiAggiornamento(query);
 		}
 	}
@@ -61,7 +60,8 @@ public class RegistrationDAO {
 	{
 		Registration registration;
 		registration =new Registration();
-		ArrayList <String[]> result  = DbConnection.getInstance().eseguiQuery("SELECT * FROM registration WHERE id= '"+id+"';");
+		ArrayList <String[]> result  = DbConnection.getInstance().eseguiQuery("SELECT * FROM registration WHERE id= "+id+";");
+		System.out.println("SELECT * FROM registration WHERE id= "+id+";");
 		if(result.size() == 0) return null;
 
 		String[] row = result.get(0);

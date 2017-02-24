@@ -21,13 +21,14 @@ public class TempAlterRegistrationDAO {
 
 	public int insert(TempAlterRegistration newTempAlterRegistration) throws SQLException
 	{
-			String query = "INSERT INTO temp_alter_registration(registration_id, center_manager_email, member_email, confirmed,level_id) VALUES ("+newTempAlterRegistration.getRegistration().getId()+",'"+newTempAlterRegistration.getCenterManager().getEmail()+"','"+newTempAlterRegistration.getMember().getEmail()+"',"+newTempAlterRegistration.isConfirmed()+","+newTempAlterRegistration.getLevel().getId()+")";
+			String query = "INSERT INTO temp_alter_registration(registration_id, member_email, confirmed,level_id) VALUES ("+newTempAlterRegistration.getRegistration().getId()+",'"+newTempAlterRegistration.getMember().getEmail()+"',"+newTempAlterRegistration.isConfirmed()+","+newTempAlterRegistration.getLevel().getId()+")";
+			System.out.println(query);
 			return DbConnection.getInstance().eseguiAggiornamento(query);
 	}
 
 	public void delete(Integer id) throws SQLException
 	{
-		String query = "DELETE FROM tempAlterRegistration WHERE id = "+id+"";
+		String query = "DELETE FROM temp_alter_registration WHERE id = "+id+"";
 		DbConnection.getInstance().eseguiAggiornamento(query);
 	}
 

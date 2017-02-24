@@ -53,7 +53,6 @@ public class ModifyRegistrationActionListener implements ActionListener {
 		}
 		else
 		{
-			System.out.println(this.idTempAlterRegistration);
 			for(int i = 0;i<schedule.size();i++)
 			{
 				ArrayList<String> tmpParser = this.parser(schedule.get(i));

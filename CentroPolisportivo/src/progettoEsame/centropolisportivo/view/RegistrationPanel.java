@@ -26,14 +26,19 @@ public class RegistrationPanel extends JPanel {
 	private ImageIcon pdfIcon;
 	private JLabel pdfLabel;
 	private GridBagConstraints gbc;
+	private JPanel otherPanel;
+	private JPanel contentPanel;
 	public RegistrationPanel() {
-		this.setLayout(new GridBagLayout());
 		this.init();
+		this.add(contentPanel);
 	}
 
 	private void init()
 	{
 		this.gbc = new GridBagConstraints();
+		this.otherPanel = new JPanel();
+		this.contentPanel = new JPanel(new GridBagLayout());
+		this.otherPanel.setVisible(false);
 		this.mainPanel = new JPanel(new GridLayout(this.numberOfPanel, 1));
 		this.scrollPane = new JScrollPane(this.mainPanel,JScrollPane.VERTICAL_SCROLLBAR_ALWAYS,JScrollPane.HORIZONTAL_SCROLLBAR_NEVER);
 		this.pdfLabel = new JLabel();
@@ -42,7 +47,7 @@ public class RegistrationPanel extends JPanel {
 		this.pdfLabel.addMouseListener(new RegistrationPanelMouseListener());
 		gbc.gridx = 0;
 		gbc.gridy = 0;
-		this.add(pdfLabel,gbc);
+		this.contentPanel.add(pdfLabel,gbc);
 		this.msg = new JLabel();
 		this.subscriptionPanel = RegistrationPanelController.getInstance().init(this);
 		this.numberOfPanel = this.subscriptionPanel.size();
@@ -53,7 +58,7 @@ public class RegistrationPanel extends JPanel {
 		
 		gbc.gridx = 0;
 		gbc.gridy = 1;
-		this.add(scrollPane,gbc);
+		this.contentPanel.add(scrollPane,gbc);
 	}
 	
 	public void addMessageToPanel(JLabel msg)
@@ -70,6 +75,22 @@ public class RegistrationPanel extends JPanel {
 		this.remove(this.msg);
 		this.revalidate();
 		this.repaint();
+	}
+	
+	public void makeInvisibleMainPanel(JPanel otherPanel)
+	{
+		this.otherPanel = otherPanel;
+		this.contentPanel.setVisible(false);
+		this.add(otherPanel);
+		this.revalidate();
+		this.repaint();
+	}
+	
+
+	public void makeVisibleMainPanel()
+	{
+		this.scrollPane.setVisible(true);
+		this.otherPanel.setVisible(false);
 	}
 }
 

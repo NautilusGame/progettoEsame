@@ -230,7 +230,7 @@ public class Template extends JPanel {
 		this.centerManager4.setActionCommand(CENTERMANAGER_MENU_4);
 		this.centerManager5.setActionCommand(CENTERMANAGER_MENU_5);
 		this.centerManager6.setActionCommand(CENTERMANAGER_MENU_6);
-		this.centerManager6.setActionCommand(CENTERMANAGER_MENU_7);
+		this.centerManager7.setActionCommand(CENTERMANAGER_MENU_7);
 		
 		this.centerManager1.addActionListener(new TemplateActionListener(this));
 		this.centerManager2.addActionListener(new TemplateActionListener(this));

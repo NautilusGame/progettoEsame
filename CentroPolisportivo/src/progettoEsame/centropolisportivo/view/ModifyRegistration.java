@@ -38,6 +38,7 @@ public class ModifyRegistration extends JPanel {
 	private JLabel msg;
 	public ModifyRegistration(int id)
 	{
+		System.out.println(id);
 		this.id = id;
 		this.init();
 	}

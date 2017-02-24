@@ -19,7 +19,7 @@ public class RegistrationPanelActionListener implements ActionListener {
 	@Override
 	public void actionPerformed(ActionEvent arg0) {
 		JButton modifyButton = (JButton)arg0.getSource();
-		System.out.println(modifyButton.getName());
+		this.registrationPanel.makeInvisibleMainPanel(new ModifyRegistration(Integer.parseInt(modifyButton.getName())));
 
 	}
 

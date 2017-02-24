@@ -25,13 +25,11 @@ public class PaymentDAO  {
 			{
 				String query = "INSERT INTO payment( type, number, amount,confirmed,member_email,activity_id) VALUES ('"+newPayment.getType()+"','"+newPayment.getNumber()+"',"+newPayment.getAmount()+","+newPayment.getConfirmed()+",'"+newPayment.getMember().getEmail()+"',"+newPayment.getActivity().getId()+");";
 				DbConnection.getInstance().eseguiAggiornamento(query);
-				System.out.println(query);
 			}
 			else
 			{
 				String query = "INSERT INTO payment( type, number, amount,confirmed,member_email,event_id) VALUES ('"+newPayment.getType()+"','"+newPayment.getNumber()+"',"+newPayment.getAmount()+","+newPayment.getConfirmed()+",'"+newPayment.getMember().getEmail()+"',"+newPayment.getEvent().getId()+");";
 				DbConnection.getInstance().eseguiAggiornamento(query);
-				System.out.println(query);
 			}
 			
 		}
@@ -150,7 +148,6 @@ public class PaymentDAO  {
 	public Payment findByActivityAndMember(int idActivity,String memberEmail)throws SQLException
 	{
 		String query = "SELECT * FROM payment as p WHERE p.member_email = '"+memberEmail+"' AND p.activity_id = "+idActivity+";";
-		System.out.println(query);
 		Payment payment = new Payment();
 		ArrayList <String[]> result  = DbConnection.getInstance().eseguiQuery(query);
 		if(result.size() == 0) return null;
