@@ -99,9 +99,8 @@ public class RegistrationCalendarDAO {
 	public ArrayList<RegistrationCalendar> findCalendarByRegistrations(Integer id) throws SQLException
 	{
 		String query = "SELECT * FROM registration_calendar WHERE registration_id= "+id+" and temp_alter_registration_id IS NULL";
-		
+		System.out.println(query);
 		ArrayList<String[]> result = DbConnection.getInstance().eseguiQuery(query);
-		System.out.println(result.size());
 		ArrayList<RegistrationCalendar> allCalendarByTempAlterRegistration = new ArrayList<RegistrationCalendar>();
 		
 		if(result.size() == 0)

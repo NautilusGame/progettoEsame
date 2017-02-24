@@ -162,17 +162,9 @@ public class RegistrationDAO {
 		ArrayList<Registration> allRegistration = new ArrayList<>();
 
 		if(result.size() == 0)
-			return null;
-		for(int i = 0;i<result.size();i++)
 		{
-			allRegistration.add(this.findById(Integer.parseInt(result.get(0)[0])));
-		}
-
-		query = "SELECT r.id FROM registration AS r,event AS e WHERE e.id = r.event_id AND r.member_email = '"+memberEmail+"' ;";
-		result = DbConnection.getInstance().eseguiQuery(query);
-
-		if(result.size() == 0)
 			return null;
+		}
 		for(int i = 0;i<result.size();i++)
 		{
 			allRegistration.add(this.findById(Integer.parseInt(result.get(0)[0])));

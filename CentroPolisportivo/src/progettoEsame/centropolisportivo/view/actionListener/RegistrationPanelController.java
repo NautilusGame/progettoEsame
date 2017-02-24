@@ -18,11 +18,16 @@ import progettoEsame.centropolisportivo.business.ActivityBusiness;
 import progettoEsame.centropolisportivo.business.EventBusiness;
 import progettoEsame.centropolisportivo.business.PaymentBusiness;
 import progettoEsame.centropolisportivo.business.RegistrationBusiness;
+import progettoEsame.centropolisportivo.business.RegistrationCalendarBusiness;
+import progettoEsame.centropolisportivo.business.ScheduleBusiness;
 import progettoEsame.centropolisportivo.business.Session;
 import progettoEsame.centropolisportivo.exception.SessionException;
 import progettoEsame.centropolisportivo.model.Activity;
 import progettoEsame.centropolisportivo.model.Event;
 import progettoEsame.centropolisportivo.model.Registration;
+import progettoEsame.centropolisportivo.model.RegistrationCalendar;
+import progettoEsame.centropolisportivo.model.Schedule;
+
 import static progettoEsame.centropolisportivo.view.ConstantClass.*;
 
 public class RegistrationPanelController {
@@ -51,7 +56,7 @@ public class RegistrationPanelController {
 				JPanel tmpPanel = new JPanel(new GridBagLayout());
 				GridBagConstraints gbc = new GridBagConstraints();
 				JButton modifyButton = new JButton(REGISTRATION_PANEL_MODIFY_BUTTON);
-				
+
 				gbc.gridx = 0;
 				gbc.gridy = 0;
 				if(registrations.get(i).getActivity()==null)
@@ -136,9 +141,8 @@ public class RegistrationPanelController {
 			{
 				JPanel tmpPanel = new JPanel(new GridBagLayout());
 				GridBagConstraints gbc = new GridBagConstraints();
-				JButton modifyButton = new JButton(REGISTRATION_PANEL_MODIFY_BUTTON);
 
-				
+
 				gbc.gridx = 0;
 				gbc.gridy = 0;
 				if(registrations.get(i).getActivity()==null)
@@ -157,7 +161,7 @@ public class RegistrationPanelController {
 						tmpPanel.setBackground(Color.red);
 					}
 					tmpPanel.add(new JLabel("Tipology: Event"),gbc);
-					
+
 				}
 				else
 				{
@@ -178,7 +182,7 @@ public class RegistrationPanelController {
 
 					gbc.gridx = 1;
 					gbc.gridy = 0;
-					tmpPanel.add(new JLabel("Description: " + Double.valueOf(registrations.get(i).getActivity().getDescription())),gbc);
+					tmpPanel.add(new JLabel("Description: " + registrations.get(i).getActivity().getDescription()),gbc);
 				}
 
 				gbc.gridx = 2;
@@ -204,21 +208,41 @@ public class RegistrationPanelController {
 				gbc.gridy = 2;
 				tmpPanel.add(new JLabel("Cost: " + Double.valueOf(registrations.get(i).getCost())),gbc);
 
-				gbc.gridx = 1;
-				gbc.gridy = 2;
-				tmpPanel.add(new JLabel("Level: " + Double.valueOf(registrations.get(i).getLevel().getName())),gbc);
+				if(registrations.get(i).getActivity() != null)
+				{
+
+					gbc.gridx = 1;
+					gbc.gridy = 2;
+					tmpPanel.add(new JLabel("Level: " + registrations.get(i).getLevel().getName()),gbc);
+				}
 				
-				subscription.add(tmpPanel);
-			}
-			for(int i = 0;i<subscription.size();i++)
-			{
-				returnPanel.add(subscription.get(i), BoxLayout.LINE_AXIS);
+				if(registrations.get(i).getActivity() != null)
+				{
+					JPanel schedulePanel = new JPanel();
+					schedulePanel.setLayout(new BoxLayout(schedulePanel, BoxLayout.LINE_AXIS));
+					ArrayList<RegistrationCalendar> registrationCalendar = RegistrationCalendarBusiness.findCalendarByRegistrations(registrations.get(i).getId());
+					for(int j = 0;j<registrationCalendar.size();j++)
+					{
+						JPanel tmpSchedulePanel = new JPanel();
+						tmpSchedulePanel.setLayout(new GridLayout(1, 1));
+						Schedule tmpSchedule = ScheduleBusiness.getInstance().findById(registrationCalendar.get(i).getSchedule().getId());
+						tmpSchedulePanel.add(new JLabel("Day :" + tmpSchedule.getDay()));
+						tmpSchedulePanel.add(new JLabel("Time :" + tmpSchedule.getTime()));
+						schedulePanel.add(tmpSchedulePanel);
+					}
+					
+					gbc.gridx = 0;
+					gbc.gridy = 3;
+					tmpPanel.add(schedulePanel,gbc);
+				}
+
+				returnPanel.add(tmpPanel);
 			}
 		} catch (SQLException | SessionException e) {
 
 			e.printStackTrace();
 		}
-		
+
 		return returnPanel;
 	}
 

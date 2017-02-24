@@ -54,5 +54,10 @@ public class ScheduleBusiness {
 	{
 		return Schedule.getScheduleByActivity(activityId);
 	}
+	
+	public Schedule findById(int scheduleId)throws SQLException
+	{
+		return Schedule.findById(scheduleId);
+	}
 
 }
