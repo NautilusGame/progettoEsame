@@ -29,10 +29,8 @@ public class AcceptPaymentProposal extends JPanel {
 		this.msg = new JLabel();
 		gbc = new GridBagConstraints();
 		this.mainPanel = new JPanel();
-		this.scrollPane = new JScrollPane(this.mainPanel, JScrollPane.VERTICAL_SCROLLBAR_ALWAYS,JScrollPane.HORIZONTAL_SCROLLBAR_NEVER);
+		this.scrollPane = new JScrollPane(this.mainPanel);
 		scrollPane.setLayout(new ScrollPaneLayout());
-		scrollPane.setHorizontalScrollBarPolicy(JScrollPane.HORIZONTAL_SCROLLBAR_NEVER);
-		scrollPane.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_ALWAYS);
 		scrollPane.setMinimumSize(new Dimension(500, 700));
 		scrollPane.setPreferredSize(new Dimension(500, 700));
 		mainPanel.setLayout(new BoxLayout(mainPanel, BoxLayout.Y_AXIS));

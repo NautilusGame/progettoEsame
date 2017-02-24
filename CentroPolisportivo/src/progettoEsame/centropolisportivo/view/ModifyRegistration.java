@@ -13,6 +13,7 @@ import javax.swing.JComboBox;
 import javax.swing.JLabel;
 import javax.swing.JList;
 import javax.swing.JPanel;
+import javax.swing.JScrollPane;
 import javax.swing.ListModel;
 
 import progettoEsame.centropolisportivo.model.Activity;
@@ -36,9 +37,10 @@ public class ModifyRegistration extends JPanel {
 	private GridBagConstraints gbc;
 	private JButton modifyButton;
 	private JLabel msg;
+	private JPanel mainPanel;
+	private JScrollPane mainScrollPane;
 	public ModifyRegistration(int id)
 	{
-		System.out.println(id);
 		this.id = id;
 		this.init();
 	}
@@ -46,6 +48,8 @@ public class ModifyRegistration extends JPanel {
 	private void init()
 	{
 		JPanel descriptionPanel = new JPanel(new GridLayout(4, 1));
+		this.mainPanel = new JPanel(new GridBagLayout());
+		this.mainScrollPane = new JScrollPane(this.mainPanel);
 		this.msg = new JLabel();
 		ArrayList<Level> levelArray = new ArrayList<>();
 		ArrayList<Schedule> scheduleArray = new ArrayList<>();
@@ -54,7 +58,6 @@ public class ModifyRegistration extends JPanel {
 		this.schedule = new JList<>();
 		this.schedule.setModel(new DefaultListModel<>());
 		this.levels = new JComboBox<>();
-		this.setLayout(new GridBagLayout());
 		this.gbc = new GridBagConstraints();
 		Registration selectedRegistration = ModifyRegistrationController.getInstance().getRegistration(this.id);
 		this.labelImage = new JLabel();
@@ -88,26 +91,28 @@ public class ModifyRegistration extends JPanel {
 		
 		this.gbc.gridx = 0;
 		this.gbc.gridy = 0;
-		this.add(labelImage, gbc);
+		this.mainPanel.add(labelImage, gbc);
 		
 		this.gbc.gridx = 1;
 		this.gbc.gridy = 0;
-		this.add(descriptionPanel, gbc);
+		this.mainPanel.add(descriptionPanel, gbc);
 		
 
 		this.gbc.gridx = 0;
 		this.gbc.gridy = 2;
-		this.add(levels, gbc);
+		this.mainPanel.add(levels, gbc);
 		
 
 		this.gbc.gridx = 0;
 		this.gbc.gridy = 3;
-		this.add(schedule, gbc);
+		this.mainPanel.add(schedule, gbc);
 		
 		
 		this.gbc.gridx = 0;
 		this.gbc.gridy = 4;
-		this.add(modifyButton, gbc);
+		this.mainPanel.add(modifyButton, gbc);
+		
+		this.add(this.mainScrollPane);
 		
 	}
 	public void addMessageToPanel(JLabel msg)
@@ -115,8 +120,7 @@ public class ModifyRegistration extends JPanel {
 		this.msg = msg;
 		this.gbc.gridx = 0;
 		this.gbc.gridy = 6;
-		this.add(this.msg, gbc);
-		this.add(this.msg);
+		this.mainPanel.add(this.msg, gbc);
 		this.revalidate();
 		this.repaint();
 	}
@@ -126,7 +130,7 @@ public class ModifyRegistration extends JPanel {
 
 		gbc.gridx = 0;
 		gbc.gridy = 10;
-		this.remove(this.msg);
+		this.mainPanel.remove(this.msg);
 		this.revalidate();
 		this.repaint();
 	}

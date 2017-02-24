@@ -40,9 +40,9 @@ public class RegistrationPanel extends JPanel {
 		this.contentPanel = new JPanel(new GridBagLayout());
 		this.otherPanel.setVisible(false);
 		this.mainPanel = new JPanel(new GridLayout(this.numberOfPanel, 1));
-		this.scrollPane = new JScrollPane(this.mainPanel,JScrollPane.VERTICAL_SCROLLBAR_ALWAYS,JScrollPane.HORIZONTAL_SCROLLBAR_NEVER);
+		this.scrollPane = new JScrollPane(this.mainPanel);
 		this.pdfLabel = new JLabel();
-		this.pdfIcon = new ImageIcon(new ImageIcon("../progettoEsame/image/SystemImage/pulsante-stampa_318-77516.jpg").getImage().getScaledInstance(50, 50, Image.SCALE_DEFAULT));
+		this.pdfIcon = new ImageIcon(new ImageIcon("../progettoEsame/image/SystemImage/Remove_Document-128.png").getImage().getScaledInstance(50, 50, Image.SCALE_DEFAULT));
 		this.pdfLabel.setIcon(pdfIcon);
 		this.pdfLabel.addMouseListener(new RegistrationPanelMouseListener());
 		gbc.gridx = 0;

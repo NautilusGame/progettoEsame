@@ -25,6 +25,11 @@ public class AddActivityActionListener implements ActionListener {
 		if(e.getActionCommand().equals(ADD_ACTIVITY_INSERT_BUTTON_ACTION_CMD))
 		{
 			ArrayList<String> newActivity = addActivityPanel.getActivityData();
+			if(newActivity == null)
+			{
+				addActivityPanel.removeMessageToPanel();
+				addActivityPanel.addMessageToPanel(Message.getInstance().printErrorMsg(ADD_ACTIVITY_NO_ROOM_OR_NO_ACTIVITY_TYPE));
+			}
 			if(newActivity.get(3).equals("") || newActivity.get(4).equals("") || newActivity.get(5).equals("") || newActivity.get(0) == null || newActivity.get(2) == null)
 			{
 				addActivityPanel.removeMessageToPanel();
@@ -41,7 +46,10 @@ public class AddActivityActionListener implements ActionListener {
 					activity.setName(newActivity.get(3));
 					activity.setDescription(newActivity.get(4));
 					activity.setCost(Float.parseFloat(newActivity.get(5)));
-					activity.setImagePath(newActivity.get(6));
+					if(newActivity.get(6).equals(""))
+						activity.setImagePath("image/SystemImage/1.jpg");
+					else 
+						activity.setImagePath(newActivity.get(6));
 					Activity.insert(activity);
 					addActivityPanel.addMessageToPanel(Message.getInstance().printSuccessMsg(ADD_ACTIVITY_SUCCESS_MSG));
 				} catch (SQLException e1) {

@@ -28,6 +28,7 @@ import javax.swing.JScrollPane;
 import javax.swing.JTextArea;
 import javax.swing.JTextField;
 import javax.swing.ListSelectionModel;
+import javax.swing.ScrollPaneLayout;
 import javax.swing.filechooser.FileNameExtensionFilter;
 
 import progettoEsame.centropolisportivo.business.Session;
@@ -69,9 +70,12 @@ public class AddActivity extends JPanel {
 	private JFileChooser imageChooser;
 	private int uploadImageResult;
 	private DefaultListModel<String> demoListModel;
+	private JScrollPane mainScrollPane;
+	private JPanel mainPanel;
 	public AddActivity()
 	{
-		this.setLayout(new GridBagLayout());
+		this.mainPanel = new JPanel(new GridBagLayout());
+		this.mainScrollPane = new JScrollPane();
 		this.gbc = new GridBagConstraints();
 		this.msg = new JLabel();
 		this.imageChooser = new JFileChooser();
@@ -92,13 +96,21 @@ public class AddActivity extends JPanel {
 		this.insertButton = new JButton(ADD_ACTIVITY_INSERT_BUTTON);
 		AddActivityController.getInstance().addRooms(this);
 		this.roomScrollPane = new JScrollPane(this.room);
-		room.setSelectedIndex(0);
-		room.setSelectionMode(ListSelectionModel.SINGLE_INTERVAL_SELECTION);
-		room.setLayoutOrientation(JList.HORIZONTAL_WRAP);
+		if(room != null)
+		{
+			room.setSelectedIndex(0);
+			room.setSelectionMode(ListSelectionModel.SINGLE_INTERVAL_SELECTION);
+			room.setLayoutOrientation(JList.HORIZONTAL_WRAP);
+		}
+
 		AddActivityController.getInstance().addType(this);
-		activityType.setSelectionMode(ListSelectionModel.SINGLE_INTERVAL_SELECTION);
-		activityType.setLayoutOrientation(JList.HORIZONTAL_WRAP);
-		activityType.setSelectedIndex(0);
+		if(activityType != null)
+		{
+
+			activityType.setSelectionMode(ListSelectionModel.SINGLE_INTERVAL_SELECTION);
+			activityType.setLayoutOrientation(JList.HORIZONTAL_WRAP);
+			activityType.setSelectedIndex(0);
+		}
 		this.activityTypeScrollPane= new JScrollPane(this.activityType);
 		this.insertButton.setActionCommand(ADD_ACTIVITY_INSERT_BUTTON_ACTION_CMD);
 		this.insertButton.addActionListener(new AddActivityActionListener(this));
@@ -112,47 +124,51 @@ public class AddActivity extends JPanel {
 		gbc.gridwidth = 2;
 		gbc.gridx = 0;
 		gbc.gridy = 0;
-		this.add(this.titlePage, gbc);
+		this.mainPanel.add(this.titlePage, gbc);
 		gbc.gridx = 0;
 		gbc.gridy = 1;
 		gbc.fill=GridBagConstraints.BOTH;
 		gbc.anchor=GridBagConstraints.CENTER;
-		this.add(img, gbc);
+		this.mainPanel.add(img, gbc);
 		gbc = new GridBagConstraints();
 		gbc.gridx = 0;
 		gbc.gridy = 2;
-		this.add(this.nameLabel, gbc);
+		this.mainPanel.add(this.nameLabel, gbc);
 		gbc.gridx = 1;
 		gbc.gridy = 2;
-		this.add(this.nameTextField, gbc);
+		this.mainPanel.add(this.nameTextField, gbc);
 		gbc.gridx = 0;
 		gbc.gridy = 3;
-		this.add(this.descriptionLabel, gbc);
+		this.mainPanel.add(this.descriptionLabel, gbc);
 		gbc.gridx = 1;
 		gbc.gridy = 3;
-		this.add(this.descriptionScrollPane, gbc);
+		this.mainPanel.add(this.descriptionScrollPane, gbc);
 		gbc.gridx = 0;
 		gbc.gridy = 4;
-		this.add(this.priceLabel, gbc);
+		this.mainPanel.add(this.priceLabel, gbc);
 		gbc.gridx = 1;
 		gbc.gridy = 4;
-		this.add(this.priceTextField, gbc);
+		this.mainPanel.add(this.priceTextField, gbc);
 		gbc.gridx = 0;
 		gbc.gridy = 5;
-		this.add(this.roomLabel, gbc);
+		this.mainPanel.add(this.roomLabel, gbc);
 		gbc.gridx = 1;
 		gbc.gridy = 5;
-		this.add(this.roomScrollPane, gbc);
+		this.mainPanel.add(this.roomScrollPane, gbc);
 		gbc.gridx = 0;
 		gbc.gridy = 6;
-		this.add(this.activityTypeLabel, gbc);
+		this.mainPanel.add(this.activityTypeLabel, gbc);
 		gbc.gridx = 1;
 		gbc.gridy = 6;
-		this.add(this.activityTypeScrollPane, gbc);
+		this.mainPanel.add(this.activityTypeScrollPane, gbc);
 		gbc.gridx = 1;
 		gbc.gridy = 7;
-		this.add(this.insertButton, gbc);
+		this.mainPanel.add(this.insertButton, gbc);
 
+		this.mainScrollPane.setViewportView(this.mainPanel);
+		this.mainScrollPane.setPreferredSize(new Dimension(500, 700));
+		this.mainScrollPane.setBorder(null);
+		this.add(this.mainScrollPane);
 
 	}
 
@@ -181,7 +197,7 @@ public class AddActivity extends JPanel {
 			return ADD_ACTIVITY_CANCEL_CHOOSE;
 		}
 	}
-	
+
 	public void addMessageToPanel(JLabel msg)
 	{
 		this.msg = msg;
@@ -190,21 +206,21 @@ public class AddActivity extends JPanel {
 		gbc.gridwidth = 2;
 		gbc.gridx = 0;
 		gbc.gridy = 8;
-		this.add(this.msg,gbc);
-		this.revalidate();
-		this.repaint();
+		this.mainPanel.add(this.msg,gbc);
+		this.mainPanel.revalidate();
+		this.mainPanel.repaint();
 	}
-	
+
 	public void removeMessageToPanel()
 	{
 
 		gbc.gridx = 0;
 		gbc.gridy = 8;
-		this.remove(this.msg);
-		this.revalidate();
-		this.repaint();
+		this.mainPanel.remove(this.msg);
+		this.mainPanel.revalidate();
+		this.mainPanel.repaint();
 	}
-	
+
 	public void setPathToImageLabel(String path)
 	{
 		File a = new File(path);
@@ -212,12 +228,12 @@ public class AddActivity extends JPanel {
 		path = "../progettoEsame/image/ActivityImage/" + a.getName();
 		this.invisibleImagePath.setText(path);
 	}
-	
+
 	public String getPathFromImageLabel()
 	{
 		return this.invisibleImagePath.getText();
 	}
-	
+
 	public void setRoomListModel(ArrayList<String> model)
 	{
 		this.demoListModel = new DefaultListModel<String>();
@@ -236,23 +252,30 @@ public class AddActivity extends JPanel {
 		}
 		this.activityType = new JList<>(demoListModel);
 	}
-	
+
 	public ArrayList<String> getActivityData()
 	{
-		ArrayList<String> newActivity = new ArrayList<>();
-		try {
-			newActivity.add(activityType.getSelectedValue()); //0
-			newActivity.add(Session.getInstance().getEmail()); //1
-			newActivity.add(room.getSelectedValue()); //2
-			newActivity.add(this.nameTextField.getText()); //3
-			newActivity.add(this.activityDescriptionTextArea.getText()); //4
-			newActivity.add(this.priceTextField.getText()); //5
-			newActivity.add(this.getPathFromImageLabel());//6
-			return newActivity;
-		} 
-		catch (SessionException e) {
-			
-			e.printStackTrace();
+		if(activityType == null || room == null)
+		{
+			return null;
+		}
+		else
+		{
+			ArrayList<String> newActivity = new ArrayList<>();
+			try {
+				newActivity.add(activityType.getSelectedValue()); //0
+				newActivity.add(Session.getInstance().getEmail()); //1
+				newActivity.add(room.getSelectedValue()); //2
+				newActivity.add(this.nameTextField.getText()); //3
+				newActivity.add(this.activityDescriptionTextArea.getText()); //4
+				newActivity.add(this.priceTextField.getText()); //5
+				newActivity.add(this.getPathFromImageLabel());//6
+				return newActivity;
+			} 
+			catch (SessionException e) {
+
+				e.printStackTrace();
+			}
 		}
 		return null;
 	}

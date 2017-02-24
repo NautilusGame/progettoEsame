@@ -26,15 +26,20 @@ public class AddNewLevel extends JPanel{
 	private JLabel titlePage;
 	private JLabel levelNameLabel;
 	private JLabel descriptionLabel;
+	private JLabel msg;
 	private JTextField levelNameTextField;
 	private JTextArea levelDescriptionTextArea;
 	private JScrollPane descriptionScrollPane;
 	private JButton insertButton;
 	private GridBagConstraints gbc;
+	private JPanel mainPanel;
+	private JScrollPane mainScrollPane;
 	public AddNewLevel()
 	{
+		this.mainPanel = new JPanel(new GridBagLayout());
+		this.mainScrollPane = new JScrollPane(this.mainPanel);
 		this.setSize(new Dimension(400, 400));
-		this.setLayout(new GridBagLayout());
+		this.msg = new JLabel();
 		this.gbc = new GridBagConstraints();
 		this.gbc.fill = GridBagConstraints.HORIZONTAL;
 		this.gbc.anchor = GridBagConstraints.CENTER;
@@ -51,30 +56,33 @@ public class AddNewLevel extends JPanel{
 		this.insertButton.addActionListener(new AddLevelActionListener(this));
 		this.gbc.gridx = 1;
 		this.gbc.gridy = 0;
-		this.add(titlePage, gbc);
+		this.mainPanel.add(titlePage, gbc);
 		this.gbc.gridx = 0;
 		this.gbc.gridy = 1;
-		this.add(levelNameLabel, gbc);
+		this.mainPanel.add(levelNameLabel, gbc);
 		this.gbc.gridx = 1;
 		this.gbc.gridy = 1;
-		this.add(levelNameTextField, gbc);
+		this.mainPanel.add(levelNameTextField, gbc);
 		this.gbc.gridx = 0;
 		this.gbc.gridy = 2;
-		this.add(descriptionLabel, gbc);
+		this.mainPanel.add(descriptionLabel, gbc);
 		this.gbc.gridx = 1;
 		this.gbc.gridy = 2;
-		this.add(descriptionScrollPane, gbc);
+		this.mainPanel.add(descriptionScrollPane, gbc);
 		this.gbc.gridx = 1;
 		this.gbc.gridy = 3;
-		this.add(insertButton, gbc);
+		this.mainPanel.add(insertButton, gbc);
 		
+		this.mainScrollPane.setBorder(null);
+		this.add(this.mainScrollPane);
 	}
 	
 	public void addMessageToPanel(JLabel msg)
 	{
+		this.msg = msg;
 		gbc.gridx = 0;
 		gbc.gridy = 4;
-		this.add(msg,gbc);
+		this.mainPanel.add(msg,gbc);
 		this.revalidate();
 		this.repaint();
 	}
@@ -84,7 +92,7 @@ public class AddNewLevel extends JPanel{
 
 		gbc.gridx = 0;
 		gbc.gridy = 4;
-		this.add(new JLabel(""),gbc);
+		this.mainPanel.remove(this.msg);
 		this.revalidate();
 		this.repaint();
 	}

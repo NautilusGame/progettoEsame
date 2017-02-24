@@ -108,6 +108,7 @@ public final class ConstantClass {
 	public static final String ADD_ACTIVITY_INCOMPLETED_MSG = "All field must be completed";
 	public static final String ADD_ACTIVITY_SUCCESS_MSG = "Success";
 	public static final String ADD_ACTIVITY_PRICE_ERROR = "Number not correct";
+	public static final String ADD_ACTIVITY_NO_ROOM_OR_NO_ACTIVITY_TYPE = "You can't add new activity because no room or no activity type are been added";
 	
 	// Add room //
 	public static final String ADD_ROOM_TITLE_PAGE = "Add room";

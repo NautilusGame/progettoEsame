@@ -31,8 +31,8 @@ public class Template extends JPanel {
 	private JPanel panelNord;//Panel eddicato al banner e al menu nella sezione nord del template
 	private JPanel panelOvest;//Panel dedicato a tutte le voci di menu aggiuntive per ogni entità
 	private JPanel panelSud;//panel eddicato alla zona per i messaggi di errori
-	//private JScrollPane panelCenter;//pannello per richiamare tutte le pagine
-	private JPanel panelCenter;
+	private JScrollPane panelCenter;
+	//private JPanel panelCenter;
 	private JPanel fixedMenu;//pannello per il menu comune
 	
 	/*menu comune a tute le enetità*/
@@ -78,7 +78,8 @@ public class Template extends JPanel {
 		this.panelNord=new JPanel();
 		this.panelOvest=new JPanel(new BoxLayout(this.panelOvest, BoxLayout.Y_AXIS));
 		this.panelSud=new JPanel();
-		this.panelCenter=new JPanel();
+		this.panelCenter=new JScrollPane();
+		//this.panelCenter = new JPanel();
 		this.fixedMenu=new JPanel();
 		
 		
@@ -272,9 +273,9 @@ public class Template extends JPanel {
 	
 	public void setPage(JPanel newPage)
 	{
-		this.panelCenter.add(newPage);
-		//this.panelCenter = new JScrollPane(newPage);
-		//this.add(panelCenter, BorderLayout.CENTER);
+		this.panelCenter = new JScrollPane(newPage);
+		//this.panelCenter.add(newPage);
+		this.add(panelCenter, BorderLayout.CENTER);
 		this.revalidate();
 		this.repaint();
 	}
@@ -283,7 +284,7 @@ public class Template extends JPanel {
 	{
 		try
 		{
-			this.panelCenter.removeAll();
+			this.remove(this.panelCenter);
 		}
 		catch(Exception e)
 		{

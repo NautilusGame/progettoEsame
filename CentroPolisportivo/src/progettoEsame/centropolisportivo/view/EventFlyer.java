@@ -30,8 +30,6 @@ public class EventFlyer extends JPanel{
 		JPanel mainPanel = new JPanel();
 		JScrollPane scrollPane = new JScrollPane(mainPanel);
 		scrollPane.setLayout(new ScrollPaneLayout());
-		scrollPane.setHorizontalScrollBarPolicy(JScrollPane.HORIZONTAL_SCROLLBAR_NEVER);
-		scrollPane.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_ALWAYS);
 		scrollPane.setMinimumSize(new Dimension(500, 700));
 		scrollPane.setPreferredSize(new Dimension(500, 700));
 		mainPanel.setLayout(new BoxLayout(mainPanel, BoxLayout.Y_AXIS));
