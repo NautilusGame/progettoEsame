@@ -26,9 +26,9 @@ public class ReviewBusiness
 		return member.getName();
 	}
 
-	public ArrayList<Review> getAllReviews()throws SQLException
+	public ArrayList<Review> getAllReviewsByActivity(int id)throws SQLException
 	{
-		this.allReviews = Review.getAllReviews();
+		this.allReviews = Review.getAllReviewsByActivity(id);
 		return this.allReviews;		
 	}
 	

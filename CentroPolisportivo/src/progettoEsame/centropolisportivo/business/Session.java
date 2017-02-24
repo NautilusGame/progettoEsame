@@ -12,8 +12,8 @@ public class Session {
 	private static String typeUser;
 	private HashMap<String, Object> map;
 	
-	public static Session getInstance() {
-		connected=false;
+	public static Session getInstance() 
+	{
 		if(instance == null)
 			instance = new Session();
 		return instance;

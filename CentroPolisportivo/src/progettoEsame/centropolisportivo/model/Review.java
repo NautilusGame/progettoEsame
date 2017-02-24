@@ -63,9 +63,9 @@ public class Review  {
 		this.rate = rate;
 	}
 
-	public static ArrayList<Review> getAllReviews()throws SQLException
+	public static ArrayList<Review> getAllReviewsByActivity(int id)throws SQLException
 	{
-		return ReviewDAO.getInstance().getAllReviews();
+		return ReviewDAO.getInstance().getAllReviewsByActivity(id);
 	}
 	
 	public static void insertReviev(Review newReview) throws SQLException

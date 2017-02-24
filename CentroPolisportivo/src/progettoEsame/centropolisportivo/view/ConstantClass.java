@@ -108,7 +108,7 @@ public final class ConstantClass {
 	public static final String ADD_ACTIVITY_INCOMPLETED_MSG = "All field must be completed";
 	public static final String ADD_ACTIVITY_SUCCESS_MSG = "Success";
 	public static final String ADD_ACTIVITY_PRICE_ERROR = "Number not correct";
-	public static final String ADD_ACTIVITY_NO_ROOM_OR_NO_ACTIVITY_TYPE = "You can't add new activity because no room or no activity type are been added";
+	public static final String ADD_ACTIVITY_NO_ROOM_OR_NO_ACTIVITY_TYPE = "You can't add activity because there are any room or activity type";
 	
 	// Add room //
 	public static final String ADD_ROOM_TITLE_PAGE = "Add room";
@@ -176,6 +176,7 @@ public final class ConstantClass {
 	public static final String NEW_REVIEW_BUTTON ="newReview";
 	public static final String SUCCESS_INSERT_REVIEW ="You wrote a new review!";
 	public static final String ERROR_TO_INSERT_REVIEW = "You already wrote areview";
+	public static final String NO_REVIEWS = "No reviews";
 	// add event//
 
 	public static final String ADD_EVENT_NAME_EVENT_LABEL = "Event name";

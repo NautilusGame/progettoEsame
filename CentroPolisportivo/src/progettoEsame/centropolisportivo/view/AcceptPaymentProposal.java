@@ -29,8 +29,10 @@ public class AcceptPaymentProposal extends JPanel {
 		this.msg = new JLabel();
 		gbc = new GridBagConstraints();
 		this.mainPanel = new JPanel();
-		this.scrollPane = new JScrollPane(this.mainPanel);
+		this.scrollPane = new JScrollPane(this.mainPanel, JScrollPane.VERTICAL_SCROLLBAR_ALWAYS,JScrollPane.HORIZONTAL_SCROLLBAR_NEVER);
 		scrollPane.setLayout(new ScrollPaneLayout());
+		scrollPane.setHorizontalScrollBarPolicy(JScrollPane.HORIZONTAL_SCROLLBAR_NEVER);
+		scrollPane.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_ALWAYS);
 		scrollPane.setMinimumSize(new Dimension(500, 700));
 		scrollPane.setPreferredSize(new Dimension(500, 700));
 		mainPanel.setLayout(new BoxLayout(mainPanel, BoxLayout.Y_AXIS));
@@ -42,7 +44,7 @@ public class AcceptPaymentProposal extends JPanel {
 	{
 		this.mainPanel.removeAll();
 		this.unconfirmedUsers = AcceptPaymentController.getInstance().getUnconfirmedPayment(this);
-		if(unconfirmedUsers.size() == 0)
+		if(unconfirmedUsers == null)
 		{
 			JLabel none = new JLabel(NO_REGISTRATION_PROPOSAL);
 			none.setSize(new Dimension(75, 100));

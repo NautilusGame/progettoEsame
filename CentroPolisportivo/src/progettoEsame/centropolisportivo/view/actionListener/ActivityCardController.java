@@ -15,6 +15,7 @@ public class ActivityCardController
 
 	private static ActivityCardController instance;
 	private static Template template;
+	private int user;
 	
 	public static synchronized ActivityCardController getInstance()
 	{
@@ -33,15 +34,17 @@ public class ActivityCardController
 		ArrayList<Activity> tmpAllActivity=ActivityBusiness.getInstance().getAllActivity();
 		ArrayList<ActivityCard> allActivityCard = new ArrayList<ActivityCard>();
 		ArrayList<String> valueActivityPanel;
-		int user;
 		
+		System.out.println(SessionCheck.getInstance().getStatusSession());
 		//user = 1: member; user = 2; trainer; user = 0; il resto
 		if((SessionCheck.getInstance().getStatusSession())&&(SessionCheck.getInstance().getTypeUser().equals("member")))
-			user=1;
+			this.user=1;
 		else if((SessionCheck.getInstance().getStatusSession())&&(SessionCheck.getInstance().getTypeUser().equals("trainer")))
-			user = 2;
+			this.user = 2;
 		else 
-			user=0;
+			this.user=0;
+		
+			
 		
 		if(tmpAllActivity!=null)
 		{

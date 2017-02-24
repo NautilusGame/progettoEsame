@@ -1,7 +1,7 @@
 package progettoEsame.centropolisportivo.view;
 
 
-import static progettoEsame.centropolisportivo.view.ConstantClass.NO_REGISTRATION_PROPOSAL;
+import static progettoEsame.centropolisportivo.view.ConstantClass.*;
 
 import java.awt.Dimension;
 import java.awt.GridBagConstraints;
@@ -38,13 +38,12 @@ public class ReviewsQueue extends JScrollPane
 		mainPanel.setLayout(new BoxLayout(mainPanel, BoxLayout.Y_AXIS));
 		try 
 		{
-			this.allReviews =ReviewCardController.getInstance().getAllReviewCard();
+			this.allReviews =ReviewCardController.getInstance().getAllReviewCard(rc.getIdActivity());
 			if(this.allReviews==null)
 			{
-				System.out.println("Ciao");
-				JLabel none = new JLabel(NO_REGISTRATION_PROPOSAL);
+				JLabel none = new JLabel(NO_REVIEWS);
 				none.setSize(new Dimension(75, 100));
-				this.add(none);
+				this.setViewportView(none);
 			}
 			else
 			{

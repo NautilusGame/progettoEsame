@@ -93,4 +93,9 @@ public class RegistrationCalendar {
 		RegistrationCalendarDAO.getInstance().updateForeignKeyTempAlter(id);
 	}
 	
+	public static ArrayList<RegistrationCalendar> findByRegistrationId(int id) throws SQLException
+	{
+		return RegistrationCalendarDAO.getInstance().findByRegistrationId(id);
+	}
+	
 }

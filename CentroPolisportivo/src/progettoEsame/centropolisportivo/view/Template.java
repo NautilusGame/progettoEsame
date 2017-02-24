@@ -31,8 +31,8 @@ public class Template extends JPanel {
 	private JPanel panelNord;//Panel eddicato al banner e al menu nella sezione nord del template
 	private JPanel panelOvest;//Panel dedicato a tutte le voci di menu aggiuntive per ogni entità
 	private JPanel panelSud;//panel eddicato alla zona per i messaggi di errori
-	private JScrollPane panelCenter;
-	//private JPanel panelCenter;
+	//private JScrollPane panelCenter;//pannello per richiamare tutte le pagine
+	private JPanel panelCenter;
 	private JPanel fixedMenu;//pannello per il menu comune
 	
 	/*menu comune a tute le enetità*/
@@ -41,6 +41,7 @@ public class Template extends JPanel {
 	private JButton logout;//per effettuare il logout
 	private JButton info;
 	private JButton loginRegisterButton;
+	
 	private Flyer flyerPage= new Flyer(this);
 	/*
 	 * Pulsanti dedicati per ogni entita nel menu laterale
@@ -78,26 +79,24 @@ public class Template extends JPanel {
 		this.panelNord=new JPanel();
 		this.panelOvest=new JPanel(new BoxLayout(this.panelOvest, BoxLayout.Y_AXIS));
 		this.panelSud=new JPanel();
-		this.panelCenter=new JScrollPane();
-		//this.panelCenter = new JPanel();
+		this.panelCenter=new JPanel();
 		this.fixedMenu=new JPanel();
 		
 		
 		this.panelNord.setLayout(new GridLayout(2, 1));
 		this.fixedMenu.setLayout(new GridLayout(1, 6));
 		//caricamento del banner del sito trimite immagine
-		try {                
-			image = ImageIO.read(new File("ciao.jpg"));//TODO inserire il banner
+		try 
+		{                
+			image = ImageIO.read(new File("image/SystemImage/banner"));//TODO inserire il banner
 			picLabel= new JLabel(new ImageIcon(image));
-			
-			//TODO aggiungere il richiamo alla home quado si preme sull'immagine
-			
 			this.panelNord.add(picLabel);
 		} 
-		catch (IOException ex) {
+		catch (IOException ex) 
+		{
 			this.addMessageToPanel(Message.getInstance().printErrorMsg("Immagine non trovata"));
 		}
-		
+			
 		
 		//creazione del menu generico uguale per tutti
 		this.flyer = new JButton("Catalogo");
@@ -273,9 +272,9 @@ public class Template extends JPanel {
 	
 	public void setPage(JPanel newPage)
 	{
-		this.panelCenter = new JScrollPane(newPage);
-		//this.panelCenter.add(newPage);
-		this.add(panelCenter, BorderLayout.CENTER);
+		this.panelCenter.add(newPage);
+		//this.panelCenter = new JScrollPane(newPage);
+		//this.add(panelCenter, BorderLayout.CENTER);
 		this.revalidate();
 		this.repaint();
 	}
@@ -284,7 +283,7 @@ public class Template extends JPanel {
 	{
 		try
 		{
-			this.remove(this.panelCenter);
+			this.panelCenter.removeAll();
 		}
 		catch(Exception e)
 		{

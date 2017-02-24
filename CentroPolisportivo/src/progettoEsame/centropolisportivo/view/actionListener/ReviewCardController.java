@@ -25,9 +25,9 @@ public class ReviewCardController
 		return instance;
 	}
 
-	public ArrayList<ReviewCard> getAllReviewCard() throws SQLException
+	public ArrayList<ReviewCard> getAllReviewCard(int id) throws SQLException
 	{
-		ArrayList<Review> tmpAllReviews= ReviewBusiness.getInstance().getAllReviews();
+		ArrayList<Review> tmpAllReviews= ReviewBusiness.getInstance().getAllReviewsByActivity(id);
 		ArrayList<ReviewCard> allReviewsCard = new ArrayList<ReviewCard>();
 		
 		if(tmpAllReviews!=null)

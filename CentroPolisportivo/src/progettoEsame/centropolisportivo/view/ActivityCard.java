@@ -62,7 +62,7 @@ public class ActivityCard extends JPanel
 		this.scr = new JScrollPane(infoActivity);//rende la JText area scrollabile
         this.scr.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_ALWAYS);
 		
-       // System.out.println(valueField.get(4));
+
 		//upload image
 		try 
 		{

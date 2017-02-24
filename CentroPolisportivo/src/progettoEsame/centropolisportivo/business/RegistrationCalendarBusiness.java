@@ -30,4 +30,9 @@ public class RegistrationCalendarBusiness {
 	{
 		return RegistrationCalendar.findCalendarByRegistrations(id);
 	}
+	
+	public ArrayList<RegistrationCalendar> findByRegistrationId(int id)throws SQLException
+	{
+		return RegistrationCalendar.findByRegistrationId(id);
+	}
 }

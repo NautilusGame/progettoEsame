@@ -53,9 +53,9 @@ public class ReviewDAO  {
 
 	}
 	
-	public ArrayList<Review> getAllReviews()throws SQLException
+	public ArrayList<Review> getAllReviewsByActivity(int id)throws SQLException
 	{
-		String query = "SELECT * FROM review";
+		String query = "SELECT * FROM review where activity_id="+id;
 		ArrayList<String[]> result = DbConnection.getInstance().eseguiQuery(query);
 		ArrayList<Review> allReviews = new ArrayList<Review>();
 		

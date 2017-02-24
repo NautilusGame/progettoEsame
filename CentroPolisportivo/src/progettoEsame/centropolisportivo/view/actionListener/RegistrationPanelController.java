@@ -21,6 +21,7 @@ import progettoEsame.centropolisportivo.business.RegistrationBusiness;
 import progettoEsame.centropolisportivo.business.RegistrationCalendarBusiness;
 import progettoEsame.centropolisportivo.business.ScheduleBusiness;
 import progettoEsame.centropolisportivo.business.Session;
+import progettoEsame.centropolisportivo.dao.RegistrationDAO;
 import progettoEsame.centropolisportivo.exception.SessionException;
 import progettoEsame.centropolisportivo.model.Activity;
 import progettoEsame.centropolisportivo.model.Event;
@@ -143,15 +144,19 @@ public class RegistrationPanelController {
 		return this.subscriptionPanel;
 	}
 
+	
+	
+	/************************************************************************************/
 	public JPanel getPDFsubscription()
 	{
 		JPanel returnPanel = new JPanel();
 		returnPanel.setLayout(new BoxLayout(returnPanel, BoxLayout.Y_AXIS));
-		ArrayList<JPanel>subscription = new ArrayList<>();
 		try {
 			String memberEmail = Session.getInstance().getEmail();
-			this.registrations = RegistrationBusiness.getInstance().getAllRegisteredRegistration(memberEmail);
+			this.registrations = RegistrationDAO.getInstance().getAllRegisteredRegistration2(memberEmail);
 			for(int i = 0;i<registrations.size();i++)
+				System.out.println(registrations.get(i).getId());
+			/*for(int i = 0;i<registrations.size();i++)
 			{
 				JPanel tmpPanel = new JPanel(new GridBagLayout());
 				GridBagConstraints gbc = new GridBagConstraints();
@@ -232,26 +237,29 @@ public class RegistrationPanelController {
 
 				if(registrations.get(i).getActivity() != null)
 				{
+					System.out.println("index: " + i + registrations.get(i).getId());
 					JPanel schedulePanel = new JPanel();
 					schedulePanel.setLayout(new BoxLayout(schedulePanel, BoxLayout.LINE_AXIS));
-					ArrayList<RegistrationCalendar> registrationCalendar = RegistrationCalendarBusiness.findCalendarByRegistrations(registrations.get(i).getId());
-					for(int j = 0;j<registrationCalendar.size();j++)
+					ArrayList<RegistrationCalendar> registrationCalendar = RegistrationCalendarBusiness.getInstance().findByRegistrationId(registrations.get(i).getId());
+					if(registrationCalendar !=null)
 					{
-						JPanel tmpSchedulePanel = new JPanel();
-						tmpSchedulePanel.setLayout(new GridLayout(1, 1));
-						Schedule tmpSchedule = ScheduleBusiness.getInstance().findById(registrationCalendar.get(i).getSchedule().getId());
-						tmpSchedulePanel.add(new JLabel("Day :" + tmpSchedule.getDay()));
-						tmpSchedulePanel.add(new JLabel("Time :" + tmpSchedule.getTime()));
-						schedulePanel.add(tmpSchedulePanel);
+						for(int j = 0;j<registrationCalendar.size();j++)
+						{
+							JPanel tmpSchedulePanel = new JPanel();
+							tmpSchedulePanel.setLayout(new GridLayout(1, 1));
+							Schedule tmpSchedule = ScheduleBusiness.getInstance().findById(registrationCalendar.get(i).getSchedule().getId());
+							tmpSchedulePanel.add(new JLabel("Day :" + tmpSchedule.getDay()));
+							tmpSchedulePanel.add(new JLabel("Time :" + tmpSchedule.getTime()));
+							schedulePanel.add(tmpSchedulePanel);
+						}
 					}
-
 					gbc.gridx = 0;
 					gbc.gridy = 3;
 					tmpPanel.add(schedulePanel,gbc);
 				}
 
 				returnPanel.add(tmpPanel);
-			}
+			}*/
 		} catch (SQLException | SessionException e) {
 
 			e.printStackTrace();

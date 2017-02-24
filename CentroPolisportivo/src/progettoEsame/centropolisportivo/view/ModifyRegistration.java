@@ -50,6 +50,7 @@ public class ModifyRegistration extends JPanel {
 		JPanel descriptionPanel = new JPanel(new GridLayout(4, 1));
 		this.mainPanel = new JPanel(new GridBagLayout());
 		this.mainScrollPane = new JScrollPane(this.mainPanel);
+		this.mainScrollPane.setBorder(null);
 		this.msg = new JLabel();
 		ArrayList<Level> levelArray = new ArrayList<>();
 		ArrayList<Schedule> scheduleArray = new ArrayList<>();

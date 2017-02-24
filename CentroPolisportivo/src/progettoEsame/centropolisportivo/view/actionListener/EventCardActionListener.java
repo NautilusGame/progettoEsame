@@ -24,11 +24,12 @@ public class EventCardActionListener implements ActionListener {
 	@Override
 	public void actionPerformed(ActionEvent e) 
 	{
+		System.out.println("ciao");
 			this.template.removePage();
-			this.template.revalidate();
-			this.template.repaint();
 			RegisterToEvent rte = new RegisterToEvent(this.ec.getIdEvent());
 			this.template.setPage(rte);
+			this.template.revalidate();
+			this.template.repaint();
 		
 	}
 

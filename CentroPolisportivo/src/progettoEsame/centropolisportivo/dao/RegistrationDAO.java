@@ -61,7 +61,6 @@ public class RegistrationDAO {
 		Registration registration;
 		registration =new Registration();
 		ArrayList <String[]> result  = DbConnection.getInstance().eseguiQuery("SELECT * FROM registration WHERE id= "+id+";");
-		System.out.println("SELECT * FROM registration WHERE id= "+id+";");
 		if(result.size() == 0) return null;
 
 		String[] row = result.get(0);
@@ -158,6 +157,24 @@ public class RegistrationDAO {
 	public ArrayList<Registration> getAllRegisteredRegistration(String memberEmail) throws SQLException
 	{
 		String query = "SELECT r.id FROM activity AS a,registration AS r WHERE a.id = r.activity_id AND r.member_email = '"+memberEmail+"' ;";
+		ArrayList<String[]> result = DbConnection.getInstance().eseguiQuery(query);
+		ArrayList<Registration> allRegistration = new ArrayList<>();
+
+		if(result.size() == 0)
+		{
+			return null;
+		}
+		for(int i = 0;i<result.size();i++)
+		{
+			allRegistration.add(this.findById(Integer.parseInt(result.get(0)[0])));
+		}
+
+		return allRegistration;
+	}
+	
+	public ArrayList<Registration> getAllRegisteredRegistration2(String memberEmail) throws SQLException
+	{
+		String query = "SELECT * FROM registration WHERE member_email = '"+memberEmail+"' ;";
 		ArrayList<String[]> result = DbConnection.getInstance().eseguiQuery(query);
 		ArrayList<Registration> allRegistration = new ArrayList<>();
 

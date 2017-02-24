@@ -120,4 +120,28 @@ public class RegistrationCalendarDAO {
 		}
 		return allCalendarByTempAlterRegistration;
 	}
+	
+	public ArrayList<RegistrationCalendar> findByRegistrationId(Integer id) throws SQLException
+	{
+		String query = "SELECT * FROM registration_calendar WHERE registration_id= "+id+"";
+		System.out.println(query);
+		ArrayList<String[]> result = DbConnection.getInstance().eseguiQuery(query);
+		ArrayList<RegistrationCalendar> allCalendarByTempAlterRegistration = new ArrayList<RegistrationCalendar>();
+		
+		if(result.size() == 0)
+			return null;
+		for(int i = 0;i<result.size();i++)
+		{
+			RegistrationCalendar registrationCalendar = new RegistrationCalendar();
+			String[] row = result.get(i);
+			registrationCalendar.setId(Integer.parseInt(row[0]));
+			
+			registrationCalendar.setSchedule(Schedule.findById(Integer.parseInt(row[1])));
+			registrationCalendar.setRegistration(Registration.findById(Integer.parseInt(row[2])));			
+			//registrationCalendar.setTempAlterRegistration(TempAlterRegistrationDAO.getInstance().findById(Integer.parseInt(row[3])));
+			registrationCalendar.setTempAlterRegistration(null);
+			allCalendarByTempAlterRegistration.add(registrationCalendar);
+		}
+		return allCalendarByTempAlterRegistration;
+	}
 }

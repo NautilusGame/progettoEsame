@@ -374,7 +374,8 @@ public class RegistrationCard extends JPanel
 			}
 			this.schedulesList=new JList<>(model);
 		}
-		else System.out.println("Contatta lo sviluppatore, è prensente un errore di codice :)");
+		else 
+			this.next.setEnabled(false);
 		
 		for(int i =0; i<levels.size();i++)//carico i livelli
 		{
@@ -487,5 +488,9 @@ public class RegistrationCard extends JPanel
 		this.revalidate();
 		this.repaint();
 	}
-
+	
+	public int getIdActivity()
+	{
+		return this.idActivity;
+	}
 }

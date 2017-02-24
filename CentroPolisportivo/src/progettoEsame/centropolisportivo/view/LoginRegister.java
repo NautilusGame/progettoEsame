@@ -8,6 +8,7 @@ import java.awt.Font;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.Insets;
+import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
 import java.awt.font.TextAttribute;
 import java.text.SimpleDateFormat;
@@ -242,6 +243,7 @@ public class LoginRegister extends JPanel{
 		this.userType.add(registeredUser);
 		this.userType.add(trainerUser); //aggiunge i radio button al button group
 		
+		
 		//TODO setMinimumSize setMaximumSize per gestire l'auto resize degli oggetti
 		/*this.username.requestFocusInWindow();
 		this.password.requestFocusInWindow();*/
@@ -445,5 +447,6 @@ public class LoginRegister extends JPanel{
 		this.revalidate();
 		this.repaint();
 	}
+	
 
 }

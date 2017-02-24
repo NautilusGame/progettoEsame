@@ -54,10 +54,9 @@ public class EventCard extends JPanel{
 
 
 
+		this.register.setVisible(false);
 		//swich tra catalgo pubblico o meno
-		if(user==0)
-			this.register.setVisible(false);
-		else if(user == 1)
+		if(user == 1)
 		{
 			this.register.setVisible(true);
 			this.register.setName(valueField.get(0));
