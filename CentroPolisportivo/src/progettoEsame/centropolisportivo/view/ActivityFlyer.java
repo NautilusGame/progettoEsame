@@ -38,7 +38,7 @@ public class ActivityFlyer extends JPanel
 		try {
 			ActivityCardController.getInstance().setTemplate(this.template);
 			this.allActivity = ActivityCardController.getInstance().getAllActivityCard();
-			if(allActivity.size() == 0)
+			if(allActivity== null)
 			{
 				JLabel none = new JLabel(NO_REGISTRATION_PROPOSAL);
 				none.setSize(new Dimension(75, 100));

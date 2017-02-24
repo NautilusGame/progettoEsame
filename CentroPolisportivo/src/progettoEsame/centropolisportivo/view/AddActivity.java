@@ -94,9 +94,11 @@ public class AddActivity extends JPanel {
 		this.roomScrollPane = new JScrollPane(this.room);
 		this.activityTypeScrollPane= new JScrollPane(this.activityType);
 		this.insertButton = new JButton(ADD_ACTIVITY_INSERT_BUTTON);
+		room = new JList<>();
 		room.setSelectedIndex(0);
 		room.setSelectionMode(ListSelectionModel.SINGLE_INTERVAL_SELECTION);
 		room.setLayoutOrientation(JList.HORIZONTAL_WRAP);
+		activityType = new JList<>();
 		activityType.setSelectionMode(ListSelectionModel.SINGLE_INTERVAL_SELECTION);
 		activityType.setLayoutOrientation(JList.HORIZONTAL_WRAP);
 		activityType.setSelectedIndex(0);

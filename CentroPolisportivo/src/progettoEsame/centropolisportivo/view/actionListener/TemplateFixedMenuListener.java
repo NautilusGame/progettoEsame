@@ -56,13 +56,6 @@ public class TemplateFixedMenuListener implements ActionListener {
 			
 			//TODO inserire richiamo a panello dei login
 		}
-		else if(e.getActionCommand().equals(HOME_ACTION_CMD))
-		{
-			this.template.removePage();
-			//Inserisci qui la nuova pagina
-			this.template.revalidate();
-			this.template.repaint();
-		}
 		else if(e.getActionCommand().equals(INFO_ACTION_CMD))
 		{
 			this.template.removePage();

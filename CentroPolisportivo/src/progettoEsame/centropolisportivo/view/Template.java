@@ -36,13 +36,12 @@ public class Template extends JPanel {
 	private JPanel fixedMenu;//pannello per il menu comune
 	
 	/*menu comune a tute le enetità*/
-	private JButton home;//per ritornare alla home
 	private JButton flyer;//per sfogliare il catalogo
 	private JButton profile;//per andare al profilo
 	private JButton logout;//per effettuare il logout
 	private JButton info;
 	private JButton loginRegisterButton;
-	
+	private Flyer flyerPage= new Flyer(this);
 	/*
 	 * Pulsanti dedicati per ogni entita nel menu laterale
 	 */
@@ -100,28 +99,24 @@ public class Template extends JPanel {
 		
 		
 		//creazione del menu generico uguale per tutti
-		this.home = new JButton("Home");
 		this.flyer = new JButton("Catalogo");
 		this.profile = new JButton("Profile");
 		this.logout = new JButton("Logout");
 		this.info = new JButton("Info");
 		this.loginRegisterButton= new JButton("Login/Register");
-		
-		this.home.setActionCommand(ConstantClass.HOME_ACTION_CMD);
+
 		this.flyer.setActionCommand(ConstantClass.FLYER_ACTION_CMD);
 		this.profile.setActionCommand(ConstantClass.PROFILE_ACTION_CMD);
 		this.logout.setActionCommand(ConstantClass.LOGOUT_ACTION_CMD);
 		this.info.setActionCommand(ConstantClass.INFO_ACTION_CMD);
 		this.loginRegisterButton.setActionCommand(ConstantClass.LOGIN_REGISTER_BUTTON);
 		
-		this.home.addActionListener(new TemplateFixedMenuListener(this,this.mf));
 		this.flyer.addActionListener(new TemplateFixedMenuListener(this,this.mf));
 		this.profile.addActionListener(new TemplateFixedMenuListener(this,this.mf));
 		this.logout.addActionListener(new TemplateFixedMenuListener(this,this.mf));
 		this.info.addActionListener(new TemplateFixedMenuListener(this,this.mf));
 		this.loginRegisterButton.addActionListener(new TemplateFixedMenuListener(this,this.mf));
 		
-		this.fixedMenu.add(home);
 		this.fixedMenu.add(flyer);
 		this.fixedMenu.add(info);
 		
@@ -146,7 +141,7 @@ public class Template extends JPanel {
 		else 
 			this.fixedMenu.add(this.loginRegisterButton);
 		
-		
+		this.setPage(flyerPage);
 		//aggiunta di tutti i pannelli creati al panel template
 		this.add(panelNord, BorderLayout.NORTH);
 		this.add(panelSud, BorderLayout.SOUTH);
@@ -219,7 +214,7 @@ public class Template extends JPanel {
 	
 	public void addMenuCenterManager(){
 		
-		this.panelOvest.setLayout(new GridLayout(6, 1));	
+		this.panelOvest.setLayout(new GridLayout(7, 1));	
 		
 		this.centerManager1=new JButton("Accept registration");
 		this.centerManager2=new JButton("Add activity");

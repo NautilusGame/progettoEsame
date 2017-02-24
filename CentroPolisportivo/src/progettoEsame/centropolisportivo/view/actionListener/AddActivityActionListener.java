@@ -25,7 +25,7 @@ public class AddActivityActionListener implements ActionListener {
 		if(e.getActionCommand().equals(ADD_ACTIVITY_INSERT_BUTTON_ACTION_CMD))
 		{
 			ArrayList<String> newActivity = addActivityPanel.getActivityData();
-			if(newActivity.get(3).equals("") || newActivity.get(4).equals("") || newActivity.get(5).equals(""))
+			if(newActivity.get(3).equals("") || newActivity.get(4).equals("") || newActivity.get(5).equals("") || newActivity.get(0) == null || newActivity.get(2) == null)
 			{
 				addActivityPanel.removeMessageToPanel();
 				addActivityPanel.addMessageToPanel(Message.getInstance().printErrorMsg(ADD_ACTIVITY_INCOMPLETED_MSG));
