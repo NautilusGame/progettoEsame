@@ -54,7 +54,6 @@ public class RegistrationCard extends JPanel
 	private JPanel mainPanel;
 	
 	private JScrollPane scr;
-	private JScrollPane scrReview;
 	private JScrollPane scrTextNewReview;
 	
 	private JLabel nameActivityLabel;
@@ -153,8 +152,6 @@ public class RegistrationCard extends JPanel
         
 		this.schedulesList.setSelectionMode(ListSelectionModel.MULTIPLE_INTERVAL_SELECTION);
 		this.titlePanel.setFont(new Font("Arial", Font.BOLD, 16));
-		
-		this.scrReview= new JScrollPane(reviewsPanel);
 		
 		//set del layout dei pannelli
 		//this.setLayout(new BorderLayout());
@@ -255,6 +252,7 @@ public class RegistrationCard extends JPanel
 		this.gbc.gridy = 6;
 		this.gbc.insets = new Insets(20,0,10,0); //padding dell'elemento
 		this.descriptionPanel.add(this.showReviews,gbc);		
+		
 		
 		/****************************recensioni*****************************/
 		//lista recensioni
@@ -405,7 +403,7 @@ public class RegistrationCard extends JPanel
 	
 	public void showReviews()
 	{
-		this.mainPanel.add(this.scrReview,BorderLayout.CENTER);
+		this.mainPanel.add(this.queueReviews,BorderLayout.CENTER);
 		this.showReviews.setActionCommand(ConstantClass.HIDE_REVIEWS);
 		this.mainPanel.revalidate();
 		this.mainPanel.repaint();
@@ -414,7 +412,7 @@ public class RegistrationCard extends JPanel
 	public void removeReviews()
 	{
 		this.showReviews.setActionCommand(ConstantClass.SHOW_REVIEWS);
-		this.mainPanel.remove(this.scrReview);
+		this.mainPanel.remove(this.queueReviews);
 		this.mainPanel.revalidate();
 		this.mainPanel.repaint();
 	}
