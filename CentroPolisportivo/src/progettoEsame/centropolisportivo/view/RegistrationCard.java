@@ -405,18 +405,18 @@ public class RegistrationCard extends JPanel
 	
 	public void showReviews()
 	{
-		this.add(this.scrReview,BorderLayout.CENTER);
+		this.mainPanel.add(this.scrReview,BorderLayout.CENTER);
 		this.showReviews.setActionCommand(ConstantClass.HIDE_REVIEWS);
-		this.revalidate();
-		this.repaint();
+		this.mainPanel.revalidate();
+		this.mainPanel.repaint();
 	}
 	
 	public void removeReviews()
 	{
 		this.showReviews.setActionCommand(ConstantClass.SHOW_REVIEWS);
-		this.remove(((BorderLayout)getLayout()).getLayoutComponent(BorderLayout.CENTER));
-		this.revalidate();
-		this.repaint();
+		this.mainPanel.remove(this.scrReview);
+		this.mainPanel.revalidate();
+		this.mainPanel.repaint();
 	}
 	
 	private void noNewReview() 

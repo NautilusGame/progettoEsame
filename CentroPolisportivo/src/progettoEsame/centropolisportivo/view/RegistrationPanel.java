@@ -15,7 +15,7 @@ import javax.swing.JScrollPane;
 
 import progettoEsame.centropolisportivo.view.actionListener.RegistrationPanelController;
 import progettoEsame.centropolisportivo.view.actionListener.RegistrationPanelMouseListener;
-
+import static progettoEsame.centropolisportivo.view.ConstantClass.*;
 public class RegistrationPanel extends JPanel {
 
 	private ArrayList<JPanel> subscriptionPanel;
@@ -50,17 +50,26 @@ public class RegistrationPanel extends JPanel {
 		this.contentPanel.add(pdfLabel,gbc);
 		this.msg = new JLabel();
 		this.subscriptionPanel = RegistrationPanelController.getInstance().init(this);
-		this.numberOfPanel = this.subscriptionPanel.size();
-		for(int i = 0;i<this.numberOfPanel;i++)
+		if(subscriptionPanel == null)
 		{
-			this.mainPanel.add(this.subscriptionPanel.get(i));
+			this.pdfLabel.setVisible(false);
+			this.add(new JLabel(REGISTRATION_PANEL_NO_REGISTRATION));
 		}
-		
-		gbc.gridx = 0;
-		gbc.gridy = 1;
-		this.contentPanel.add(scrollPane,gbc);
+		else
+		{
+			this.numberOfPanel = this.subscriptionPanel.size();
+			for(int i = 0;i<this.numberOfPanel;i++)
+			{
+				this.mainPanel.add(this.subscriptionPanel.get(i));
+			}
+
+			gbc.gridx = 0;
+			gbc.gridy = 1;
+			this.contentPanel.add(scrollPane,gbc);
+		}
+
 	}
-	
+
 	public void addMessageToPanel(JLabel msg)
 	{
 		this.msg = msg;
@@ -68,7 +77,7 @@ public class RegistrationPanel extends JPanel {
 		this.revalidate();
 		this.repaint();
 	}
-	
+
 	public void removeMessageToPanel()
 	{
 
@@ -76,7 +85,7 @@ public class RegistrationPanel extends JPanel {
 		this.revalidate();
 		this.repaint();
 	}
-	
+
 	public void makeInvisibleMainPanel(JPanel otherPanel)
 	{
 		this.otherPanel = otherPanel;
@@ -85,7 +94,7 @@ public class RegistrationPanel extends JPanel {
 		this.revalidate();
 		this.repaint();
 	}
-	
+
 
 	public void makeVisibleMainPanel()
 	{

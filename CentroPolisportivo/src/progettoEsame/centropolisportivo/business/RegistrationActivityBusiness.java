@@ -10,6 +10,7 @@ import progettoEsame.centropolisportivo.model.Member;
 import progettoEsame.centropolisportivo.model.Registration;
 import progettoEsame.centropolisportivo.model.RegistrationCalendar;
 import progettoEsame.centropolisportivo.model.Schedule;
+import progettoEsame.centropolisportivo.model.TempAlterRegistration;
 
 public class RegistrationActivityBusiness 
 {
@@ -77,7 +78,9 @@ public class RegistrationActivityBusiness
 			try
 			{
 				int idSchedule=ScheduleBusiness.getScheduleByDay(day, time, Integer.parseInt(newRegistration.get(3))).getId();
-				RegistrationCalendar calendar = new RegistrationCalendar(new Schedule(idSchedule),new Registration(idRegistration));
+				TempAlterRegistration t = new TempAlterRegistration();
+				t.setId(null);
+				RegistrationCalendar calendar = new RegistrationCalendar(new Schedule(idSchedule),new Registration(idRegistration),t);
 				RegistrationCalendar.insert(calendar);
 			}
 			catch(Exception e)

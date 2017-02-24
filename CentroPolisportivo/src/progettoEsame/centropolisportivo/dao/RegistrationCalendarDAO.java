@@ -24,6 +24,7 @@ public class RegistrationCalendarDAO {
 	{
 			String query = "INSERT INTO registration_calendar(schedule_id, registration_id,temp_alter_registration_id) VALUES"
 					+ "("+newRegistrationCalendar.getSchedule().getId()+","+newRegistrationCalendar.getRegistration().getId()+","+newRegistrationCalendar.getTempAlterRegistration().getId()+");";
+			
 			DbConnection.getInstance().eseguiAggiornamento(query);
 	}
 	

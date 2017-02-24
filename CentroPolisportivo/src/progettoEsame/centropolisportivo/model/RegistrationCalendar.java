@@ -25,9 +25,10 @@ public class RegistrationCalendar {
 		this.registration = registration;
 	}
 	
-	public RegistrationCalendar(Schedule schedule, Registration registration) {
+	public RegistrationCalendar(Schedule schedule, Registration registration,TempAlterRegistration tempAlterRegistration) {
 		this.schedule = schedule;
 		this.registration = registration;
+		this.tempAlterRegistration=tempAlterRegistration;
 	}
 
 	public int getId() {

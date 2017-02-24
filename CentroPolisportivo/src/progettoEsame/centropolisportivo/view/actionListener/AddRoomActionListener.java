@@ -42,9 +42,16 @@ public class AddRoomActionListener implements ActionListener {
 				RoomBusiness.getInstance().insert(room);
 				addRoomPanel.removeMessageToPanel();
 				addRoomPanel.addMessageToPanel(Message.getInstance().printSuccessMsg(ADD_ROOM_SUCCESS_MSG));
-			} catch (SessionException | SQLException | RoomException e) {
+			} 
+			catch (SessionException | SQLException | RoomException e) 
+			{
 				addRoomPanel.removeMessageToPanel();
 				addRoomPanel.addMessageToPanel(Message.getInstance().printErrorMsg(e.getMessage()));
+			}
+			catch (NumberFormatException e1)
+			{
+				addRoomPanel.removeMessageToPanel();
+				addRoomPanel.addMessageToPanel(Message.getInstance().printErrorMsg(ADD_ACTIVITY_PRICE_ERROR));
 			}
 		}
 

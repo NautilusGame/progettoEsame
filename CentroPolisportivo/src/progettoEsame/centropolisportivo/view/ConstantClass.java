@@ -107,7 +107,8 @@ public final class ConstantClass {
 	public static final String ADD_ACTIVITY_DB_ERROR= "DB error";
 	public static final String ADD_ACTIVITY_INCOMPLETED_MSG = "All field must be completed";
 	public static final String ADD_ACTIVITY_SUCCESS_MSG = "Success";
-
+	public static final String ADD_ACTIVITY_PRICE_ERROR = "Number not correct";
+	
 	// Add room //
 	public static final String ADD_ROOM_TITLE_PAGE = "Add room";
 	public static final String ADD_ROOM_ROOM_LABEL = "Room";
@@ -251,6 +252,7 @@ public final class ConstantClass {
 	public static final String REGISTRATION_PANEL_MODIFY_BUTTON_EVENT_ACTION_CMD = "ModifyButtonEvent";
 	public static final String REGISTRATION_PANEL_MODIFY_BUTTON_ACTIVITY_ACTION_CMD = "ModifyButtonActivity";
 	public static final String REGISTRATION_PANEL_DB_ERROR = "DB error";
+	public static final String REGISTRATION_PANEL_NO_REGISTRATION = "There are any registration now";
 	
 	//modify panel //
 

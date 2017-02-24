@@ -62,15 +62,16 @@ public class ActivityCard extends JPanel
 		this.scr = new JScrollPane(infoActivity);//rende la JText area scrollabile
         this.scr.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_ALWAYS);
 		
-		
+        System.out.println(valueField.get(4));
 		//upload image
 		try 
 		{
 			image = ImageIO.read(new File(valueField.get(4)));///valueField.get(4)
+			
 			picActivity= new JLabel(new ImageIcon(getScaledImage(image, 200, 150)));			
 		} 
 		catch (IOException ex) {
-			System.out.println(ex.getMessage());
+			System.out.println(ex.getMessage());	
 		}
 		
 		//swich tra catalgo pubblico o meno

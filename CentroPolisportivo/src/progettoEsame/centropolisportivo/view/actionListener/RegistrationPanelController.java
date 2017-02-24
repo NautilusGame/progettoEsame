@@ -54,79 +54,86 @@ public class RegistrationPanelController {
 			String memberEmail = Session.getInstance().getEmail();
 			this.subscriptionPanel = new ArrayList<>();
 			this.registrations = RegistrationBusiness.getInstance().getAllRegisteredRegistration(memberEmail);
-			for(int i = 0;i<registrations.size();i++)
+			if(registrations == null)
 			{
-				JPanel tmpPanel = new JPanel(new GridBagLayout());
-				GridBagConstraints gbc = new GridBagConstraints();
-				JButton modifyButton = new JButton(REGISTRATION_PANEL_MODIFY_BUTTON);
-				
-
-				gbc.gridx = 0;
-				gbc.gridy = 0;
-				if(registrations.get(i).getActivity()==null)
+				return null;
+			}
+			else
+			{
+				for(int i = 0;i<registrations.size();i++)
 				{
-					modifyButton.setName((registrations.get(i).getId()).toString());
-					modifyButton.setActionCommand(REGISTRATION_PANEL_MODIFY_BUTTON_EVENT_ACTION_CMD);
-					modifyButton.addActionListener(new RegistrationPanelActionListener(this.registrationPanel));
-					int confirmed = PaymentBusiness.getInstance().findByEventAndMember(registrations.get(i).getEvent().getId(), memberEmail).getConfirmed();
-					if( confirmed == 0)
+					JPanel tmpPanel = new JPanel(new GridBagLayout());
+					GridBagConstraints gbc = new GridBagConstraints();
+					JButton modifyButton = new JButton(REGISTRATION_PANEL_MODIFY_BUTTON);
+
+
+					gbc.gridx = 0;
+					gbc.gridy = 0;
+					if(registrations.get(i).getActivity()==null)
 					{
-						tmpPanel.setBackground(Color.orange);
-					}
-					else if(confirmed == 1)
-					{
-						tmpPanel.setBackground(Color.green);
+						modifyButton.setName((registrations.get(i).getId()).toString());
+						modifyButton.setActionCommand(REGISTRATION_PANEL_MODIFY_BUTTON_EVENT_ACTION_CMD);
+						modifyButton.addActionListener(new RegistrationPanelActionListener(this.registrationPanel));
+						int confirmed = PaymentBusiness.getInstance().findByEventAndMember(registrations.get(i).getEvent().getId(), memberEmail).getConfirmed();
+						if( confirmed == 0)
+						{
+							tmpPanel.setBackground(Color.orange);
+						}
+						else if(confirmed == 1)
+						{
+							tmpPanel.setBackground(Color.green);
+						}
+						else
+						{
+							tmpPanel.setBackground(Color.red);
+						}
+						tmpPanel.add(new JLabel("Tipology: Event"),gbc);
 					}
 					else
 					{
-						tmpPanel.setBackground(Color.red);
+						modifyButton.setName(Integer.valueOf((registrations.get(i).getId())).toString());
+						modifyButton.setActionCommand(REGISTRATION_PANEL_MODIFY_BUTTON_ACTIVITY_ACTION_CMD);
+						modifyButton.addActionListener(new RegistrationPanelActionListener(this.registrationPanel));	
+						int confirmed = PaymentBusiness.getInstance().findByActivityAndMember(registrations.get(i).getActivity().getId(), memberEmail).getConfirmed();
+						if( confirmed == 0)
+						{
+							tmpPanel.setBackground(Color.orange);
+						}
+						else if(confirmed == 1)
+						{
+							tmpPanel.setBackground(Color.green);
+						}
+						else
+						{
+							tmpPanel.setBackground(Color.red);
+						}
+						tmpPanel.add(new JLabel("Tipology: Activity"),gbc);
 					}
-					tmpPanel.add(new JLabel("Tipology: Event"),gbc);
-				}
-				else
-				{
-					modifyButton.setName(Integer.valueOf((registrations.get(i).getId())).toString());
-					modifyButton.setActionCommand(REGISTRATION_PANEL_MODIFY_BUTTON_ACTIVITY_ACTION_CMD);
-					modifyButton.addActionListener(new RegistrationPanelActionListener(this.registrationPanel));	
-					int confirmed = PaymentBusiness.getInstance().findByActivityAndMember(registrations.get(i).getActivity().getId(), memberEmail).getConfirmed();
-					if( confirmed == 0)
+
+					gbc.gridx = 1;
+					gbc.gridy = 0;
+					if(registrations.get(i).getActivity() == null)
 					{
-						tmpPanel.setBackground(Color.orange);
-					}
-					else if(confirmed == 1)
-					{
-						tmpPanel.setBackground(Color.green);
+						tmpPanel.add(new JLabel("Name: " + ActivityBusiness.getInstance().findByID(registrations.get(i).getEvent().getId()).getName()),gbc);
 					}
 					else
 					{
-						tmpPanel.setBackground(Color.red);
+						tmpPanel.add(new JLabel("Name: " + ActivityBusiness.getInstance().findByID(registrations.get(i).getActivity().getId()).getName()),gbc);
 					}
-					tmpPanel.add(new JLabel("Tipology: Activity"),gbc);
+
+					gbc.gridx = 0;
+					gbc.gridy = 1;
+					tmpPanel.add(new JLabel("Enrollment data: " + registrations.get(i).getDate()),gbc);
+
+					gbc.gridx = 1;
+					gbc.gridy = 1;
+					tmpPanel.add(new JLabel("Deadline: " + registrations.get(i).getDeadline()),gbc);
+
+					gbc.gridx = 2;
+					gbc.gridy = 0;
+					tmpPanel.add(modifyButton,gbc);
+					this.subscriptionPanel.add(tmpPanel);
 				}
-
-				gbc.gridx = 1;
-				gbc.gridy = 0;
-				if(registrations.get(i).getActivity() == null)
-				{
-					tmpPanel.add(new JLabel("Name: " + ActivityBusiness.getInstance().findByID(registrations.get(i).getEvent().getId()).getName()),gbc);
-				}
-				else
-				{
-					tmpPanel.add(new JLabel("Name: " + ActivityBusiness.getInstance().findByID(registrations.get(i).getActivity().getId()).getName()),gbc);
-				}
-
-				gbc.gridx = 0;
-				gbc.gridy = 1;
-				tmpPanel.add(new JLabel("Enrollment data: " + registrations.get(i).getDate()),gbc);
-
-				gbc.gridx = 1;
-				gbc.gridy = 1;
-				tmpPanel.add(new JLabel("Deadline: " + registrations.get(i).getDeadline()),gbc);
-
-				gbc.gridx = 2;
-				gbc.gridy = 0;
-				tmpPanel.add(modifyButton,gbc);
-				this.subscriptionPanel.add(tmpPanel);
 			}
 
 		} catch (SQLException | SessionException e) {
@@ -222,7 +229,7 @@ public class RegistrationPanelController {
 					gbc.gridy = 2;
 					tmpPanel.add(new JLabel("Level: " + registrations.get(i).getLevel().getName()),gbc);
 				}
-				
+
 				if(registrations.get(i).getActivity() != null)
 				{
 					JPanel schedulePanel = new JPanel();
@@ -237,7 +244,7 @@ public class RegistrationPanelController {
 						tmpSchedulePanel.add(new JLabel("Time :" + tmpSchedule.getTime()));
 						schedulePanel.add(tmpSchedulePanel);
 					}
-					
+
 					gbc.gridx = 0;
 					gbc.gridy = 3;
 					tmpPanel.add(schedulePanel,gbc);

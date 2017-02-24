@@ -17,7 +17,7 @@ import javax.swing.ScrollPaneLayout;
 import progettoEsame.centropolisportivo.view.actionListener.ActivityCardController;
 import progettoEsame.centropolisportivo.view.actionListener.ReviewCardController;
 
-public class ReviewsQueue extends JPanel
+public class ReviewsQueue extends JScrollPane
 {
 	private ArrayList<ReviewCard> allReviews;
 	private GridBagConstraints gbc;
@@ -29,12 +29,12 @@ public class ReviewsQueue extends JPanel
 		gbc = new GridBagConstraints();
 		
 		JPanel mainPanel = new JPanel();
-		JScrollPane scrollPane = new JScrollPane(mainPanel);
+		/*JScrollPane scrollPane = new JScrollPane(mainPanel);
 		scrollPane.setLayout(new ScrollPaneLayout());
 		scrollPane.setHorizontalScrollBarPolicy(JScrollPane.HORIZONTAL_SCROLLBAR_NEVER);
 		scrollPane.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_ALWAYS);
 		scrollPane.setMinimumSize(new Dimension(500, 700));
-		scrollPane.setPreferredSize(new Dimension(500, 700));
+		scrollPane.setPreferredSize(new Dimension(500, 700));*/
 		mainPanel.setLayout(new BoxLayout(mainPanel, BoxLayout.Y_AXIS));
 		try 
 		{
@@ -53,7 +53,7 @@ public class ReviewsQueue extends JPanel
 					gbc.gridy = i;
 					mainPanel.add(allReviews.get(i),gbc);
 				}
-				this.add(scrollPane);
+				this.setViewportView(mainPanel);
 			}
 		} catch (SQLException e) {
 			// TODO invia messaggio di errore
