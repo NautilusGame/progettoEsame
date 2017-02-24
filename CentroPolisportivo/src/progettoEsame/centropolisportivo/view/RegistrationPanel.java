@@ -44,7 +44,7 @@ public class RegistrationPanel extends JPanel {
 		gbc.gridy = 0;
 		this.add(pdfLabel,gbc);
 		this.msg = new JLabel();
-		this.subscriptionPanel = RegistrationPanelController.getInstance().init();
+		this.subscriptionPanel = RegistrationPanelController.getInstance().init(this);
 		this.numberOfPanel = this.subscriptionPanel.size();
 		for(int i = 0;i<this.numberOfPanel;i++)
 		{

@@ -27,6 +27,7 @@ import progettoEsame.centropolisportivo.model.Event;
 import progettoEsame.centropolisportivo.model.Registration;
 import progettoEsame.centropolisportivo.model.RegistrationCalendar;
 import progettoEsame.centropolisportivo.model.Schedule;
+import progettoEsame.centropolisportivo.view.RegistrationPanel;
 
 import static progettoEsame.centropolisportivo.view.ConstantClass.*;
 
@@ -34,6 +35,7 @@ public class RegistrationPanelController {
 
 	private ArrayList<JPanel> subscriptionPanel; 
 	private ArrayList<Registration> registrations;
+	private RegistrationPanel registrationPanel;
 	private static RegistrationPanelController instance;
 
 
@@ -44,8 +46,9 @@ public class RegistrationPanelController {
 		return instance;
 	}
 
-	public ArrayList<JPanel> init()
+	public ArrayList<JPanel> init(RegistrationPanel registrationPanel)
 	{
+		this.registrationPanel = registrationPanel;
 
 		try {
 			String memberEmail = Session.getInstance().getEmail();
@@ -56,13 +59,15 @@ public class RegistrationPanelController {
 				JPanel tmpPanel = new JPanel(new GridBagLayout());
 				GridBagConstraints gbc = new GridBagConstraints();
 				JButton modifyButton = new JButton(REGISTRATION_PANEL_MODIFY_BUTTON);
+				
 
 				gbc.gridx = 0;
 				gbc.gridy = 0;
 				if(registrations.get(i).getActivity()==null)
 				{
 					modifyButton.setName((registrations.get(i).getEvent().getId()).toString());
-					modifyButton.setActionCommand(REGISTRATION_PANEL_MODIFY_BUTTON_EVENT_ACTION_CMD);	
+					modifyButton.setActionCommand(REGISTRATION_PANEL_MODIFY_BUTTON_EVENT_ACTION_CMD);
+					modifyButton.addActionListener(new RegistrationPanelActionListener(this.registrationPanel));
 					int confirmed = PaymentBusiness.getInstance().findByEventAndMember(registrations.get(i).getEvent().getId(), memberEmail).getConfirmed();
 					if( confirmed == 0)
 					{
@@ -81,7 +86,8 @@ public class RegistrationPanelController {
 				else
 				{
 					modifyButton.setName(Integer.valueOf((registrations.get(i).getActivity().getId())).toString());
-					modifyButton.setActionCommand(REGISTRATION_PANEL_MODIFY_BUTTON_ACTIVITY_ACTION_CMD);	int confirmed = PaymentBusiness.getInstance().findByActivityAndMember(registrations.get(i).getActivity().getId(), memberEmail).getConfirmed();
+					modifyButton.setActionCommand(REGISTRATION_PANEL_MODIFY_BUTTON_ACTIVITY_ACTION_CMD);	
+					int confirmed = PaymentBusiness.getInstance().findByActivityAndMember(registrations.get(i).getActivity().getId(), memberEmail).getConfirmed();
 					if( confirmed == 0)
 					{
 						tmpPanel.setBackground(Color.orange);
