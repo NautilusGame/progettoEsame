@@ -51,11 +51,18 @@ public class AddActivityActionListener implements ActionListener {
 					else 
 						activity.setImagePath(newActivity.get(6));
 					Activity.insert(activity);
+					addActivityPanel.removeMessageToPanel();
 					addActivityPanel.addMessageToPanel(Message.getInstance().printSuccessMsg(ADD_ACTIVITY_SUCCESS_MSG));
 				} catch (SQLException e1) {
 					e1.printStackTrace();
 					addActivityPanel.removeMessageToPanel();
 					addActivityPanel.addMessageToPanel(Message.getInstance().printErrorMsg(ADD_ACTIVITY_DB_ERROR));
+				}
+				catch (NumberFormatException e1) 
+				{
+				
+					addActivityPanel.removeMessageToPanel();
+					addActivityPanel.addMessageToPanel(Message.getInstance().printErrorMsg(ADD_ACTIVITY_PRICE_ERROR));
 				}
 			}
 		}

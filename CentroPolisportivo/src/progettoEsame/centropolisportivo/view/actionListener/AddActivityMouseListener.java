@@ -41,9 +41,8 @@ public class AddActivityMouseListener implements MouseListener {
 				
 				else
 				{
-					addActivityPanel.removeMessageToPanel();
-					addActivityPanel.addMessageToPanel(Message.getInstance().printWarningMsg(path));
 					addActivityPanel.setPathToImageLabel(path);
+					addActivityPanel.resetImage(path);
 				}
 				
 			}

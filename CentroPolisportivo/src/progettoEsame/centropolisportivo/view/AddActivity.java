@@ -216,6 +216,7 @@ public class AddActivity extends JPanel {
 
 		gbc.gridx = 0;
 		gbc.gridy = 8;
+		gbc.gridwidth = 2;
 		this.mainPanel.remove(this.msg);
 		this.mainPanel.revalidate();
 		this.mainPanel.repaint();
@@ -278,6 +279,12 @@ public class AddActivity extends JPanel {
 			}
 		}
 		return null;
+	}
+	
+	public void resetImage(String path)
+	{
+		this.image = new ImageIcon(new ImageIcon(path).getImage().getScaledInstance(300, 200, Image.SCALE_DEFAULT));
+		this.img.setIcon(image);
 	}
 
 }

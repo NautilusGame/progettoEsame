@@ -97,7 +97,6 @@ public class Template extends JPanel {
 		} 
 		catch (IOException ex) 
 		{
-			this.addMessageToPanel(Message.getInstance().printErrorMsg("Immagine non trovata"));
 		}
 
 
