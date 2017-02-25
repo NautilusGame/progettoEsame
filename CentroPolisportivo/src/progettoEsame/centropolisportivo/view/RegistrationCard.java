@@ -67,6 +67,7 @@ public class RegistrationCard extends JPanel
 	private JLabel titlePanel;
 	private JLabel newReviewLabel;
 	private JLabel msg;
+	private JLabel infoMsg;
 	
 	private JTextArea infoActivity;
 	private JTextArea newTextReview;
@@ -112,6 +113,7 @@ public class RegistrationCard extends JPanel
 		this.titlePanel = new JLabel("Registration");
 		this.newReviewLabel = new JLabel(ConstantClass.LABEL_NEW_REVIEW);
 		this.msg=new JLabel("");
+		this.infoMsg=new JLabel(ConstantClass.SELECT_MULTIPLE_SCHEDULES);
 		
 		this.infoActivity = new JTextArea("");		
 		this.newTextReview= new JTextArea("");
@@ -235,10 +237,15 @@ public class RegistrationCard extends JPanel
 		this.gbc.gridx = 2;
 		this.gbc.gridy = 5;
 		this.descriptionPanel.add(this.schedulesList,gbc);
+		
+		//messaggio informativo
+		this.gbc.gridx = 0;
+		this.gbc.gridy = 6;
+		this.descriptionPanel.add(this.infoMsg,gbc);
 
 		//bottone per la registreazione
 		this.gbc.gridx = 2;
-		this.gbc.gridy = 6;
+		this.gbc.gridy = 7;
 		this.descriptionPanel.add(this.next,gbc);
 		
 		//isnerimento dell'immagine
@@ -249,7 +256,7 @@ public class RegistrationCard extends JPanel
 		
 		//bottone per mostrare le recensioni
 		this.gbc.gridx = 0;
-		this.gbc.gridy = 6;
+		this.gbc.gridy = 7;
 		this.gbc.insets = new Insets(20,0,10,0); //padding dell'elemento
 		this.descriptionPanel.add(this.showReviews,gbc);		
 		

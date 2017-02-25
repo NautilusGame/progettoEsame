@@ -25,7 +25,7 @@ import javax.swing.JRadioButton;
 import javax.swing.JTextField;
 import com.toedter.calendar.JCalendar;
 import progettoEsame.centropolisportivo.view.actionListener.LoginRegisterActionListener;
-import progettoEsame.centropolisportivo.view.actionListener.LoginRegisterFocusListener;
+import progettoEsame.centropolisportivo.view.actionListener.LoginRegisterController;
 import progettoEsame.centropolisportivo.view.actionListener.LoginRegisterMouseListener;
 
 public class LoginRegister extends JPanel{
@@ -98,7 +98,6 @@ public class LoginRegister extends JPanel{
 		this.registerLabel = new JLabel(REGISTER_LABEL_TEXT);
 		this.msg = new JLabel();
 		
-		this.usernameLogin.setText(DEFAULT_TEXT_USERNAME_FIELD);//settaggio testo di default
 		
 		this.usernameLogin.setForeground(Color.GRAY);
 		this.passwordLogin.setForeground(Color.GRAY);
@@ -116,9 +115,6 @@ public class LoginRegister extends JPanel{
 		this.registerLabel.setFont(font.deriveFont(attributes));//sottolinea label di registrazione(come se fosse un link)
 		
 		this.registerLabel.addMouseListener(new LoginRegisterMouseListener(this));
-		this.usernameLogin.addFocusListener(new LoginRegisterFocusListener(this));
-		this.passwordLogin.addFocusListener(new LoginRegisterFocusListener(this));
-		
 		
 		//inizio aggiunta dei componenti con settaggio del vincolo del gridBagLayout
 		
@@ -198,13 +194,6 @@ public class LoginRegister extends JPanel{
 		this.phoneNumberRegister.setForeground(Color.GRAY);//setting del colore delle JTextField
 		
 		
-		//this.passwordRegister.setText(DEFAULT_TEXT_PASSWORD_FIELD);
-		this.emailRegister.setText(DEFAULT_TEXT_EMAIL_FIELD);
-		this.nameRegister.setText(DEFAULT_TEXT_NAME_FIELD);
-		this.phoneNumberRegister.setText(DEFAULT_TEXT_P_N_FIELD);
-		this.surnameRegister.setText(DEFAULT_TEXT_SURNAME_FIELD);
-		//this.confirmPasswordRegister.setText(DEFAULT_TEXT_CONF_PASSWORD_FIELD);//settaggio del testo di default delle JTextField
-		
 		
 		this.loginLabel.setName(LOGIN_BUTTON_NAME);
 		this.passwordRegister.setName(PASSWORD_REGISTER_TEXT_FIELD_NAME);
@@ -224,12 +213,6 @@ public class LoginRegister extends JPanel{
 		this.register.addActionListener(new LoginRegisterActionListener(this,this.mf));
 		this.registeredUser.addActionListener(new LoginRegisterActionListener(this,this.mf));
 		this.trainerUser.addActionListener(new LoginRegisterActionListener(this,this.mf));
-		this.passwordRegister.addFocusListener(new LoginRegisterFocusListener(this));
-		this.emailRegister.addFocusListener(new LoginRegisterFocusListener(this));
-		this.nameRegister.addFocusListener(new LoginRegisterFocusListener(this));
-		this.surnameRegister.addFocusListener(new LoginRegisterFocusListener(this));
-		this.confirmPasswordRegister.addFocusListener(new LoginRegisterFocusListener(this));
-		this.phoneNumberRegister.addFocusListener(new LoginRegisterFocusListener(this)); //settaggio dei listener
 		
 		this.register.setActionCommand(REGISTER_BUTTON_ACTION_CMD);
 		this.registeredUser.setActionCommand(MEMBER_RADIOBUTTON_ACTION_CMD);
@@ -423,9 +406,14 @@ public class LoginRegister extends JPanel{
 		registerData.add(this.phoneNumberRegister.getText());//4
 		registerData.add(this.emailRegister.getText());//5
 		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
-		registerData.add(sdf.format(this.dataPicker.getDate().getTime()));//6
-		registerData.add(this.userType.getSelection().getActionCommand());//7
-		return registerData;
+		if(!LoginRegisterController.getInstance().checkDate(this.dataPicker.getDate()))
+		{
+			registerData.add(sdf.format(this.dataPicker.getDate().getTime()));//6
+			registerData.add(this.userType.getSelection().getActionCommand());//7
+			return registerData;
+		}
+		
+		return null;
 	}
 	
 	public void addMessageToPanel(JLabel msg)

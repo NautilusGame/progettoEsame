@@ -25,7 +25,14 @@ public class AddScheduleMouseListener implements MouseListener {
 			JLabel tmp = (JLabel)arg0.getSource();
 			if(tmp.getName().equals(ADD_SCHEDULE_SCHEDULE_IMAGE_NAME))
 			{
-				addSchedulePanel.makeScheduleSectionVisible();
+				if(addSchedulePanel.isScheduleSectionVisible())
+				{
+					addSchedulePanel.makeScheduleSectionInvisible();
+				}
+				else
+				{
+					addSchedulePanel.makeScheduleSectionVisible();
+				}
 			}
 		}
 		else
@@ -36,11 +43,9 @@ public class AddScheduleMouseListener implements MouseListener {
 				for(int i = 0;i<listContent.size();i++)
 				{
 					String newSelectedSchedule = addSchedulePanel.getSelectedItem();
-					System.out.println(newSelectedSchedule);
 					if(newSelectedSchedule.equals(listContent.get(i)))
 					{
 						addSchedulePanel.removeScheduleFromList(i);
-						System.out.println(i);
 					} 
 				}
 			}

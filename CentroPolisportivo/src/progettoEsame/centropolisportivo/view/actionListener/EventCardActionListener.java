@@ -24,7 +24,6 @@ public class EventCardActionListener implements ActionListener {
 	@Override
 	public void actionPerformed(ActionEvent e) 
 	{
-		System.out.println("ciao");
 			this.template.removePage();
 			RegisterToEvent rte = new RegisterToEvent(this.ec.getIdEvent());
 			this.template.setPage(rte);

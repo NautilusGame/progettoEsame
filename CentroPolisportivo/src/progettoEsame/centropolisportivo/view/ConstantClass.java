@@ -41,9 +41,11 @@ public final class ConstantClass {
 	public static final String REGISTER_BUTTON_ACTION_CMD = "RegisterButton";
 	public static final String LOGIN_DATA_INCOMPLETED_EXCEPTION = "Login data must be completed";
 	public static final String REGISTER_DATA_INCOMPLETED_MSG = "All data must be completed";
+	public static final String REGISTER_DATA_INVALID_DATA = "You have to insert a valid date";
 	public static final String REGISTER_PASSWORD_NOT_EQUALS_MSG = "Password are not equals";
-	public static final String NO_REGISTRATION_PROPOSAL = "There are any propose now...";
-
+	public static final String NO_ACTIVITY= "There are any activity now..";
+	public static final String NO_EVENT= "There are any event now..";
+	public static final String NO_REGISTRATION_PROPOSAL= "There are any proposal now...";
 	//costanti per il template
 	public static final String PROFILE_ACTION_CMD = "profilePanel";
 	public static final String FLYER_ACTION_CMD = "flyerPanel";
@@ -177,6 +179,7 @@ public final class ConstantClass {
 	public static final String SUCCESS_INSERT_REVIEW ="You wrote a new review!";
 	public static final String ERROR_TO_INSERT_REVIEW = "You already wrote areview";
 	public static final String NO_REVIEWS = "No reviews";
+	public static final String SELECT_MULTIPLE_SCHEDULES = "If you want to select more schedule, use CTRL.";
 	// add event//
 
 	public static final String ADD_EVENT_NAME_EVENT_LABEL = "Event name";

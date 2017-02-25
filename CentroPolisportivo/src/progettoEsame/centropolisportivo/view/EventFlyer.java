@@ -1,6 +1,5 @@
 package progettoEsame.centropolisportivo.view;
 
-import static progettoEsame.centropolisportivo.view.ConstantClass.NO_REGISTRATION_PROPOSAL;
 
 import java.awt.Dimension;
 import java.awt.GridBagConstraints;
@@ -38,7 +37,7 @@ public class EventFlyer extends JPanel{
 			this.allEvent = EventCardController.getInstance().getAllEventCard();
 			if(allEvent.size() == 0)
 			{
-				JLabel none = new JLabel(NO_REGISTRATION_PROPOSAL);
+				JLabel none = new JLabel(ConstantClass.NO_EVENT);
 				none.setSize(new Dimension(75, 100));
 				this.add(none);
 			}

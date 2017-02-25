@@ -1,5 +1,6 @@
 package progettoEsame.centropolisportivo.view;
 
+import java.awt.BorderLayout;
 import java.awt.FlowLayout;
 import java.awt.Font;
 import java.awt.GridBagConstraints;
@@ -51,17 +52,24 @@ public class AddSchedule extends JPanel{
 	private JPanel mainSection;
 	private JButton insertButton;
 	private int activityID;
+	private JPanel mainPanel;
+	private JScrollPane mainScrollPane;
 	public AddSchedule(int activityId)
 	{
+		this.mainPanel = new JPanel();
+		this.mainPanel.setLayout(new BoxLayout(this.mainPanel, BoxLayout.Y_AXIS));
+		this.mainScrollPane = new JScrollPane();
+		this.mainScrollPane.setViewportView(this.mainPanel);
+		this.mainScrollPane.setBorder(null);
+		this.setLayout(new BorderLayout());
 		this.activityID = activityId;
-		this.setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
 		this.mainSection = new JPanel();
 		this.mainSection.setLayout(new GridBagLayout());
 		this.fillDayNameArray();
 		this.fillScheduleArray();
 		this.scheduleSection = new JPanel();
+		this.scheduleSection.setLayout(new BoxLayout(this.scheduleSection, BoxLayout.Y_AXIS));
 		this.insertButton = new JButton(ADD_SCHEDULE_INSERT_BUTTON);
-		this.scheduleSection.setLayout(new FlowLayout());
 		this.gbc = new GridBagConstraints();
 		this.scheduleTable = new JTable(schedule, dayName);
 		this.scheduleTable.setModel(new ScheduleTableModel(schedule,dayName));
@@ -134,8 +142,9 @@ public class AddSchedule extends JPanel{
 		gbc.gridx = 0;
 		gbc.gridy = 6;
 		this.mainSection.add(this.scheduleImg, gbc);
-		this.add(mainSection);
-		this.add(this.scheduleSection);
+		this.mainPanel.add(mainSection);
+		this.mainPanel.add(this.scheduleSection);
+		this.add(mainScrollPane,BorderLayout.CENTER);
 
 
 	}
@@ -245,8 +254,22 @@ public class AddSchedule extends JPanel{
 		
 	}
 	
+
+	public void makeScheduleSectionInvisible()
+	{
+		this.scheduleSection.setVisible(false);
+		this.revalidate();
+		this.repaint();
+		
+	}
+	
 	public int getActivityID()
 	{
 		return this.activityID;
+	}
+	
+	public boolean isScheduleSectionVisible()
+	{
+		return this.scheduleSection.isVisible();
 	}
 }

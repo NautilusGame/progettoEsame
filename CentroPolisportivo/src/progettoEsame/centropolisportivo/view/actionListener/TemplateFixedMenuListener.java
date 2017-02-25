@@ -10,6 +10,7 @@ import java.awt.event.ActionListener;
 
 import progettoEsame.centropolisportivo.business.Session;
 import progettoEsame.centropolisportivo.view.ActivityFlyer;
+import progettoEsame.centropolisportivo.view.Documentation;
 import progettoEsame.centropolisportivo.view.Flyer;
 import progettoEsame.centropolisportivo.view.LoginRegister;
 import progettoEsame.centropolisportivo.view.MainFrame;
@@ -59,7 +60,8 @@ public class TemplateFixedMenuListener implements ActionListener {
 		else if(e.getActionCommand().equals(INFO_ACTION_CMD))
 		{
 			this.template.removePage();
-			//Inserisci qui la nuova pagina
+			Documentation doc=new Documentation();
+			this.template.setPage(doc);
 			this.template.revalidate();
 			this.template.repaint();
 		}

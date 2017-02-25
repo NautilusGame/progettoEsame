@@ -154,7 +154,7 @@ public class PaymentView extends JPanel{
 	public void addMessageToPanel(JLabel msg)
 	{
 		this.msg = msg;
-		this.gbc.gridx = 1;
+		this.gbc.gridx = 0;
 		this.gbc.gridy = 6;
 		this.add(this.msg,gbc);
 		this.revalidate();
@@ -164,7 +164,7 @@ public class PaymentView extends JPanel{
 	public void removeMessageToPanel()
 	{
 
-		gbc.gridx = 1;
+		gbc.gridx = 0;
 		gbc.gridy = 6;
 		this.remove(this.msg);
 		this.revalidate();
@@ -231,5 +231,17 @@ public class PaymentView extends JPanel{
 	public String getTypology()
 	{
 		return this.typology;
+	}
+	
+	public void returnToRegistrationView(Object registrationView)
+	{
+		if(this.typology.equals("Event"))
+		{
+			((RegisterToEvent)registrationView).makeVisibleMainPanel();
+		}
+		else
+		{
+			((RegistrationCard)registrationView).hidePaymentPanel();
+		}
 	}
 }

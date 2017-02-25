@@ -40,6 +40,7 @@ public class PaymentActionListener implements ActionListener {
 			if(paymentViewPanel.getSelectedType().equals("Cash"))
 			{
 				this.paymentViewPanel.makeInvisibleCardNumber();
+				paymentViewPanel.setIcon(paymentViewPanel.getSelectedType());
 			}
 			else
 			{
@@ -60,13 +61,16 @@ public class PaymentActionListener implements ActionListener {
 			{
 				this.paymentViewPanel.addMessageToPanel(Message.getInstance().printErrorMsg(PAYMENT_CARD_NUMBER_CIPHER));
 			}
+			else
+			{
+				paymentViewPanel.makeInvisibleMainPanel();
+			}
 
-			paymentViewPanel.makeInvisibleMainPanel();
 
 		}
 		if(arg0.getActionCommand().equals(PAYMENT_CARD_YES_BUTTON_ACTION_CMD))
 		{
-			paymentViewPanel.makeVisibleMainPanel();
+			paymentViewPanel.returnToRegistrationView(registrationPanel);
 			try {
 				if(paymentViewPanel.getTypology().equals("Activity"))
 				{

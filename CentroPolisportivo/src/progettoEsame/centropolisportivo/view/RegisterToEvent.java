@@ -235,6 +235,8 @@ public class RegisterToEvent extends JPanel {
 		this.mainPanel.setVisible(false);
 		this.paymentPanel.add(new PaymentView(amount,id,"Event",this));
 		this.paymentPanel.setVisible(true);
+		this.revalidate();
+		this.repaint();
 	}
 	
 
@@ -243,6 +245,8 @@ public class RegisterToEvent extends JPanel {
 		this.mainPanel.setVisible(true);
 		this.remove(this.paymentPanel);
 		this.paymentPanel.setVisible(false);
+		this.revalidate();
+		this.repaint();
 	}
 
 }

@@ -66,6 +66,9 @@ public class AcceptRegistrationProposalController {
 					gbc.gridx = 0;
 					gbc.gridy = 1;
 					tmpPanel.add(new JLabel("Email: " + tmpUnconfirmedMember.get(i).getEmail()),gbc);
+					gbc.gridx = 1;
+					gbc.gridy = 1;
+					tmpPanel.add(new JLabel("Type: Member"),gbc);
 					gbc.gridx = 2;
 					gbc.gridy = 0;
 					gbc.insets = new Insets(4, 10, 0, 0);
@@ -103,6 +106,9 @@ public class AcceptRegistrationProposalController {
 					gbc.gridx = 0;
 					gbc.gridy = 1;
 					tmpPanel.add(new JLabel("Email: " + tmpUnconfirmedTrainer.get(i).getEmail()),gbc);
+					gbc.gridx = 1;
+					gbc.gridy = 1;
+					tmpPanel.add(new JLabel("Type: Trainer"),gbc);
 					gbc.gridx = 2;
 					gbc.gridy = 0;
 					gbc.insets = new Insets(4, 10, 0, 0);
