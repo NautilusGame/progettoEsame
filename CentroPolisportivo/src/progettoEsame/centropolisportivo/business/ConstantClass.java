@@ -19,6 +19,7 @@ public final class ConstantClass {
 	public static final String DECLINE_BUTTON_TRAINER_NAME = "DeclineTrainer";
 	public static final String LEVEL_NAME_YET_EXIST = "The same level was already added";
 	public static final String WAIT_TO_BE_ACCEPTED = "You are not still been accepted";
+	public static final String YOU_ARE_REFUSED = "Center manager has refused your registration";
 	public static final String ROOM_IS_PRESENT= "the room has already been added";
 	public static final String ACTIVITY_TYPE_IS_PRESENT= "Activity type has already been added";
 

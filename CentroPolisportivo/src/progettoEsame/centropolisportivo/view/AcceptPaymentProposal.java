@@ -14,6 +14,7 @@ import javax.swing.JScrollPane;
 import javax.swing.ScrollPaneLayout;
 
 import progettoEsame.centropolisportivo.view.actionListener.AcceptPaymentController;
+import progettoEsame.centropolisportivo.view.actionListener.AcceptRegistrationProposalController;
 
 public class AcceptPaymentProposal extends JPanel {
 
@@ -61,7 +62,13 @@ public class AcceptPaymentProposal extends JPanel {
 			this.add(scrollPane);
 		}
 	}
-	
+	public void updateUnconfirmedUser()
+	{
+		this.unconfirmedUsers = AcceptPaymentController.getInstance().getUnconfirmedPayment(this);
+		this.paintPanel();
+		this.revalidate();
+		this.repaint();
+	}
 	public void addMessageToPanel(JLabel msg)
 	{
 		this.msg = msg;

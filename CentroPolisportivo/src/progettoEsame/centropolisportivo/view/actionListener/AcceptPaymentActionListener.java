@@ -30,10 +30,11 @@ public class AcceptPaymentActionListener implements ActionListener {
 			Payment newPayment;
 			try {
 				newPayment = PaymentBusiness.getInstance().findById(Integer.parseInt(arg0.getActionCommand()));
-				System.out.println(newPayment.getId());
 				newPayment.setCenterManager(CenterManagerBusiness.getInstance().findByEmail(Session.getInstance().getEmail()));
 				newPayment.setConfirmed(1);
 				Payment.update(newPayment);
+				this.acceptPaymentPanel.updateUnconfirmedUser();
+				this.acceptPaymentPanel.paintPanel();
 			} catch (NumberFormatException | SQLException | SessionException e) {
 				e.printStackTrace();
 				this.acceptPaymentPanel.removeMessageToPanel();
@@ -49,6 +50,8 @@ public class AcceptPaymentActionListener implements ActionListener {
 				newPayment.setCenterManager(CenterManagerBusiness.getInstance().findByEmail(Session.getInstance().getEmail()));
 				newPayment.setConfirmed(2);
 				Payment.update(newPayment);
+				this.acceptPaymentPanel.updateUnconfirmedUser();
+				this.acceptPaymentPanel.paintPanel();
 			} catch (NumberFormatException | SQLException | SessionException e) {
 				this.acceptPaymentPanel.removeMessageToPanel();
 				this.acceptPaymentPanel.addMessageToPanel(Message.getInstance().printErrorMsg(ACCEPT_PAYMENT_PROPOSAL_DB_ERROR));

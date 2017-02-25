@@ -24,43 +24,7 @@ public class RegistrationBusiness {
 		return instance;
 	}
 
-	public Boolean checkMemberDataRegistration(Member member)throws RegistrationException,SQLException
-	{
-		if(this.checkIfOtherEmailExist(member.getEmail()))
-		{
-			throw new RegistrationException(EMAIL_REGISTRATION_ERROR_MSG);
-		}
-		member.setPassword(MD5.getMD5(member.getPassword()));
-		Member.insert(member);
-		Session.getInstance().createSession(member.getEmail(),"member");
-		return true;
-	}
-
-	public Boolean checkTrainerDataRegistration(Trainer trainer)throws RegistrationException,SQLException
-	{
-		if(this.checkIfOtherEmailExist(trainer.getEmail()))
-		{
-			throw new RegistrationException(EMAIL_REGISTRATION_ERROR_MSG);
-		}
-		trainer.setPassword(MD5.getMD5(trainer.getPassword()));
-		Trainer.insert(trainer);
-		Session.getInstance().createSession(trainer.getEmail(),"trainer");
-		return true;
-	}
 	
-	private boolean checkIfOtherEmailExist(String email)throws SQLException
-	{
-		Trainer tmpTrainer = Trainer.findByEmail(email);
-		Member tmpMember = Member.findByEmail(email);
-		CenterManager tmpCenterManager = CenterManager.findByEmail(email);
-		if(tmpTrainer != null)
-			return true;
-		if(tmpMember != null)
-			return true;
-		if(tmpCenterManager != null)
-			return true;
-		return false;
-	}
 	
 	public void insert(Registration newRegistration) throws SQLException
 	{

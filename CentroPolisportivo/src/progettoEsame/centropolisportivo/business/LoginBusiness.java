@@ -29,8 +29,10 @@ public class LoginBusiness {
 			{
 				if(member.getConfirmed()==1)
 					Session.getInstance().createSession(email,"member");
-				else 
+				else if(member.getConfirmed() == 0)
 					throw new LoginException(ConstantClass.WAIT_TO_BE_ACCEPTED);
+				else
+					throw new LoginException(ConstantClass.YOU_ARE_REFUSED);
 			}
 			else 
 				throw new LoginException(ConstantClass.ERROR_DIFFERENT_PASSWORD);
@@ -52,8 +54,10 @@ public class LoginBusiness {
 			{
 				if(trainer.isConfirmed()==1)
 					Session.getInstance().createSession(email,"trainer");
-				else 
+				else if(trainer.isConfirmed() == 0)
 					throw new LoginException(ConstantClass.WAIT_TO_BE_ACCEPTED);
+				else
+					throw new LoginException(ConstantClass.YOU_ARE_REFUSED);
 			}
 			else throw new LoginException(ConstantClass.ERROR_DIFFERENT_PASSWORD);
 		}

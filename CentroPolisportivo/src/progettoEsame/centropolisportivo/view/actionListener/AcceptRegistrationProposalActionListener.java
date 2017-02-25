@@ -47,6 +47,7 @@ public class AcceptRegistrationProposalActionListener implements ActionListener 
 				newMember.setConfirmed(2);
 				newMember.setCenterManager(CenterManager.findByEmail(SessionCheck.getInstance().getEmail()));
 				Member.update(newMember);
+				cmrpPanel.updateUnconfirmedUser();
 				cmrpPanel.paintPanel();
 			} catch (SQLException | SessionException e1) {
 				e1.printStackTrace();
@@ -60,6 +61,7 @@ public class AcceptRegistrationProposalActionListener implements ActionListener 
 				newTrainer.setConfirmed(1);
 				newTrainer.setCenterManager(CenterManager.findByEmail(SessionCheck.getInstance().getEmail()));
 				Trainer.update(newTrainer);
+				cmrpPanel.updateUnconfirmedUser();
 				cmrpPanel.paintPanel();
 			} catch (SQLException | SessionException e1) {
 				e1.printStackTrace();
@@ -73,6 +75,7 @@ public class AcceptRegistrationProposalActionListener implements ActionListener 
 				newTrainer.setConfirmed(2);
 				newTrainer.setCenterManager(CenterManager.findByEmail(SessionCheck.getInstance().getEmail()));
 				Trainer.update(newTrainer);
+				cmrpPanel.updateUnconfirmedUser();
 				cmrpPanel.paintPanel();
 			} catch (SQLException | SessionException e1) {
 				e1.printStackTrace();

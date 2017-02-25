@@ -11,6 +11,7 @@ import java.util.ArrayList;
 import javax.swing.BoxLayout;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
+import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 
@@ -150,13 +151,12 @@ public class RegistrationPanelController {
 	public JPanel getPDFsubscription()
 	{
 		JPanel returnPanel = new JPanel();
+		returnPanel.setSize(new Dimension(300, 350));
 		returnPanel.setLayout(new BoxLayout(returnPanel, BoxLayout.Y_AXIS));
 		try {
 			String memberEmail = Session.getInstance().getEmail();
-			this.registrations = RegistrationDAO.getInstance().getAllRegisteredRegistration2(memberEmail);
+			this.registrations = RegistrationDAO.getInstance().getAllRegisteredRegistration(memberEmail);
 			for(int i = 0;i<registrations.size();i++)
-				System.out.println(registrations.get(i).getId());
-			/*for(int i = 0;i<registrations.size();i++)
 			{
 				JPanel tmpPanel = new JPanel(new GridBagLayout());
 				GridBagConstraints gbc = new GridBagConstraints();
@@ -243,11 +243,12 @@ public class RegistrationPanelController {
 					ArrayList<RegistrationCalendar> registrationCalendar = RegistrationCalendarBusiness.getInstance().findByRegistrationId(registrations.get(i).getId());
 					if(registrationCalendar !=null)
 					{
+						System.out.println("Registration Calendar size : " + registrationCalendar.size());
 						for(int j = 0;j<registrationCalendar.size();j++)
 						{
 							JPanel tmpSchedulePanel = new JPanel();
-							tmpSchedulePanel.setLayout(new GridLayout(1, 1));
-							Schedule tmpSchedule = ScheduleBusiness.getInstance().findById(registrationCalendar.get(i).getSchedule().getId());
+							tmpSchedulePanel.setLayout(new GridLayout(registrationCalendar.size(), 1));
+							Schedule tmpSchedule = ScheduleBusiness.getInstance().findById(registrationCalendar.get(j).getSchedule().getId());
 							tmpSchedulePanel.add(new JLabel("Day :" + tmpSchedule.getDay()));
 							tmpSchedulePanel.add(new JLabel("Time :" + tmpSchedule.getTime()));
 							schedulePanel.add(tmpSchedulePanel);
@@ -259,7 +260,7 @@ public class RegistrationPanelController {
 				}
 
 				returnPanel.add(tmpPanel);
-			}*/
+			}
 		} catch (SQLException | SessionException e) {
 
 			e.printStackTrace();

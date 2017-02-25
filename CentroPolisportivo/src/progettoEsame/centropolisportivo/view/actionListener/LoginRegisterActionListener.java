@@ -12,6 +12,7 @@ import java.util.ArrayList;
 import progettoEsame.centropolisportivo.business.ConstantClass;
 import progettoEsame.centropolisportivo.business.LoginBusiness;
 import progettoEsame.centropolisportivo.business.RegistrationBusiness;
+import progettoEsame.centropolisportivo.business.RegistrationToSystemBusiness;
 import progettoEsame.centropolisportivo.business.Session;
 import progettoEsame.centropolisportivo.exception.LoginException;
 import progettoEsame.centropolisportivo.exception.RegistrationException;
@@ -96,7 +97,7 @@ public class LoginRegisterActionListener implements ActionListener
 				{
 					Trainer newTrainer = new Trainer(registerData.get(5), new CenterManager(), registerData.get(2),registerData.get(1), registerData.get(0),registerData.get(4), 0);
 					try {
-						if(RegistrationBusiness.getInstance().checkTrainerDataRegistration(newTrainer))
+						if(RegistrationToSystemBusiness.getInstance().checkTrainerDataRegistration(newTrainer))
 						{
 							lrview.removeMessageToPanel();
 							lrview.addMessageToPanel(Message.getInstance().printSuccessMsg(SUCCES_REGISTRATION_MSG));
@@ -111,7 +112,7 @@ public class LoginRegisterActionListener implements ActionListener
 					CenterManager cm = new CenterManager();
 					Member newMember = new Member(registerData.get(5), cm, registerData.get(1), registerData.get(0),Date.valueOf(registerData.get(6)), registerData.get(2), 0);
 					try {
-						if(RegistrationBusiness.getInstance().checkMemberDataRegistration(newMember))
+						if(RegistrationToSystemBusiness.getInstance().checkMemberDataRegistration(newMember))
 						{
 							lrview.removeMessageToPanel();
 							lrview.addMessageToPanel(Message.getInstance().printSuccessMsg(SUCCES_REGISTRATION_MSG));

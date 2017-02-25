@@ -94,6 +94,10 @@ public class ConfirmAlterRegistrationCard extends JPanel
 		this.add(this.deny,gbc);				
 	}
 	
+	public void paintPanel()
+	{
+		
+	}
 	public int getId()
 	{
 		return idTempAlter;
