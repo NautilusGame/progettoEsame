@@ -80,7 +80,7 @@ public class AddNewLevel extends JPanel{
 	public void addMessageToPanel(JLabel msg)
 	{
 		this.msg = msg;
-		gbc.gridx = 0;
+		gbc.gridx = 1;
 		gbc.gridy = 4;
 		this.mainPanel.add(msg,gbc);
 		this.revalidate();
@@ -90,7 +90,7 @@ public class AddNewLevel extends JPanel{
 	public void removeMessageToPanel()
 	{
 
-		gbc.gridx = 0;
+		gbc.gridx = 1;
 		gbc.gridy = 4;
 		this.mainPanel.remove(this.msg);
 		this.revalidate();

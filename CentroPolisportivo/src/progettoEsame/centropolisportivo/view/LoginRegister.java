@@ -53,6 +53,8 @@ public class LoginRegister extends JPanel{
 	private JLabel emailLabel; //label email nel pannello registrazione
 	private JLabel registerLabel; //label CLICCABILE che permette di switchare nel pannello di registrazione
 	private JLabel loginLabel; //label CLICCABILE che permette di switchare nel pannello di login
+	private JLabel returnLabel1;  
+	private JLabel returnLabel2; 
 	private JLabel nameLabel; //label nome utente nel pannello di registrazione
 	private JLabel surnameLabel; //label cognome nel pannello di registrazione
 	private JLabel birthdayLabel; //...
@@ -96,14 +98,20 @@ public class LoginRegister extends JPanel{
 		this.emailLabel = new JLabel(EMAIL_LABEL_TEXT);
 		this.passwordLabel = new JLabel(PASSWORD_LABEL_TEXT);
 		this.registerLabel = new JLabel(REGISTER_LABEL_TEXT);
+		this.returnLabel1 = new JLabel(RETURN_LABEL_TEXT);
+		this.returnLabel2 = new JLabel(RETURN_LABEL_TEXT);
 		this.msg = new JLabel();
 		
 		
 		this.usernameLogin.setForeground(Color.GRAY);
 		this.passwordLogin.setForeground(Color.GRAY);
+		this.returnLabel1.setForeground(Color.GRAY);
+		this.returnLabel2.setForeground(Color.GRAY);
 		this.registerLabel.setForeground(Color.GRAY);//settaggio colore
 		
 		this.registerLabel.setName(REGISTER_BUTTON_NAME);
+		this.returnLabel1.setName(RETURN_BUTTON_NAME);
+		this.returnLabel2.setName(RETURN_BUTTON_NAME);
 		this.usernameLogin.setName(USERNAME_LOGIN_TEXT_FIELD_NAME);
 		this.passwordLogin.setName(PASSWORD_LOGIN_TEXT_FIELD_NAME);//settaggio nomi dei componeneti, utile per gestione nel controller
 		
@@ -113,7 +121,11 @@ public class LoginRegister extends JPanel{
 		Map attributes = font.getAttributes();
 		attributes.put(TextAttribute.UNDERLINE, TextAttribute.UNDERLINE_ON);
 		this.registerLabel.setFont(font.deriveFont(attributes));//sottolinea label di registrazione(come se fosse un link)
-		
+		this.returnLabel1.setFont(font.deriveFont(attributes));
+		this.returnLabel1.addMouseListener(new LoginRegisterMouseListener(this));
+		this.returnLabel2.setFont(font.deriveFont(attributes));
+		this.returnLabel2.addMouseListener(new LoginRegisterMouseListener(this));
+		this.returnLabel1.addMouseListener(new LoginRegisterMouseListener(this));
 		this.registerLabel.addMouseListener(new LoginRegisterMouseListener(this));
 		
 		//inizio aggiunta dei componenti con settaggio del vincolo del gridBagLayout
@@ -153,6 +165,12 @@ public class LoginRegister extends JPanel{
 		this.gbc.insets = new Insets(35, 13, 0, 0);
 		this.gbc.gridwidth = GridBagConstraints.CENTER;
 		this.loginPanel.add(login,gbc);
+		
+		
+		this.gbc.gridx = 2;
+		this.gbc.gridy = 2;
+		this.gbc.insets = new Insets(35, 13, 5, 0);
+		this.loginPanel.add(returnLabel1,gbc);
 
 		//aggiunta del pannello login al "this"
 		this.add(loginPanel);
@@ -347,6 +365,14 @@ public class LoginRegister extends JPanel{
 		this.gbc.gridwidth = GridBagConstraints.CENTER;
 		this.registerPanel.add(loginLabel,gbc);
 		
+		
+		this.gbc.gridx = 2;
+		this.gbc.gridy = 8;
+		this.gbc.insets = new Insets(35, 13, 0, 0);
+		this.gbc.gridwidth = GridBagConstraints.CENTER;
+		this.registerPanel.add(returnLabel2,gbc);
+		
+		
 		this.makeRegisterPanelInvisible();//rende il pannello di registrazione invisibile
 		
 		
@@ -434,6 +460,11 @@ public class LoginRegister extends JPanel{
 		this.remove(this.msg);
 		this.revalidate();
 		this.repaint();
+	}
+	
+	public void comeBackToHome()
+	{
+		mf.paintFrame();
 	}
 	
 

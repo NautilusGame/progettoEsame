@@ -11,9 +11,18 @@ public class MainFrame extends JFrame {
 	
 	private LoginRegister loginRegisterPanel;
 	private AcceptRegistrationProposal centralManagerRegistrationProposal;
-	
+	private String title;
+	private Dimension d;
 	public MainFrame(String title,Dimension d)
 	{
+		this.title = title;
+		this.d= d;
+		this.paintFrame();
+	}
+	
+	public void paintFrame()
+	{
+
 		Template template = new Template(this);
 		DbConnection.connetti("sports_center", "root", "");
 		this.setTitle(title);

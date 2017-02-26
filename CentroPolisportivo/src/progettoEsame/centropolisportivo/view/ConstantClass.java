@@ -17,6 +17,7 @@ public final class ConstantClass {
 	public static final String PASSWORD_LABEL_TEXT = "Password";
 	public static final String EMAIL_LABEL_TEXT = "Email";
 	public static final String REGISTER_LABEL_TEXT = "Register";
+	public static final String RETURN_LABEL_TEXT = "Return";
 	public static final String NAME_LABEL_TEXT = "Name";
 	public static final String SURNAME_LABEL_TEXT = "Surname";
 	public static final String BIRTHDAY_LABEL_TEXT = "Birthday";
@@ -24,6 +25,7 @@ public final class ConstantClass {
 	public static final String CONFIRM_PASSWORD_LABEL_TEXT = "Confirm Password";
 	public static final String LOGIN_BUTTON_NAME = "LoginLabel";
 	public static final String REGISTER_BUTTON_NAME = "RegisterLabel";
+	public static final String RETURN_BUTTON_NAME = "ReturnLabel";
 	public static final String USERNAME_LOGIN_TEXT_FIELD_NAME = "UsernameLoginTextField";
 	public static final String PASSWORD_LOGIN_TEXT_FIELD_NAME = "PasswordLoginTextField";
 	public static final String USERNAME_REGISTER_TEXT_FIELD_NAME = "UsernameRegisterTextField";
