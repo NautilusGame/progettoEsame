@@ -1,12 +1,7 @@
 package progettoEsame.centropolisportivo.view.actionListener;
 
-import static progettoEsame.centropolisportivo.business.ConstantClass.SUCCES_LOGIN_MSG;
-
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.util.ArrayList;
-
-import progettoEsame.centropolisportivo.business.RegistrationActivityBusiness;
 import progettoEsame.centropolisportivo.business.ReviewBusiness;
 import progettoEsame.centropolisportivo.business.Session;
 import progettoEsame.centropolisportivo.view.ConstantClass;

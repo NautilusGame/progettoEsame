@@ -4,7 +4,6 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 
 import progettoEsame.centropolisportivo.dbConnection.DbConnection;
-import progettoEsame.centropolisportivo.model.Activity;
 import progettoEsame.centropolisportivo.model.Registration;
 import progettoEsame.centropolisportivo.model.RegistrationCalendar;
 import progettoEsame.centropolisportivo.model.Schedule;
@@ -100,7 +99,6 @@ public class RegistrationCalendarDAO {
 	public ArrayList<RegistrationCalendar> findCalendarByRegistrations(Integer id) throws SQLException
 	{
 		String query = "SELECT * FROM registration_calendar WHERE registration_id= "+id+" and temp_alter_registration_id IS NULL";
-		System.out.println(query);
 		ArrayList<String[]> result = DbConnection.getInstance().eseguiQuery(query);
 		ArrayList<RegistrationCalendar> allCalendarByTempAlterRegistration = new ArrayList<RegistrationCalendar>();
 		
@@ -124,7 +122,6 @@ public class RegistrationCalendarDAO {
 	public ArrayList<RegistrationCalendar> findByRegistrationId(Integer id) throws SQLException
 	{
 		String query = "SELECT * FROM registration_calendar WHERE registration_id= "+id+"";
-		System.out.println(query);
 		ArrayList<String[]> result = DbConnection.getInstance().eseguiQuery(query);
 		ArrayList<RegistrationCalendar> allCalendarByTempAlterRegistration = new ArrayList<RegistrationCalendar>();
 		

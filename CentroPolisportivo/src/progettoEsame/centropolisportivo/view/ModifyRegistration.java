@@ -5,7 +5,6 @@ import java.awt.GridBagLayout;
 import java.awt.GridLayout;
 import java.awt.Image;
 import java.util.ArrayList;
-
 import javax.swing.DefaultListModel;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
@@ -15,17 +14,16 @@ import javax.swing.JList;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.ListModel;
-
 import progettoEsame.centropolisportivo.model.Activity;
 import progettoEsame.centropolisportivo.model.Level;
 import progettoEsame.centropolisportivo.model.Registration;
 import progettoEsame.centropolisportivo.model.Schedule;
-import progettoEsame.centropolisportivo.model.TempAlterRegistration;
 import progettoEsame.centropolisportivo.view.actionListener.ModifyRegistrationActionListener;
 import progettoEsame.centropolisportivo.view.actionListener.ModifyRegistrationController;
 import static progettoEsame.centropolisportivo.view.ConstantClass.*;
 public class ModifyRegistration extends JPanel {
 
+	private static final long serialVersionUID = 1L;
 	private int id;
 	private ImageIcon activityImage;
 	private JLabel labelImage;
@@ -68,7 +66,7 @@ public class ModifyRegistration extends JPanel {
 		this.registrationCost = new JLabel("Cost: " + selectedRegistration.getCost());
 		this.activityImage = new ImageIcon(new ImageIcon(tmpActivity.getImagePath()).getImage().getScaledInstance(200, 200,Image.SCALE_DEFAULT));
 		this.labelImage.setIcon(activityImage);
-		DefaultListModel<String> listModel = (DefaultListModel)(schedule.getModel());
+		DefaultListModel<String> listModel = (DefaultListModel<String>)(schedule.getModel());
 		levelArray = ModifyRegistrationController.getInstance().getLevels();
 		scheduleArray = ModifyRegistrationController.getInstance().getSchedule(tmpActivity.getId());
 		for(int i = 0;i<levelArray.size();i++)
@@ -147,7 +145,7 @@ public class ModifyRegistration extends JPanel {
 	
 	public ArrayList<String> getSelectedSchedule()
 	{
-		ListModel model = schedule.getModel();
+		ListModel<String> model = schedule.getModel();
 		ArrayList<String> listContent = new ArrayList<>();
 		for(int i = 0;i<model.getSize();i++)
 		{

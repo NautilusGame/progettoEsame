@@ -29,13 +29,11 @@ public class ConfirmAlterRegistrationActionListener implements ActionListener
 				ConfirmAlterRegistrationBusiness.getInstance().updateRegistration(this.tar.getRegistration().getId(), this.tar.getLevel().getId());
 			}
 			catch (Exception ex) {
-				ex.printStackTrace();
 				// TODO: handle exception
 			}
 		}
 		else if(e.getActionCommand().equals(ConstantClass.DENY_BUTTON_CMD))
 		{
-			System.out.println(this.card.getId());
 			try
 			{
 				ConfirmAlterRegistrationBusiness.getInstance().deleteAlterCalendar(this.card.getId());
@@ -44,7 +42,6 @@ public class ConfirmAlterRegistrationActionListener implements ActionListener
 			}
 			catch (Exception ex) {
 				// TODO: handle exception
-				ex.printStackTrace();
 			}
 		}
 		

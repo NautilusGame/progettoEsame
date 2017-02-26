@@ -1,23 +1,16 @@
 package progettoEsame.centropolisportivo.view.actionListener;
 
 import java.awt.Color;
-import java.awt.Component;
 import java.awt.Dimension;
-import java.awt.Graphics;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.Insets;
 import java.sql.SQLException;
 import java.util.ArrayList;
-
 import javax.swing.BorderFactory;
 import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
-import javax.swing.JScrollPane;
-import javax.swing.ScrollPaneConstants;
-import javax.swing.border.Border;
-
 import progettoEsame.centropolisportivo.business.CenterManagerRegistrationProposalBusiness;
 import progettoEsame.centropolisportivo.model.Member;
 import progettoEsame.centropolisportivo.model.Trainer;
@@ -127,7 +120,6 @@ public class AcceptRegistrationProposalController {
 			}
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
-			e.printStackTrace();
 		}
 		return unconfirmedUsers;
 	}

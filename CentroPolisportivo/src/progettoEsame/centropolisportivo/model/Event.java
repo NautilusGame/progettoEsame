@@ -3,10 +3,7 @@ package progettoEsame.centropolisportivo.model;
 
 import java.sql.SQLException;
 import java.util.ArrayList;
-import java.util.Date;
-
 import progettoEsame.centropolisportivo.dao.EventDAO;
-import progettoEsame.centropolisportivo.dbConnection.DbConnection;
 
 
 /**

@@ -1,8 +1,6 @@
 package progettoEsame.centropolisportivo.view;
 
 import java.awt.BorderLayout;
-import java.awt.Component;
-import java.awt.FlowLayout;
 import java.awt.GridLayout;
 import java.awt.image.BufferedImage;
 import java.io.File;
@@ -14,10 +12,8 @@ import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
-import javax.swing.JScrollBar;
 import javax.swing.JScrollPane;
 
-import progettoEsame.centropolisportivo.business.Session;
 import progettoEsame.centropolisportivo.view.actionListener.SessionCheck;
 import progettoEsame.centropolisportivo.view.actionListener.TemplateActionListener;
 import progettoEsame.centropolisportivo.view.actionListener.TemplateFixedMenuListener;
@@ -26,6 +22,8 @@ import progettoEsame.centropolisportivo.view.actionListener.TemplateFixedMenuLis
 import static progettoEsame.centropolisportivo.view.ConstantClass.*;
 
 public class Template extends JPanel {
+
+	private static final long serialVersionUID = 1L;
 
 	private MainFrame mf;
 
@@ -291,7 +289,6 @@ public class Template extends JPanel {
 		}
 		catch(Exception e)
 		{
-			e.printStackTrace();
 		}
 	}
 

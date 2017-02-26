@@ -4,17 +4,10 @@ import static progettoEsame.centropolisportivo.view.ConstantClass.REGISTER_DATA_
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.sql.Date;
-import java.sql.SQLException;
 import java.util.ArrayList;
-
-import progettoEsame.centropolisportivo.business.MD5;
 import progettoEsame.centropolisportivo.business.Session;
 import progettoEsame.centropolisportivo.business.SettingsBusiness;
-import progettoEsame.centropolisportivo.exception.SessionException;
-import progettoEsame.centropolisportivo.model.Member;
 import progettoEsame.centropolisportivo.view.ConstantClass;
-import progettoEsame.centropolisportivo.view.MainFrame;
 import progettoEsame.centropolisportivo.view.Message;
 import progettoEsame.centropolisportivo.view.Settings;
 
@@ -23,14 +16,12 @@ public class SettingsActionListener implements ActionListener
 {
 
 	private Settings settings;
-	private MainFrame mf;
 	private boolean checkField;
 	private boolean checkPassword;
 	
-	public SettingsActionListener(Settings settings, MainFrame mf)
+	public SettingsActionListener(Settings settings)
 	{
 		this.settings=settings;
-		this.mf=mf;
 		this.checkField=true;
 		this.checkPassword=true;
 		
@@ -196,8 +187,7 @@ public class SettingsActionListener implements ActionListener
 					}
 					catch(Exception ex)
 					{
-					//TODO inserire stampa del messaggio di errore
-						System.out.println(ex.getMessage());
+						
 					}
 				}
 			}				

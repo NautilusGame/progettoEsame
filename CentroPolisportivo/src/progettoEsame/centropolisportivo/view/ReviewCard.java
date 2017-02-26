@@ -6,24 +6,17 @@ import java.awt.Dimension;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.Insets;
-import java.awt.image.BufferedImage;
-import java.io.File;
-import java.io.IOException;
 import java.util.ArrayList;
 
-import javax.imageio.ImageIO;
-import javax.swing.BorderFactory;
-import javax.swing.ImageIcon;
-import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTextArea;
 
-import progettoEsame.centropolisportivo.view.actionListener.ActivityCardActionListener;
 
 public class ReviewCard extends JPanel 
 {
+	private static final long serialVersionUID = 1L;
 	private JPanel descriptionPanel;
 	private JScrollPane scr;
 	

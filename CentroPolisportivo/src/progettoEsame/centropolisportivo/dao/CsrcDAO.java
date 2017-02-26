@@ -1,13 +1,9 @@
 package progettoEsame.centropolisportivo.dao;
 
 import java.sql.SQLException;
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Date;
 import progettoEsame.centropolisportivo.dbConnection.DbConnection;
 import progettoEsame.centropolisportivo.model.Csrc;
-import progettoEsame.centropolisportivo.model.Event;
 
 public class CsrcDAO  {
 

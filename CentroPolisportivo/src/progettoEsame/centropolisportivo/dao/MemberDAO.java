@@ -7,7 +7,6 @@ import java.util.ArrayList;
 import java.util.Date;
 import progettoEsame.centropolisportivo.dbConnection.DbConnection;
 import progettoEsame.centropolisportivo.model.Member;
-import progettoEsame.centropolisportivo.view.AcceptRegistrationProposal;
 
 public class MemberDAO {
 
@@ -56,7 +55,6 @@ public class MemberDAO {
 		}
 		catch(ParseException exception)
 		{
-			exception.printStackTrace();
 		}
 		member.setEmail(row[3]);
 		member.setPassword(row[4]);
@@ -89,7 +87,7 @@ public class MemberDAO {
 			}
 			catch(ParseException exception)
 			{
-				exception.printStackTrace();
+				
 			}
 			tmpMember.setEmail(row[3]);
 			tmpMember.setPassword(row[4]);

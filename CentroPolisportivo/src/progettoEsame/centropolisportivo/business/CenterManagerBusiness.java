@@ -1,12 +1,9 @@
 package progettoEsame.centropolisportivo.business;
 
 import java.sql.SQLException;
-import java.util.ArrayList;
 
 import progettoEsame.centropolisportivo.dao.CenterManagerDAO;
 import progettoEsame.centropolisportivo.model.CenterManager;
-import progettoEsame.centropolisportivo.model.Member;
-import progettoEsame.centropolisportivo.model.Trainer;
 
 public class CenterManagerBusiness {
 

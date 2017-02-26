@@ -2,8 +2,6 @@ package progettoEsame.centropolisportivo.business;
 
 import java.sql.SQLException;
 import java.util.ArrayList;
-
-import progettoEsame.centropolisportivo.dao.PaymentDAO;
 import progettoEsame.centropolisportivo.model.Payment;
 
 public class PaymentBusiness {

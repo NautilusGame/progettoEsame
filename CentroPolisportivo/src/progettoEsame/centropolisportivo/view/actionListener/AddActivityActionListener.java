@@ -54,7 +54,6 @@ public class AddActivityActionListener implements ActionListener {
 					addActivityPanel.removeMessageToPanel();
 					addActivityPanel.addMessageToPanel(Message.getInstance().printSuccessMsg(ADD_ACTIVITY_SUCCESS_MSG));
 				} catch (SQLException e1) {
-					e1.printStackTrace();
 					addActivityPanel.removeMessageToPanel();
 					addActivityPanel.addMessageToPanel(Message.getInstance().printErrorMsg(ADD_ACTIVITY_DB_ERROR));
 				}

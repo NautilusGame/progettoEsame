@@ -1,6 +1,5 @@
 package progettoEsame.centropolisportivo.business;
 
-import java.sql.Date;
 import java.sql.SQLException;
 import java.util.ArrayList;
 
@@ -54,7 +53,6 @@ public class RegistrationActivityBusiness
 		}
 		catch (Exception e) 
 		{
-			e.printStackTrace();
 		}
 		
 		try
@@ -64,7 +62,6 @@ public class RegistrationActivityBusiness
 		}
 		catch (Exception e) 
 		{
-			e.printStackTrace();
 			return false;
 		}
 		
@@ -85,7 +82,6 @@ public class RegistrationActivityBusiness
 			}
 			catch(Exception e)
 			{
-				e.printStackTrace();
 				return false;
 			}
 		}
@@ -98,7 +94,6 @@ public class RegistrationActivityBusiness
 			this.setIdRegistration(Registration.insertNewRegistration(newRegistration));
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
-			e.printStackTrace();
 		}
 	}
 	public void setIdRegistration(int id)

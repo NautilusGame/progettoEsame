@@ -3,13 +3,9 @@ package progettoEsame.centropolisportivo.view;
 import java.awt.Font;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
-import java.util.ArrayList;
-
 import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
-import javax.swing.JScrollPane;
-import javax.swing.JTextArea;
 import javax.swing.JTextField;
 
 import progettoEsame.centropolisportivo.view.actionListener.AddActivityTypeActionListener;
@@ -17,6 +13,7 @@ import progettoEsame.centropolisportivo.view.actionListener.AddActivityTypeActio
 import static progettoEsame.centropolisportivo.view.ConstantClass.*;
 public class AddActivityType extends JPanel {
 
+	private static final long serialVersionUID = 1L;
 	private JLabel titlePage;
 	private JLabel activityTypeNameLabel;
 	private JLabel msg;

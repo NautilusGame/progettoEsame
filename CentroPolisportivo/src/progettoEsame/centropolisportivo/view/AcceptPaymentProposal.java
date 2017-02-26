@@ -14,11 +14,10 @@ import javax.swing.JScrollPane;
 import javax.swing.ScrollPaneLayout;
 
 import progettoEsame.centropolisportivo.view.actionListener.AcceptPaymentController;
-import progettoEsame.centropolisportivo.view.actionListener.AcceptRegistrationProposalController;
 
 public class AcceptPaymentProposal extends JPanel {
 
-
+	private static final long serialVersionUID = 1L;
 	private ArrayList<JPanel> unconfirmedUsers;
 	private GridBagConstraints gbc;
 	private JLabel msg;

@@ -47,14 +47,14 @@ public class AddScheduleActionListener implements ActionListener{
 						newSchedule.setDay(tmpParser.get(0));
 						newSchedule.setTime(tmpParser.get(1));
 						ScheduleBusiness.getInstance().insert(newSchedule);
-						addSchedulePanel.removeMessageToPanel();
-						addSchedulePanel.addMessageToPanel(Message.getInstance().printSuccessMsg(ADD_SCHEDULE_SUCCESS_MSG));
 						
 					} catch (SQLException | SessionException e1) {
-						e1.printStackTrace();
 						addSchedulePanel.removeMessageToPanel();
 						addSchedulePanel.addMessageToPanel(Message.getInstance().printErrorMsg(ADD_SCHEDULE_DB_ERROR));
 					}
+
+					addSchedulePanel.removeMessageToPanel();
+					addSchedulePanel.addMessageToPanel(Message.getInstance().printSuccessMsg(ADD_SCHEDULE_SUCCESS_MSG));
 				}
 			}
 		}

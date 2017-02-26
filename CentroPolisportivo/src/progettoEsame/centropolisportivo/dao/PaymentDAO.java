@@ -3,7 +3,6 @@ package progettoEsame.centropolisportivo.dao;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import progettoEsame.centropolisportivo.dbConnection.DbConnection;
-import progettoEsame.centropolisportivo.exception.PaymentException;
 import progettoEsame.centropolisportivo.model.Payment;
 
 public class PaymentDAO  {
@@ -60,7 +59,6 @@ public class PaymentDAO  {
 		if(newPayment.getActivity() !=null)
 		{
 			String query = "UPDATE payment SET type='"+newPayment.getType()+"',number='"+newPayment.getNumber()+"',amount = "+newPayment.getAmount()+", confirmed = "+newPayment.getConfirmed()+", member_email='"+newPayment.getMember().getEmail()+"', center_manager_email = '"+newPayment.getCenterManager().getEmail()+"', activity_id = "+newPayment.getActivity().getId()+" WHERE id = "+newPayment.getId()+";";
-			System.out.println(query);
 			DbConnection.getInstance().eseguiAggiornamento(query);
 		}
 		

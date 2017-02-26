@@ -36,7 +36,6 @@ public class AcceptPaymentActionListener implements ActionListener {
 				this.acceptPaymentPanel.updateUnconfirmedUser();
 				this.acceptPaymentPanel.paintPanel();
 			} catch (NumberFormatException | SQLException | SessionException e) {
-				e.printStackTrace();
 				this.acceptPaymentPanel.removeMessageToPanel();
 				this.acceptPaymentPanel.addMessageToPanel(Message.getInstance().printErrorMsg(ACCEPT_PAYMENT_PROPOSAL_DB_ERROR));
 			}

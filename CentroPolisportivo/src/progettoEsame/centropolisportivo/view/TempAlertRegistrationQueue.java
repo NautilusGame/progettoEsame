@@ -13,17 +13,15 @@ import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.ScrollPaneLayout;
 
-import progettoEsame.centropolisportivo.view.actionListener.ActivityCardController;
 import progettoEsame.centropolisportivo.view.actionListener.ConfirmAlterRegistrationCardController;
 
 public class TempAlertRegistrationQueue extends JPanel {
+	private static final long serialVersionUID = 1L;
 	private ArrayList<ConfirmAlterRegistrationCard> allCard;
 	private GridBagConstraints gbc;
-	private Template template;
 	
 	public TempAlertRegistrationQueue() 
 	{
-		this.template=template;
 		gbc = new GridBagConstraints();
 		
 		JPanel mainPanel = new JPanel();
@@ -53,7 +51,6 @@ public class TempAlertRegistrationQueue extends JPanel {
 			}
 		} catch (SQLException e) {
 			// TODO invia messaggio di errore
-			e.printStackTrace();
 		}
 	}
 }

@@ -2,9 +2,6 @@ package progettoEsame.centropolisportivo.view.actionListener;
 
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
-
-import javax.swing.JLabel;
-
 import progettoEsame.centropolisportivo.view.Message;
 import progettoEsame.centropolisportivo.view.RegisterToEvent;
 import static progettoEsame.centropolisportivo.view.ConstantClass.*;

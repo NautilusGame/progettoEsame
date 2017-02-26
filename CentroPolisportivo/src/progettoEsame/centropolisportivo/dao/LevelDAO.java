@@ -3,7 +3,6 @@ package progettoEsame.centropolisportivo.dao;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import progettoEsame.centropolisportivo.dbConnection.DbConnection;
-import progettoEsame.centropolisportivo.model.Activity;
 import progettoEsame.centropolisportivo.model.Level;
 
 public class LevelDAO  {

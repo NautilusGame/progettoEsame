@@ -11,12 +11,11 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.ScrollPaneLayout;
-
-import progettoEsame.centropolisportivo.view.actionListener.ActivityCardController;
 import progettoEsame.centropolisportivo.view.actionListener.EventCardController;
 
 public class EventFlyer extends JPanel{
 
+	private static final long serialVersionUID = 1L;
 	private ArrayList<EventCard> allEvent; 
 	private GridBagConstraints gbc;
 	private Template template;
@@ -51,8 +50,7 @@ public class EventFlyer extends JPanel{
 				this.add(scrollPane);
 			}
 		} catch (SQLException e) {
-			// TODO invia messaggio di errore
-			e.printStackTrace();
+			
 		}
 	}
 }

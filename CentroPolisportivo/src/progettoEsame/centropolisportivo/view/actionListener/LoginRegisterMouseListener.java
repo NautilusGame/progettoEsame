@@ -35,10 +35,6 @@ public class LoginRegisterMouseListener implements MouseListener{
 				lrview.makeRegisterPanelInvisible();
 				lrview.makeLoginPanelVisible();
 			}
-			else if(label.getName().equals(RETURN_BUTTON_NAME))
-			{
-				lrview.comeBackToHome();
-			}
 		}
 	}
 

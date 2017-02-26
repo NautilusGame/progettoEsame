@@ -21,6 +21,7 @@ import progettoEsame.centropolisportivo.view.actionListener.ActivityCardActionLi
 
 public class ActivityCard extends JPanel 
 {
+	private static final long serialVersionUID = 1L;
 	private JPanel descriptionPanel;
 	private JScrollPane scr;
 	private JLabel nameActivityLabel;
@@ -31,7 +32,7 @@ public class ActivityCard extends JPanel
 	private JLabel picActivity;
 	
 	private JTextArea infoActivity;
-	
+	private JLabel msg;
 	private JButton register;
 	
 	private BufferedImage image;
@@ -42,7 +43,7 @@ public class ActivityCard extends JPanel
 	{
 		//inzializzazione dei componenti
 		this.descriptionPanel= new JPanel();
-		
+		this.msg = new JLabel();
 		this.nameActivityLabel = new JLabel(ConstantClass.NAME_ACTIVITY_LABEL);
 		this.nameActivity = new JLabel(valueField.get(1));/////
 		this.infoActivityLabel = new JLabel(ConstantClass.INFO_ACTIVITY_LABEL);
@@ -71,7 +72,7 @@ public class ActivityCard extends JPanel
 			picActivity= new JLabel(new ImageIcon(getScaledImage(image, 200, 150)));			
 		} 
 		catch (IOException ex) {
-			System.out.println(ex.getMessage());	
+			this.addMessageToPanel(Message.getInstance().printErrorMsg("Imag not found"));
 		}
 		
 		//swich tra catalgo pubblico o meno
@@ -169,6 +170,26 @@ public class ActivityCard extends JPanel
 	public int getIdActivity()
 	{
 		return Integer.parseInt(this.register.getName());
+	}
+	
+	public void addMessageToPanel(JLabel msg)
+	{
+		this.msg = msg;
+		gbc.gridx = 0;
+		gbc.gridy = 7;
+		this.add(msg,gbc);
+		this.revalidate();
+		this.repaint();
+	}
+
+	public void removeMessageToPanel()
+	{
+
+		gbc.gridx = 0;
+		gbc.gridy = 7;
+		this.remove(this.msg);
+		this.revalidate();
+		this.repaint();
 	}
 
 }

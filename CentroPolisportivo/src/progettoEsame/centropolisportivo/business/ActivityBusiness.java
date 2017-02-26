@@ -3,14 +3,12 @@ package progettoEsame.centropolisportivo.business;
 import java.sql.SQLException;
 import java.util.ArrayList;
 
-import progettoEsame.centropolisportivo.dao.ActivityDAO;
 import progettoEsame.centropolisportivo.model.Activity;
 
 public class ActivityBusiness
 {
 	private static ActivityBusiness instance;
 	private ArrayList<Activity> allActivity;
-	private Activity activity;
 
 	
 	public static synchronized ActivityBusiness getInstance()

@@ -1,23 +1,22 @@
 package progettoEsame.centropolisportivo.view;
 
 import java.awt.BorderLayout;
-import java.awt.Dimension;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.GridLayout;
 import java.awt.Image;
 import java.util.ArrayList;
-
 import javax.swing.ImageIcon;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
-
 import progettoEsame.centropolisportivo.view.actionListener.RegistrationPanelController;
 import progettoEsame.centropolisportivo.view.actionListener.RegistrationPanelMouseListener;
 import static progettoEsame.centropolisportivo.view.ConstantClass.*;
+
 public class RegistrationPanel extends JPanel {
 
+	private static final long serialVersionUID = 1L;
 	private ArrayList<JPanel> subscriptionPanel;
 	private JPanel mainPanel;
 	private JScrollPane scrollPane;

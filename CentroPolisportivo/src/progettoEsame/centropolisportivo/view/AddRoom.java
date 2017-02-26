@@ -17,6 +17,7 @@ import progettoEsame.centropolisportivo.view.actionListener.AddRoomActionListene
 import static progettoEsame.centropolisportivo.view.ConstantClass.*;
 public class AddRoom extends JPanel{
 	
+	private static final long serialVersionUID = 1L;
 	private JLabel titlePage;
 	private JLabel roomNameLabel;
 	private JLabel descriptionLabel;

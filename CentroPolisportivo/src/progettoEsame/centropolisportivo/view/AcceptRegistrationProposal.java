@@ -2,11 +2,7 @@ package progettoEsame.centropolisportivo.view;
 
 import java.awt.Dimension;
 
-import java.awt.FlowLayout;
 import java.awt.GridBagConstraints;
-import java.awt.GridBagLayout;
-import java.awt.ScrollPane;
-import java.sql.SQLException;
 import java.util.ArrayList;
 
 import javax.swing.BoxLayout;
@@ -17,9 +13,9 @@ import javax.swing.ScrollPaneLayout;
 
 import progettoEsame.centropolisportivo.view.actionListener.AcceptRegistrationProposalController;
 import static progettoEsame.centropolisportivo.view.ConstantClass.*;
-import static progettoEsame.centropolisportivo.view.ConstantClass.*;
 public class AcceptRegistrationProposal extends JPanel{
 
+	private static final long serialVersionUID = 1L;
 	private ArrayList<JPanel> unconfirmedUsers;
 	private GridBagConstraints gbc;
 	private JLabel msg;

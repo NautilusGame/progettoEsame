@@ -6,7 +6,6 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import progettoEsame.centropolisportivo.dbConnection.DbConnection;
-import progettoEsame.centropolisportivo.model.Activity;
 import progettoEsame.centropolisportivo.model.Registration;
 
 
@@ -74,7 +73,6 @@ public class RegistrationDAO {
 		}
 		catch(ParseException exception)
 		{
-			exception.printStackTrace();
 		}
 
 		String date = row[2];
@@ -86,7 +84,6 @@ public class RegistrationDAO {
 		}
 		catch(ParseException exception)
 		{
-			exception.printStackTrace();
 		}
 		registration.setCost(Double.parseDouble(row[3]));
 		registration.setMember(MemberDAO.getInstance().findByEmail(row[4]));
@@ -125,7 +122,6 @@ public class RegistrationDAO {
 		}
 		catch(ParseException exception)
 		{
-			exception.printStackTrace();
 		}
 
 		String date = row[2];
@@ -137,7 +133,6 @@ public class RegistrationDAO {
 		}
 		catch(ParseException exception)
 		{
-			exception.printStackTrace();
 		}
 
 		registration.setCost(Double.parseDouble(row[3]));

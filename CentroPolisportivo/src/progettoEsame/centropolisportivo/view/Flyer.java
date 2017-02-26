@@ -4,6 +4,7 @@ import javax.swing.JPanel;
 import javax.swing.JTabbedPane;
 
 public class Flyer extends JPanel{
+	private static final long serialVersionUID = 1L;
 	private JTabbedPane tabPane;
 	
 	public Flyer(Template template)

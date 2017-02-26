@@ -1,16 +1,8 @@
 package progettoEsame.centropolisportivo.view;
 
-import java.awt.BorderLayout;
-import java.awt.Color;
-import java.awt.Dimension;
-import java.awt.Graphics2D;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
-import java.awt.Image;
 import java.awt.Insets;
-import java.awt.RenderingHints;
-import java.awt.image.BufferedImage;
-
 import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
@@ -23,6 +15,7 @@ import progettoEsame.centropolisportivo.view.actionListener.ConfirmAlterRegistra
 public class ConfirmAlterRegistrationCard extends JPanel
 {
 
+	private static final long serialVersionUID = 1L;
 	private JLabel nameMemberLabel;
 	private JLabel nameMember;
 	private JLabel registrationIdLabel;

@@ -36,7 +36,6 @@ public class AcceptRegistrationProposalActionListener implements ActionListener 
 				
 				
 			} catch (SQLException | SessionException e1) {
-				e1.printStackTrace();
 			}
 		}
 		else if((((JButton)e.getSource()).getName()).equals(DECLINE_BUTTON_MEMBER_NAME))
@@ -50,7 +49,6 @@ public class AcceptRegistrationProposalActionListener implements ActionListener 
 				cmrpPanel.updateUnconfirmedUser();
 				cmrpPanel.paintPanel();
 			} catch (SQLException | SessionException e1) {
-				e1.printStackTrace();
 			}
 		}
 		else if((((JButton)e.getSource()).getName()).equals(ACCEPT_BUTTON_TRAINER_NAME))
@@ -64,7 +62,6 @@ public class AcceptRegistrationProposalActionListener implements ActionListener 
 				cmrpPanel.updateUnconfirmedUser();
 				cmrpPanel.paintPanel();
 			} catch (SQLException | SessionException e1) {
-				e1.printStackTrace();
 			}
 		}
 		else if((((JButton)e.getSource()).getName()).equals(DECLINE_BUTTON_TRAINER_NAME))
@@ -78,7 +75,6 @@ public class AcceptRegistrationProposalActionListener implements ActionListener 
 				cmrpPanel.updateUnconfirmedUser();
 				cmrpPanel.paintPanel();
 			} catch (SQLException | SessionException e1) {
-				e1.printStackTrace();
 			}
 		}
 	}

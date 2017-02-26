@@ -13,15 +13,10 @@ import java.awt.RenderingHints;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
-import java.sql.Date;
-import java.sql.SQLException;
 import java.text.SimpleDateFormat;
-import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.Calendar;
-
 import javax.imageio.ImageIO;
-import javax.swing.BorderFactory;
 import javax.swing.DefaultListModel;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
@@ -30,23 +25,20 @@ import javax.swing.JLabel;
 import javax.swing.JList;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
-import javax.swing.JSeparator;
 import javax.swing.JTextArea;
 import javax.swing.ListModel;
 import javax.swing.ListSelectionModel;
-
 import progettoEsame.centropolisportivo.business.ActivityBusiness;
 import progettoEsame.centropolisportivo.business.LevelBusiness;
 import progettoEsame.centropolisportivo.business.RegistrationActivityBusiness;
 import progettoEsame.centropolisportivo.business.ScheduleBusiness;
 import progettoEsame.centropolisportivo.business.Session;
-import progettoEsame.centropolisportivo.exception.SessionException;
-import progettoEsame.centropolisportivo.model.Activity;
 import progettoEsame.centropolisportivo.view.actionListener.RegistrationCardActionListener;
 import progettoEsame.centropolisportivo.view.actionListener.SessionCheck;
 
 public class RegistrationCard extends JPanel 
 {
+	private static final long serialVersionUID = 1L;
 	private JPanel descriptionPanel;
 	private JPanel reviewsPanel;
 	private JPanel newReviewPanel;
@@ -133,7 +125,6 @@ public class RegistrationCard extends JPanel
 		}
 		catch(Exception e)
 		{
-			e.printStackTrace();
 		}
 		this.noNewReview();
 		
@@ -354,7 +345,6 @@ public class RegistrationCard extends JPanel
 		{
 			e.printStackTrace();
 		}
-		System.out.println(String.valueOf(listLevels.getSelectedItem()));
 		c.setTime(new java.util.Date()); // Prende la data attuale		
 		dataField.add(String.valueOf(listLevels.getSelectedItem()));//livello selezionato ----1
 		dataField.add(String.valueOf(java.sql.Date.valueOf(sdf.format(c.getTime()))));//data attuale ------2

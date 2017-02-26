@@ -6,7 +6,6 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import progettoEsame.centropolisportivo.dbConnection.DbConnection;
-import progettoEsame.centropolisportivo.model.Activity;
 import progettoEsame.centropolisportivo.model.Event;
 
 
@@ -58,7 +57,6 @@ public class EventDAO {
 		}
 		catch(ParseException exception)
 		{
-			exception.printStackTrace();
 		}
 		String finishDate = row[3];
 		try
@@ -69,7 +67,6 @@ public class EventDAO {
 		}
 		catch(ParseException exception)
 		{
-			exception.printStackTrace();
 		}
 		event.setCost(Integer.parseInt(row[4]));
 		event.setType(row[5]);
@@ -89,7 +86,7 @@ public class EventDAO {
 		for(int i = 0;i<draftEvents.size();i++)
 		{
 			Event tmpEvent = new Event();
-			String[] row = draftEvents.get(0); 
+			String[] row = draftEvents.get(i); 
 			tmpEvent.setId(Integer.parseInt(row[0])); 
 			tmpEvent.setName(row[1]);
 			String startDate = row[2];
@@ -101,7 +98,6 @@ public class EventDAO {
 			}
 			catch(ParseException exception)
 			{
-				exception.printStackTrace();
 			}
 			String finishDate = row[3];
 			try
@@ -112,7 +108,6 @@ public class EventDAO {
 			}
 			catch(ParseException exception)
 			{
-				exception.printStackTrace();
 			}
 			tmpEvent.setCost(Integer.parseInt(row[4]));
 			tmpEvent.setType(row[5]);

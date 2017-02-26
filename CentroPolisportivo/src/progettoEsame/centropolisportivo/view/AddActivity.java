@@ -2,21 +2,11 @@ package progettoEsame.centropolisportivo.view;
 
 import java.awt.Dimension;
 import java.awt.Font;
-import java.awt.Graphics;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.Image;
-import java.awt.Insets;
-import java.awt.Label;
-import java.awt.image.BufferedImage;
-import java.awt.image.ImageObserver;
-import java.awt.image.ImageProducer;
 import java.io.File;
-import java.io.IOException;
-import java.sql.SQLException;
 import java.util.ArrayList;
-
-import javax.imageio.ImageIO;
 import javax.swing.DefaultListModel;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
@@ -28,16 +18,9 @@ import javax.swing.JScrollPane;
 import javax.swing.JTextArea;
 import javax.swing.JTextField;
 import javax.swing.ListSelectionModel;
-import javax.swing.ScrollPaneLayout;
 import javax.swing.filechooser.FileNameExtensionFilter;
-
 import progettoEsame.centropolisportivo.business.Session;
-import progettoEsame.centropolisportivo.dbConnection.DbConnection;
 import progettoEsame.centropolisportivo.exception.SessionException;
-import progettoEsame.centropolisportivo.model.Activity;
-import progettoEsame.centropolisportivo.model.ActivityType;
-import progettoEsame.centropolisportivo.model.CenterManager;
-import progettoEsame.centropolisportivo.model.Room;
 import progettoEsame.centropolisportivo.view.actionListener.AddActivityActionListener;
 import progettoEsame.centropolisportivo.view.actionListener.AddActivityController;
 import progettoEsame.centropolisportivo.view.actionListener.AddActivityMouseListener;
@@ -47,6 +30,7 @@ import static progettoEsame.centropolisportivo.view.ConstantClass.*;
 
 public class AddActivity extends JPanel {
 
+	private static final long serialVersionUID = 1L;
 	private JLabel titlePage;
 	private JLabel nameLabel;
 	private JLabel descriptionLabel;
@@ -72,6 +56,7 @@ public class AddActivity extends JPanel {
 	private DefaultListModel<String> demoListModel;
 	private JScrollPane mainScrollPane;
 	private JPanel mainPanel;
+	
 	public AddActivity()
 	{
 		this.mainPanel = new JPanel(new GridBagLayout());
@@ -275,7 +260,6 @@ public class AddActivity extends JPanel {
 			} 
 			catch (SessionException e) {
 
-				e.printStackTrace();
 			}
 		}
 		return null;

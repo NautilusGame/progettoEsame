@@ -22,8 +22,8 @@ public class ConfirmAlterRegistrationBusiness {
 	
 	public ArrayList<TempAlterRegistration> getAllRequests()throws SQLException
 	{
-		this.allRequests = TempAlterRegistration.getAllRequests();
-		return this.allRequests;		
+		allRequests = TempAlterRegistration.getAllRequests();
+		return allRequests;		
 	}
 	
 	public void deleteTempAlterRegistration(int id) throws SQLException

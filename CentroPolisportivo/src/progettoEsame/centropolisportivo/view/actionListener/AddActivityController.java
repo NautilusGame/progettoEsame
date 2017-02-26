@@ -2,9 +2,6 @@ package progettoEsame.centropolisportivo.view.actionListener;
 
 import java.sql.SQLException;
 import java.util.ArrayList;
-
-import progettoEsame.centropolisportivo.dao.ActivityTypeDAO;
-import progettoEsame.centropolisportivo.dao.RoomDAO;
 import progettoEsame.centropolisportivo.model.ActivityType;
 import progettoEsame.centropolisportivo.model.Room;
 import progettoEsame.centropolisportivo.view.AddActivity;
@@ -32,7 +29,6 @@ public class AddActivityController {
 				addActivityPanel.setRoomListModel(this.getRoomsName());
 			}
 		} catch (SQLException e) {
-			e.printStackTrace();
 		}
 
 	}

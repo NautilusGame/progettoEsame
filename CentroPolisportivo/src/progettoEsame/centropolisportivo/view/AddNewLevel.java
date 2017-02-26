@@ -6,23 +6,19 @@ import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTextArea;
 import javax.swing.JTextField;
-import javax.swing.ScrollPaneLayout;
-
 import progettoEsame.centropolisportivo.model.Level;
 import progettoEsame.centropolisportivo.view.actionListener.AddLevelActionListener;
-
 import static progettoEsame.centropolisportivo.view.ConstantClass.*;
-
 import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.Insets;
-import java.awt.ScrollPane;
 
 
 public class AddNewLevel extends JPanel{
 	
+	private static final long serialVersionUID = 1L;
 	private JLabel titlePage;
 	private JLabel levelNameLabel;
 	private JLabel descriptionLabel;

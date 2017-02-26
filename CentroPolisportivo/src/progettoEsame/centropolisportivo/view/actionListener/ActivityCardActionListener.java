@@ -6,7 +6,6 @@ import java.awt.event.ActionListener;
 import progettoEsame.centropolisportivo.view.ActivityCard;
 import progettoEsame.centropolisportivo.view.AddSchedule;
 import progettoEsame.centropolisportivo.view.ConstantClass;
-import progettoEsame.centropolisportivo.view.RegisterToEvent;
 import progettoEsame.centropolisportivo.view.RegistrationCard;
 import progettoEsame.centropolisportivo.view.Template;
 

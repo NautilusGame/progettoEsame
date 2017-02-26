@@ -3,16 +3,8 @@ package progettoEsame.centropolisportivo.business;
 import java.sql.SQLException;
 import java.util.ArrayList;
 
-import javax.swing.JLabel;
-
 import progettoEsame.centropolisportivo.dao.RegistrationDAO;
-import progettoEsame.centropolisportivo.exception.RegistrationException;
-import progettoEsame.centropolisportivo.model.CenterManager;
-import progettoEsame.centropolisportivo.model.Member;
 import progettoEsame.centropolisportivo.model.Registration;
-import progettoEsame.centropolisportivo.model.Trainer;
-
-import static progettoEsame.centropolisportivo.business.ConstantClass.*;
 public class RegistrationBusiness {
 
 	private static RegistrationBusiness instance;

@@ -86,7 +86,6 @@ public class AddEventActionListener implements ActionListener {
 					addEventPanel.removeMessageToPanel();
 					addEventPanel.addMessageToPanel(Message.getInstance().printSuccessMsg(ADD_EVENT_SUCCESS_MSG));
 				} catch (SQLException e) {
-					e.printStackTrace();
 					addEventPanel.removeMessageToPanel();
 					addEventPanel.addMessageToPanel(Message.getInstance().printErrorMsg(ADD_EVENT_DB_ERROR));
 				}

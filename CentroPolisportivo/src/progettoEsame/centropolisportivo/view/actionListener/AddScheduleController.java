@@ -2,8 +2,6 @@ package progettoEsame.centropolisportivo.view.actionListener;
 
 import java.sql.SQLException;
 
-import javax.swing.JLabel;
-
 import progettoEsame.centropolisportivo.business.ActivityBusiness;
 import progettoEsame.centropolisportivo.model.Activity;
 import progettoEsame.centropolisportivo.view.AddSchedule;
@@ -27,7 +25,6 @@ public class AddScheduleController {
 			addSchedulePanel.setInitialString(tmpActivity.getName(),tmpActivity.getDescription(), tmpActivity.getRoom().getName(), tmpActivity.getActivityType().getType(),tmpActivity.getImagePath());
 		} catch (SQLException e) {
 			// TODO INVIA IL MESSAGGIO
-			e.printStackTrace();
 		}
 		
 	}

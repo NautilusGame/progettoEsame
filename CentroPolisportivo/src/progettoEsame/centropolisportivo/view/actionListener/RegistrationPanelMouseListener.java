@@ -3,6 +3,8 @@ package progettoEsame.centropolisportivo.view.actionListener;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 
+import progettoEsame.centropolisportivo.view.PdfFromPanel;
+
 public class RegistrationPanelMouseListener implements MouseListener {
 
 	@Override

@@ -1,14 +1,12 @@
 package progettoEsame.centropolisportivo.view;
 
 import java.awt.BorderLayout;
-import java.awt.FlowLayout;
 import java.awt.Font;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.Image;
 import java.util.ArrayList;
 import static progettoEsame.centropolisportivo.view.ConstantClass.*;
-
 import javax.swing.BoxLayout;
 import javax.swing.DefaultListModel;
 import javax.swing.ImageIcon;
@@ -19,13 +17,12 @@ import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.ListModel;
-
 import progettoEsame.centropolisportivo.view.actionListener.AddScheduleActionListener;
 import progettoEsame.centropolisportivo.view.actionListener.AddScheduleController;
 import progettoEsame.centropolisportivo.view.actionListener.AddScheduleMouseListener;
-import static progettoEsame.centropolisportivo.view.ConstantClass.*;
 public class AddSchedule extends JPanel{
 
+	private static final long serialVersionUID = 1L;
 	private JLabel titlePage;
 	private JLabel nameLabel;
 	private JLabel descriptionLabel;
@@ -151,12 +148,7 @@ public class AddSchedule extends JPanel{
 	public void addMessageToPanel(JLabel msg)
 	{
 		this.msg = msg;
-		gbc.fill=GridBagConstraints.BOTH;
-		gbc.anchor=GridBagConstraints.CENTER;
-		gbc.gridwidth = 2;
-		gbc.gridx = 0;
-		gbc.gridy = 10;
-		this.add(this.msg,gbc);
+		this.mainPanel.add(this.msg);
 		this.revalidate();
 		this.repaint();
 	}
@@ -210,7 +202,7 @@ public class AddSchedule extends JPanel{
 	
 	public ArrayList<String> getSelectedSchedule()
 	{
-		ListModel model = selectedSchedule.getModel();
+		ListModel<String> model = selectedSchedule.getModel();
 		ArrayList<String> listContent = new ArrayList<>();
 		for(int i = 0;i<model.getSize();i++)
 		{
@@ -221,14 +213,14 @@ public class AddSchedule extends JPanel{
 	
 	public void removeScheduleFromList(int index)
 	{
-		((DefaultListModel)selectedSchedule.getModel()).remove(index);
+		((DefaultListModel<String>)selectedSchedule.getModel()).remove(index);
 		this.repaint();
 		this.revalidate();
 	}
 	
 	public int getNumberOfSelectedSchedule()
 	{
-		ListModel model = selectedSchedule.getModel();
+		ListModel<String> model = selectedSchedule.getModel();
 		return model.getSize();
 	}
 	public String getSelectedItem()

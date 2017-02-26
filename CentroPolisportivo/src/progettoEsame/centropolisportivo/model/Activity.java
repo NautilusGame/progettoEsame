@@ -2,9 +2,7 @@ package progettoEsame.centropolisportivo.model;
 
 import java.sql.SQLException;
 import java.util.ArrayList;
-
 import progettoEsame.centropolisportivo.dao.ActivityDAO;
-import progettoEsame.centropolisportivo.dbConnection.DbConnection;
 
 // Generated 26-gen-2017 22.33.09 by Hibernate Tools 5.2.0.CR1
 

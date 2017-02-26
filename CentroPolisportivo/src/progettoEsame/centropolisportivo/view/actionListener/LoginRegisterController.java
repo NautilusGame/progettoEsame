@@ -2,8 +2,6 @@ package progettoEsame.centropolisportivo.view.actionListener;
 
 import java.util.Date;
 
-import progettoEsame.centropolisportivo.view.AddSchedule;
-
 public class LoginRegisterController {
 	
 	private static LoginRegisterController instance;

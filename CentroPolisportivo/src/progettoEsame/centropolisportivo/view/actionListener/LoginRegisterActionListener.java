@@ -11,9 +11,7 @@ import java.util.ArrayList;
 
 import progettoEsame.centropolisportivo.business.ConstantClass;
 import progettoEsame.centropolisportivo.business.LoginBusiness;
-import progettoEsame.centropolisportivo.business.RegistrationBusiness;
 import progettoEsame.centropolisportivo.business.RegistrationToSystemBusiness;
-import progettoEsame.centropolisportivo.business.Session;
 import progettoEsame.centropolisportivo.exception.LoginException;
 import progettoEsame.centropolisportivo.exception.RegistrationException;
 import progettoEsame.centropolisportivo.model.CenterManager;

@@ -4,9 +4,6 @@ import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 
 import javax.swing.JLabel;
-
-import com.sun.glass.ui.Cursor;
-
 import progettoEsame.centropolisportivo.view.AddActivity;
 import progettoEsame.centropolisportivo.view.Message;
 

@@ -2,9 +2,7 @@ package progettoEsame.centropolisportivo.business;
 
 import java.sql.SQLException;
 
-import progettoEsame.centropolisportivo.model.RegistrationCalendar;
 import progettoEsame.centropolisportivo.model.TempAlterRegistration;
-import progettoEsame.centropolisportivo.view.actionListener.ModifyRegistrationController;
 
 public class TempAlterRegistrationBusiness {
 

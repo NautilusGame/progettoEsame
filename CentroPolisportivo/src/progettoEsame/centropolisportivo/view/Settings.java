@@ -28,6 +28,7 @@ import progettoEsame.centropolisportivo.view.actionListener.SettingsActionListen
 
 public class Settings extends JPanel 
 {
+	private static final long serialVersionUID = 1L;
 
 	private MainFrame mf;
 
@@ -165,11 +166,11 @@ public class Settings extends JPanel
 		this.currentPassword.setName(CONF_PASS_REGISTER_TEXT_FIELD_NAME);//settaggio del name delle JTextField utile per il controller
 		
 		this.save.setActionCommand(ConstantClass.SAVE_SETTINGS);
-		this.save.addActionListener(new SettingsActionListener(this,this.mf));
+		this.save.addActionListener(new SettingsActionListener(this));
 		this.changePasswordButton.setActionCommand(ConstantClass.SHOW_PASSWORD_FIELD);
-		this.changePasswordButton.addActionListener(new SettingsActionListener(this,this.mf));
+		this.changePasswordButton.addActionListener(new SettingsActionListener(this));
 		this.undoChangePassword.setActionCommand(ConstantClass.UNDO_ACTION_PASSWORD);
-		this.undoChangePassword.addActionListener(new SettingsActionListener(this,this.mf));
+		this.undoChangePassword.addActionListener(new SettingsActionListener(this));
 		
 		//componente 3: label del nome
 		this.gbc.gridx = 0;

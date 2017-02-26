@@ -1,10 +1,7 @@
 package progettoEsame.centropolisportivo.dao;
 
 import java.sql.SQLException;
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Date;
 import progettoEsame.centropolisportivo.dbConnection.DbConnection;
 import progettoEsame.centropolisportivo.model.TempAlterRegistration;
 
@@ -22,7 +19,6 @@ public class TempAlterRegistrationDAO {
 	public int insert(TempAlterRegistration newTempAlterRegistration) throws SQLException
 	{
 			String query = "INSERT INTO temp_alter_registration(registration_id, member_email, confirmed,level_id) VALUES ("+newTempAlterRegistration.getRegistration().getId()+",'"+newTempAlterRegistration.getMember().getEmail()+"',"+newTempAlterRegistration.isConfirmed()+","+newTempAlterRegistration.getLevel().getId()+")";
-			System.out.println(query);
 			return DbConnection.getInstance().eseguiAggiornamento(query);
 	}
 

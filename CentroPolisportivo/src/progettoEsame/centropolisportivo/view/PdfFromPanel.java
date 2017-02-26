@@ -51,6 +51,8 @@ public class PdfFromPanel extends JFrame{
 	}
 	
 	
+	
+	
 	public void GeneratePdfFromPanel(JPanel panel)
 	{
 		printPanel = panel;

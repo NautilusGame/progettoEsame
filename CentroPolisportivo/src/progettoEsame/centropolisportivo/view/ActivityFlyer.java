@@ -17,6 +17,7 @@ import progettoEsame.centropolisportivo.view.actionListener.ActivityCardControll
 
 public class ActivityFlyer extends JPanel
 {
+	private static final long serialVersionUID = 1L;
 	private ArrayList<ActivityCard> allActivity;
 	private GridBagConstraints gbc;
 	private Template template;
@@ -51,8 +52,7 @@ public class ActivityFlyer extends JPanel
 				this.add(scrollPane);
 			}
 		} catch (SQLException e) {
-			// TODO invia messaggio di errore
-			e.printStackTrace();
+
 		}
 	}
 }

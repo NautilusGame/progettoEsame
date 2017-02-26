@@ -2,10 +2,7 @@ package progettoEsame.centropolisportivo.model;
 // Generated 26-gen-2017 22.33.09 by Hibernate Tools 5.2.0.CR1
 
 import java.sql.SQLException;
-import java.util.ArrayList;
-
 import progettoEsame.centropolisportivo.dao.CenterManagerDAO;
-import progettoEsame.centropolisportivo.dao.MemberDAO;
 
 
 /**

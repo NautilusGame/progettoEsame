@@ -2,8 +2,6 @@ package progettoEsame.centropolisportivo.view.actionListener;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-
-import progettoEsame.centropolisportivo.business.Session;
 import progettoEsame.centropolisportivo.view.AddActivity;
 import progettoEsame.centropolisportivo.view.AddActivityType;
 import progettoEsame.centropolisportivo.view.AddEvent;

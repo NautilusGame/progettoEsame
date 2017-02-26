@@ -28,7 +28,7 @@ public class RegisterToEventActionListener implements ActionListener {
 			Registration newRegistration = this.registerToCompetitionPanel.getRegistration();
 			Csrc newCsrc = this.registerToCompetitionPanel.getCSRC();
 
-			if(newCsrc.getPath().equals(""))
+			if(newCsrc.getPath().equals("") && !newRegistration.getEvent().getType().equals("Stage") && !newRegistration.getEvent().isFree())
 			{
 				this.registerToCompetitionPanel.removeMessageToPanel();
 				this.registerToCompetitionPanel.addMessageToPanel(Message.getInstance().printErrorMsg(REGISTER_TO_COMPETITION_PATH_BLANK));
@@ -37,7 +37,6 @@ public class RegisterToEventActionListener implements ActionListener {
 			{
 				try {
 					newRegistration.setMember(MemberBusiness.getInstance().findByEmail(Session.getInstance().getEmail()));
-					System.out.println(newRegistration.getMember().getEmail());
 					newRegistration.setCost(EventBusiness.getInstance().findById(newRegistration.getEvent().getId()).getCost());
 					newCsrc.setMember(MemberBusiness.getInstance().findByEmail(Session.getInstance().getEmail()));
 				}catch (SQLException | SessionException e) {	
@@ -64,7 +63,6 @@ public class RegisterToEventActionListener implements ActionListener {
 				} catch (SQLException e) {
 					this.registerToCompetitionPanel.removeMessageToPanel();
 					this.registerToCompetitionPanel.addMessageToPanel(Message.getInstance().printErrorMsg(REGISTER_TO_COMPETITION_DB_ERROR));
-					e.printStackTrace();
 				}
 			}
 

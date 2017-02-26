@@ -4,7 +4,6 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import progettoEsame.centropolisportivo.dbConnection.DbConnection;
 import progettoEsame.centropolisportivo.model.ActivityType;
-import progettoEsame.centropolisportivo.model.Room;
 
 public class ActivityTypeDAO  {
 

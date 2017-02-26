@@ -3,9 +3,7 @@ package progettoEsame.centropolisportivo.business;
 import java.sql.SQLException;
 import java.util.ArrayList;
 
-import progettoEsame.centropolisportivo.dao.RegistrationCalendarDAO;
 import progettoEsame.centropolisportivo.model.RegistrationCalendar;
-import progettoEsame.centropolisportivo.view.actionListener.ModifyRegistrationController;
 
 public class RegistrationCalendarBusiness {
 

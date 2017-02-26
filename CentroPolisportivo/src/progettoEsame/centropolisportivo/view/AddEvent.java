@@ -1,43 +1,33 @@
 package progettoEsame.centropolisportivo.view;
 
-import javax.swing.ButtonGroup;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JCheckBox;
 import javax.swing.JComboBox;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
-import javax.swing.JRadioButton;
 import javax.swing.JScrollPane;
-import javax.swing.JTextArea;
 import javax.swing.JTextField;
-import javax.swing.SwingConstants;
-
 import com.toedter.calendar.JCalendar;
-
 import progettoEsame.centropolisportivo.business.Session;
 import progettoEsame.centropolisportivo.business.TrainerBusiness;
 import progettoEsame.centropolisportivo.exception.SessionException;
 import progettoEsame.centropolisportivo.model.Event;
 import progettoEsame.centropolisportivo.view.actionListener.AddEventActionListener;
-import sun.swing.SwingAccessor;
-
 import static progettoEsame.centropolisportivo.view.ConstantClass.*;
-
 import java.awt.BorderLayout;
-import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
-import java.awt.GridLayout;
 import java.awt.Image;
 import java.awt.Insets;
 import java.sql.Date;
 import java.sql.SQLException;
 import java.text.SimpleDateFormat;
-import java.util.ArrayList;
+
 public class AddEvent extends JPanel{
 
+	private static final long serialVersionUID = 1L;
 	private ImageIcon image;
 	private JLabel img;
 	private JLabel competitionNameLabel;

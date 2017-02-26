@@ -1,15 +1,9 @@
 package progettoEsame.centropolisportivo.view.actionListener;
 
-import javax.swing.JMenu;
-import javax.swing.event.MenuEvent;
-import javax.swing.event.MenuListener;
 import static progettoEsame.centropolisportivo.view.ConstantClass.*;
-
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-
 import progettoEsame.centropolisportivo.business.Session;
-import progettoEsame.centropolisportivo.view.ActivityFlyer;
 import progettoEsame.centropolisportivo.view.Documentation;
 import progettoEsame.centropolisportivo.view.Flyer;
 import progettoEsame.centropolisportivo.view.LoginRegister;

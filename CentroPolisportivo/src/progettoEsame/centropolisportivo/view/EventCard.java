@@ -13,7 +13,8 @@ import javax.swing.JPanel;
 import progettoEsame.centropolisportivo.view.actionListener.EventCardActionListener;
 
 public class EventCard extends JPanel{
-
+	
+	private static final long serialVersionUID = 1L;
 	private JPanel descriptionPanel;
 	private JLabel nameEventLabel; 
 	private JLabel nameEvent;

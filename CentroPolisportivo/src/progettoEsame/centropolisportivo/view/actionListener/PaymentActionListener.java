@@ -4,13 +4,10 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.sql.SQLException;
 import java.util.ArrayList;
-
-import progettoEsame.centropolisportivo.business.ActivityBusiness;
 import progettoEsame.centropolisportivo.business.CsrcBusiness;
 import progettoEsame.centropolisportivo.business.EventBusiness;
 import progettoEsame.centropolisportivo.business.PaymentBusiness;
 import progettoEsame.centropolisportivo.business.RegistrationActivityBusiness;
-import progettoEsame.centropolisportivo.business.RegistrationBusiness;
 import progettoEsame.centropolisportivo.business.Session;
 import progettoEsame.centropolisportivo.model.Csrc;
 import progettoEsame.centropolisportivo.model.Payment;
@@ -63,6 +60,7 @@ public class PaymentActionListener implements ActionListener {
 			}
 			else
 			{
+				paymentViewPanel.removeMessageToPanel();
 				paymentViewPanel.makeInvisibleMainPanel();
 			}
 
@@ -93,7 +91,6 @@ public class PaymentActionListener implements ActionListener {
 			} catch (SQLException e) {
 				paymentViewPanel.removeMessageToPanel();
 				this.paymentViewPanel.addMessageToPanel(Message.getInstance().printErrorMsg(PAYMENT_DB_ERROR));
-				e.printStackTrace();
 			}
 		}
 		else if(arg0.getActionCommand().equals(PAYMENT_CARD_NO_BUTTON_ACTION_CMD))

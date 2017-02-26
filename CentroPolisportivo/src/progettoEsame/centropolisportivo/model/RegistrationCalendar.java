@@ -2,8 +2,6 @@ package progettoEsame.centropolisportivo.model;
 
 import java.sql.SQLException;
 import java.util.ArrayList;
-
-import progettoEsame.centropolisportivo.dao.ActivityDAO;
 import progettoEsame.centropolisportivo.dao.RegistrationCalendarDAO;
 
 public class RegistrationCalendar {

@@ -1,14 +1,12 @@
 package progettoEsame.centropolisportivo.view;
 
-import javax.swing.JLabel;
-import javax.swing.JPanel;
-import javax.swing.table.AbstractTableModel;
 import javax.swing.table.DefaultTableModel;
 
 import static progettoEsame.centropolisportivo.view.ConstantClass.*;
 
 public class ScheduleTableModel extends DefaultTableModel {
 	
+	private static final long serialVersionUID = 1L;
 	private String[][] data;
 	private String[] colName;
 	
@@ -37,7 +35,7 @@ public class ScheduleTableModel extends DefaultTableModel {
 	}
 	
 	@Override
-	public Class getColumnClass(int columnIndex) {
+	public Class<?> getColumnClass(int columnIndex) {
 		
 		return super.getColumnClass(columnIndex);
 	}

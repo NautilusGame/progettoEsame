@@ -2,14 +2,8 @@ package progettoEsame.centropolisportivo.view.actionListener;
 
 import java.sql.SQLException;
 import java.util.ArrayList;
-
-import javax.swing.JPanel;
-
-import progettoEsame.centropolisportivo.business.ActivityBusiness;
 import progettoEsame.centropolisportivo.business.ReviewBusiness;
-import progettoEsame.centropolisportivo.model.Activity;
 import progettoEsame.centropolisportivo.model.Review;
-import progettoEsame.centropolisportivo.view.ActivityCard;
 import progettoEsame.centropolisportivo.view.ReviewCard;
 
 public class ReviewCardController

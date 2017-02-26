@@ -34,7 +34,6 @@ public class DbConnection {
 			connesso=true;
 
 		} catch (Exception e) {
-			e.printStackTrace(); 
 		}
 		return connesso;
 	}
@@ -87,7 +86,7 @@ public class DbConnection {
 		try {
 			db.close();
 			connesso = false;
-		} catch (Exception e) { e.printStackTrace(); }
+		} catch (Exception e) {  }
 	}
 
 	public boolean isConnesso() { return connesso; }   // Ritorna TRUE se la connessione con il Database e' attiva
@@ -107,7 +106,6 @@ public class DbConnection {
 				return key;
 			}
 		} catch (SQLException e) {
-			e.printStackTrace();
 			throw new SQLException();	
 		}
 		return -1;

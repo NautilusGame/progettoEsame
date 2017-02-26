@@ -2,14 +2,11 @@ package progettoEsame.centropolisportivo.view.actionListener;
 
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
-import java.awt.Label;
 import java.sql.SQLException;
 import java.util.ArrayList;
-
 import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
-
 import progettoEsame.centropolisportivo.business.PaymentBusiness;
 import progettoEsame.centropolisportivo.model.Payment;
 import progettoEsame.centropolisportivo.view.AcceptPaymentProposal;

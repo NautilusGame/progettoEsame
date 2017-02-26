@@ -2,9 +2,6 @@ package progettoEsame.centropolisportivo.view.actionListener;
 
 import java.sql.SQLException;
 import java.util.ArrayList;
-
-import javax.swing.JPanel;
-
 import progettoEsame.centropolisportivo.business.ActivityBusiness;
 import progettoEsame.centropolisportivo.model.Activity;
 import progettoEsame.centropolisportivo.view.ActivityCard;
@@ -35,7 +32,6 @@ public class ActivityCardController
 		ArrayList<ActivityCard> allActivityCard = new ArrayList<ActivityCard>();
 		ArrayList<String> valueActivityPanel;
 		
-		System.out.println(SessionCheck.getInstance().getStatusSession());
 		//user = 1: member; user = 2; trainer; user = 0; il resto
 		if((SessionCheck.getInstance().getStatusSession())&&(SessionCheck.getInstance().getTypeUser().equals("member")))
 			this.user=1;

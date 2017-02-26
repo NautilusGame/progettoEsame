@@ -16,8 +16,6 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 
 import progettoEsame.centropolisportivo.business.EventBusiness;
-import progettoEsame.centropolisportivo.business.MemberBusiness;
-import progettoEsame.centropolisportivo.business.Session;
 import progettoEsame.centropolisportivo.model.Csrc;
 import progettoEsame.centropolisportivo.model.Event;
 import progettoEsame.centropolisportivo.model.Registration;
@@ -28,6 +26,7 @@ import progettoEsame.centropolisportivo.view.actionListener.RegisterToEventMouse
 import static progettoEsame.centropolisportivo.view.ConstantClass.*;
 public class RegisterToEvent extends JPanel {
 	
+	private static final long serialVersionUID = 1L;
 	private JLabel nameLabel;
 	private JLabel startDateLabel;
 	private JLabel endDateLabel;

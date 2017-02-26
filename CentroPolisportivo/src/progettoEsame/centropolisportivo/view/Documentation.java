@@ -13,10 +13,11 @@ import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 
-import progettoEsame.centropolisportivo.view.actionListener.DocuementationActionListener;
+import progettoEsame.centropolisportivo.view.actionListener.DocumentationActionListener;
 
 public class Documentation extends JPanel 
 {
+	private static final long serialVersionUID = 1L;
 	private JButton openDoc;
 	private JLabel info;
 	private BufferedImage logoImg;
@@ -42,7 +43,7 @@ public class Documentation extends JPanel
 				+ "<br>per i pdf il browser.</center></html>");
 		info.setFont(new Font("Arial", Font.BOLD, 20));
 		
-		openDoc.addActionListener(new DocuementationActionListener());
+		openDoc.addActionListener(new DocumentationActionListener());
 		openDoc.setActionCommand("doc");
 		
 		try 

@@ -28,7 +28,6 @@ public class RegisterToEventController {
 			this.registerToCompetitionPanel.init(EventBusiness.getInstance().findById(eventId));
 		} catch (SQLException e) {
 			this.registerToCompetitionPanel.addMessageToPanel(Message.getInstance().printErrorMsg(REGISTER_TO_COMPETITION_DB_ERROR));
-			e.printStackTrace();
 		}
 	}
 

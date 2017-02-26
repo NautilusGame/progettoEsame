@@ -9,14 +9,11 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 
 import javax.swing.BoxLayout;
-import javax.swing.ImageIcon;
 import javax.swing.JButton;
-import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 
 import progettoEsame.centropolisportivo.business.ActivityBusiness;
-import progettoEsame.centropolisportivo.business.EventBusiness;
 import progettoEsame.centropolisportivo.business.PaymentBusiness;
 import progettoEsame.centropolisportivo.business.RegistrationBusiness;
 import progettoEsame.centropolisportivo.business.RegistrationCalendarBusiness;
@@ -24,8 +21,6 @@ import progettoEsame.centropolisportivo.business.ScheduleBusiness;
 import progettoEsame.centropolisportivo.business.Session;
 import progettoEsame.centropolisportivo.dao.RegistrationDAO;
 import progettoEsame.centropolisportivo.exception.SessionException;
-import progettoEsame.centropolisportivo.model.Activity;
-import progettoEsame.centropolisportivo.model.Event;
 import progettoEsame.centropolisportivo.model.Registration;
 import progettoEsame.centropolisportivo.model.RegistrationCalendar;
 import progettoEsame.centropolisportivo.model.Schedule;
@@ -140,7 +135,6 @@ public class RegistrationPanelController {
 
 		} catch (SQLException | SessionException e) {
 
-			e.printStackTrace();
 		}
 		return this.subscriptionPanel;
 	}
@@ -237,13 +231,11 @@ public class RegistrationPanelController {
 
 				if(registrations.get(i).getActivity() != null)
 				{
-					System.out.println("index: " + i + registrations.get(i).getId());
 					JPanel schedulePanel = new JPanel();
 					schedulePanel.setLayout(new BoxLayout(schedulePanel, BoxLayout.LINE_AXIS));
 					ArrayList<RegistrationCalendar> registrationCalendar = RegistrationCalendarBusiness.getInstance().findByRegistrationId(registrations.get(i).getId());
 					if(registrationCalendar !=null)
 					{
-						System.out.println("Registration Calendar size : " + registrationCalendar.size());
 						for(int j = 0;j<registrationCalendar.size();j++)
 						{
 							JPanel tmpSchedulePanel = new JPanel();
@@ -263,7 +255,6 @@ public class RegistrationPanelController {
 			}
 		} catch (SQLException | SessionException e) {
 
-			e.printStackTrace();
 		}
 
 		return returnPanel;

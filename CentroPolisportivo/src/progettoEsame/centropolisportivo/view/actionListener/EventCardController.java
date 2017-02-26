@@ -3,11 +3,8 @@ package progettoEsame.centropolisportivo.view.actionListener;
 import java.sql.SQLException;
 import java.util.ArrayList;
 
-import progettoEsame.centropolisportivo.business.ActivityBusiness;
 import progettoEsame.centropolisportivo.business.EventBusiness;
-import progettoEsame.centropolisportivo.model.Activity;
 import progettoEsame.centropolisportivo.model.Event;
-import progettoEsame.centropolisportivo.view.ActivityCard;
 import progettoEsame.centropolisportivo.view.EventCard;
 import progettoEsame.centropolisportivo.view.Template;
 

@@ -8,18 +8,15 @@ import java.util.ArrayList;
 
 import progettoEsame.centropolisportivo.business.LevelBusiness;
 import progettoEsame.centropolisportivo.business.MemberBusiness;
-import progettoEsame.centropolisportivo.business.RegistrationActivityBusiness;
 import progettoEsame.centropolisportivo.business.RegistrationBusiness;
 import progettoEsame.centropolisportivo.business.RegistrationCalendarBusiness;
 import progettoEsame.centropolisportivo.business.ScheduleBusiness;
 import progettoEsame.centropolisportivo.business.Session;
 import progettoEsame.centropolisportivo.business.TempAlterRegistrationBusiness;
 import progettoEsame.centropolisportivo.exception.SessionException;
-import progettoEsame.centropolisportivo.model.Activity;
 import progettoEsame.centropolisportivo.model.RegistrationCalendar;
 import progettoEsame.centropolisportivo.model.Schedule;
 import progettoEsame.centropolisportivo.model.TempAlterRegistration;
-import progettoEsame.centropolisportivo.model.Trainer;
 import progettoEsame.centropolisportivo.view.Message;
 import progettoEsame.centropolisportivo.view.ModifyRegistration;
 import static progettoEsame.centropolisportivo.view.ConstantClass.*;
@@ -44,7 +41,6 @@ public class ModifyRegistrationActionListener implements ActionListener {
 			tar.setLevel(LevelBusiness.getInstance().findLevelByName(levelName));
 			this.idTempAlterRegistration = TempAlterRegistrationBusiness.getInstance().insert(tar);
 		} catch (SQLException | SessionException e) {
-			e.printStackTrace();
 		}
 		ArrayList<String> schedule = modifyRegistrationPanel.getSelectedSchedule();
 		if(schedule == null)
@@ -69,7 +65,6 @@ public class ModifyRegistrationActionListener implements ActionListener {
 					
 					
 				} catch (SQLException e) {
-					e.printStackTrace();
 					modifyRegistrationPanel.removeMessageToPanel();
 					modifyRegistrationPanel.addMessageToPanel(Message.getInstance().printErrorMsg(ADD_SCHEDULE_DB_ERROR));
 				}

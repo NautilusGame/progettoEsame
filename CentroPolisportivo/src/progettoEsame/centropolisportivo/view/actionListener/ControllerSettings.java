@@ -5,12 +5,10 @@ import java.util.ArrayList;
 
 import progettoEsame.centropolisportivo.business.SettingsBusiness;
 import progettoEsame.centropolisportivo.exception.SessionException;
-import progettoEsame.centropolisportivo.model.Member;
 
 public class ControllerSettings 
 {
 	private static ControllerSettings instance;
-	private static ArrayList<String> valueField;
 	
 	public static synchronized ControllerSettings getInstance()
 	{
