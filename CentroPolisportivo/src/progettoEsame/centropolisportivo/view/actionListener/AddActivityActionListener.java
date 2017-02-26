@@ -30,7 +30,7 @@ public class AddActivityActionListener implements ActionListener {
 				addActivityPanel.removeMessageToPanel();
 				addActivityPanel.addMessageToPanel(Message.getInstance().printErrorMsg(ADD_ACTIVITY_NO_ROOM_OR_NO_ACTIVITY_TYPE));
 			}
-			if(newActivity.get(3).equals("") || newActivity.get(4).equals("") || newActivity.get(5).equals("") || newActivity.get(0) == null || newActivity.get(2) == null)
+			else if(newActivity.get(3).equals("") || newActivity.get(4).equals("") || newActivity.get(5).equals("") || newActivity.get(0) == null || newActivity.get(2) == null)
 			{
 				addActivityPanel.removeMessageToPanel();
 				addActivityPanel.addMessageToPanel(Message.getInstance().printErrorMsg(ADD_ACTIVITY_INCOMPLETED_MSG));
