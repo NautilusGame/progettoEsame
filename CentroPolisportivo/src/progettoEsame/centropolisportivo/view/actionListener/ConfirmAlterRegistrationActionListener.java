@@ -27,6 +27,7 @@ public class ConfirmAlterRegistrationActionListener implements ActionListener
 			try
 			{
 				ConfirmAlterRegistrationBusiness.getInstance().updateRegistration(this.tar.getRegistration().getId(), this.tar.getLevel().getId());
+				ConfirmAlterRegistrationBusiness.getInstance().deleteTempAlterRegistration(this.card.getId());
 			}
 			catch (Exception ex) {
 				// TODO: handle exception

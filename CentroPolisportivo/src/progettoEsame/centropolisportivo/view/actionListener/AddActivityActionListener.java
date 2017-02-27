@@ -47,7 +47,7 @@ public class AddActivityActionListener implements ActionListener {
 					activity.setDescription(newActivity.get(4));
 					activity.setCost(Float.parseFloat(newActivity.get(5)));
 					if(newActivity.get(6).equals(""))
-						activity.setImagePath("image/SystemImage/1.jpg");
+						activity.setImagePath("image/SystemImage/default.png");
 					else 
 						activity.setImagePath(newActivity.get(6));
 					Activity.insert(activity);
