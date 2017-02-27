@@ -12,6 +12,7 @@ import java.util.ArrayList;
 import progettoEsame.centropolisportivo.business.ConstantClass;
 import progettoEsame.centropolisportivo.business.LoginBusiness;
 import progettoEsame.centropolisportivo.business.RegistrationToSystemBusiness;
+import progettoEsame.centropolisportivo.business.Session;
 import progettoEsame.centropolisportivo.exception.LoginException;
 import progettoEsame.centropolisportivo.exception.RegistrationException;
 import progettoEsame.centropolisportivo.model.CenterManager;
@@ -39,6 +40,13 @@ public class LoginRegisterActionListener implements ActionListener
 		else if(e.getActionCommand().equals(MEMBER_RADIOBUTTON_ACTION_CMD))
 		{
 			this.lrview.makeInvisiblePhoneNumberField();
+		}
+		else if(e.getActionCommand().equals("home"))
+		{
+			this.mf.remove(lrview);
+			this.mf.add(new Template(this.mf));
+			this.mf.revalidate();
+			this.mf.repaint();
 		}
 		else if(e.getActionCommand().equals(LOGIN_BUTTON_ACTION_CMD))
 		{

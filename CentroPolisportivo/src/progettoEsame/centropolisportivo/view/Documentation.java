@@ -31,7 +31,6 @@ public class Documentation extends JPanel
 		openDoc=new JButton("Open Documentation");
 		info= new JLabel();
 		logo=new JLabel();
-		
 		info.setText("<html> <center> Elaborato software anno 2016/2017 sviluppato"
 				+ "<br>dagli studenti Benito Taccardi e Luca Podo."
 				+ "<br>Per accedere alla documentazione del progetto"

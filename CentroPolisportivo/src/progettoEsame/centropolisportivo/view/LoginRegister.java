@@ -43,6 +43,7 @@ public class LoginRegister extends JPanel{
 	
 	private JButton login; //bottone di login
 	private JButton register; //bottone di registrazione
+	private JButton home; //bottone di registrazione
 	
 	private JLabel msg;
 	private JLabel passwordLabel; //label password nel pannello password //label username nel pannello registrazione
@@ -89,6 +90,10 @@ public class LoginRegister extends JPanel{
 		this.login = new JButton(LOGIN_BUTTON_TEXT);
 		this.login.setActionCommand(LOGIN_BUTTON_ACTION_CMD);
 		this.login.addActionListener(new LoginRegisterActionListener(this,this.mf));
+		
+		this.home = new JButton("Home");
+		this.home.setActionCommand("home");
+		this.home.addActionListener(new LoginRegisterActionListener(this,this.mf));
 		
 		this.emailLabel = new JLabel(EMAIL_LABEL_TEXT);
 		this.passwordLabel = new JLabel(PASSWORD_LABEL_TEXT);
@@ -149,6 +154,12 @@ public class LoginRegister extends JPanel{
 		this.gbc.insets = new Insets(35, 13, 0, 0);
 		this.gbc.gridwidth = GridBagConstraints.CENTER;
 		this.loginPanel.add(login,gbc);
+		
+		this.gbc.gridx = 1;
+		this.gbc.gridy = 3;
+		this.gbc.insets = new Insets(35, 13, 0, 0);
+		this.gbc.gridwidth = GridBagConstraints.CENTER;
+		this.loginPanel.add(home,gbc);
 		
 		
 		this.gbc.gridx = 2;
