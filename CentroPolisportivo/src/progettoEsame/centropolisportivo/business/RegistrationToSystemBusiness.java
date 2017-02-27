@@ -28,7 +28,6 @@ public class RegistrationToSystemBusiness {
 		}
 		member.setPassword(MD5.getMD5(member.getPassword()));
 		Member.insert(member);
-		Session.getInstance().createSession(member.getEmail(),"member");
 		return true;
 	}
 
@@ -40,7 +39,6 @@ public class RegistrationToSystemBusiness {
 		}
 		trainer.setPassword(MD5.getMD5(trainer.getPassword()));
 		Trainer.insert(trainer);
-		Session.getInstance().createSession(trainer.getEmail(),"trainer");
 		return true;
 	}
 	
